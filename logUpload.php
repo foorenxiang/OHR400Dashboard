@@ -7,12 +7,8 @@ body{
   font-size: 20px;
 }
 header{
-  height: 10%;
+  height: 3%;
   font-size: 25px;
-}
-
-header #pageTitle{
-  font-size: 35px
 }
 
 .headerText{
@@ -29,8 +25,8 @@ header #pageTitle{
   float: left;
   text-align: left;
   width: 16%;
-  height: 85%;
-  padding: 10px 0px 5px 10px; 
+  height: 94%;
+  padding: 1px 0px 1px 10px; 
   padding-right: 0px;
   border-style: solid;
   border-color: white;
@@ -42,8 +38,8 @@ header #pageTitle{
   float: right;
   text-align: left;
   width: 82%;
-  height: 85%;
-  padding: 10px 10px 5px 0px;
+  height: 94%;
+  padding: 1px 10px 1px 0px;
 }
 
 iframe{
@@ -51,7 +47,7 @@ iframe{
   width: 80%;
   height: 90%;
   min-width: 1180px;
-  min-height: 560px;
+  min-height: 620px;
 }
 </style>
 
@@ -59,12 +55,10 @@ iframe{
 <head>
   <title>Old Holland Road 400 Flight Analysis Platform</title>
   <meta charset="utf-8">
-
 </head>
 <body>
 <header>
-  <div id="pageTitle">Old Holland Road 400</div>
-  Flight Analysis Platform
+  <strong>Old Holland Road 400 Flight Analysis Platform</strong>
 </header>
 <div id="KDBstatusBarWrapper" style="text-align: right;">
 <div style="color: green; display: inline;">KDB+ Status:</div>
@@ -85,15 +79,15 @@ iframe{
     
     ws = new WebSocket("ws://localhost:5001/");
 
-    statusIndicator.innerHTML = "Connecting to KDB+";
+    statusIndicator.innerHTML = "Connecting to Q Process";
 
     //define websocket event handlers
     ws.onopen=function(e){
-      statusIndicator.innerHTML="KDB+ Connected";
+      statusIndicator.innerHTML="Connected";
     }
 
     ws.onclose=function(e){
-      statusIndicator.innerHTML="KDB+ disconnected";
+      statusIndicator.innerHTML="Disconnected";
     }
 
     ws.onerror=function(e){
@@ -109,23 +103,36 @@ iframe{
     // statusIndicator.innerHTML="breakpoint";
   }
 
-  function send(){
-    // qCommand = "\\l PIDajGPSBatch.q";
-    qCommand="qCommand1:5";
-    alert("Sending q command: " + '"' + qCommand + '"');
-    // alert("qCommand: " + qCommand);
+  function qsend(qCommand){
     ws.send(qCommand);
   }
 
-  function loadQScript(){
+  function updateKDB(){
+    alert('Updating KDB+!');
     if(ws.readyState === WebSocket.OPEN){
-      var qCommand = "\\l PIDajGPSBatch.q"  
+      qCommand ="\\cd /Users/foorx/anaconda3/q/m64"
+      ws.send(qCommand);
+      qCommand = "\\l FASUpdate.q"  
       ws.send(qCommand);
     }
     else {
         // alert("ws state:" + ws.readyState);
-        setTimeout(loadQScript, 1000); // check again in a second
+        setTimeout(updateKDB, 1000); // check again in a second
     }
+  }
+
+  function KDBToPanda(){
+    if(ws.readyState === WebSocket.OPEN){
+      qCommand ="\\cd /Users/foorx/anaconda3/q/m64"
+      ws.send(qCommand);
+      qCommand = "\\l FASPanda.q"  
+      ws.send(qCommand);
+      alert('Feeding The Panda!');
+    }
+    else {
+        // alert("ws state:" + ws.readyState);
+        setTimeout(KDBToPanda, 1000); // check again in a second
+    } 
   }
   connect();
 </script>
@@ -153,7 +160,7 @@ iframe{
   // Open the file to get existing content
   // $current = file_get_contents($file);
   //Create new file instead
-  $current = "dummyColumn,Files";
+  $current = "numColumns,Files";
    
    // Count total files
    $countfiles = count($_FILES['file']['name']);
@@ -162,21 +169,29 @@ iframe{
     // Looping all files
     for($i=0;$i<$countfiles;$i++){
       $filename = $_FILES['file']['name'][$i];
-      
+      $sourceFile = $_FILES['file']['tmp_name'][$i];
+      $destFile = '/Users/foorx/logs/'.$filename;
       // Upload file
-      move_uploaded_file($_FILES['file']['tmp_name'][$i],'/Users/foorx/logs/'.$filename);
+      move_uploaded_file($sourceFile,$destFile);
       //echo "<br>";
       echo "<li>Uploaded " . $filename . "</li>";
 
-      // Append a new csv title to the file
-      $current .= "\n1,".$filename;
+      $destFile = fopen($destFile, "r"); 
+      while ($line = fgetcsv($destFile)) {
+        $numcols = count($line);
+      }
+
+      echo "Features: " . $numcols . "<br>";
+
+      // Append uploaded csv number of columns and file title to the manifest file
+      $current .= "\n".$numcols.",".$filename;
       // Write the contents back to the file
       file_put_contents($file, $current);
     }
     echo "</ol>";
 
     //run kdb pre-processor script
-    echo '<script>loadQScript();</script>';
+    echo '<script>updateKDB();</script>';
   } 
 
   ?>
@@ -186,10 +201,12 @@ iframe{
 <div id="rightColumn">
   <!-- <div class="headerText">KDB Server [cd $QHOME/m64/ && rlwrap q PIDajGPSBatch.q -p 5001
 ]</div><br> -->
-<div class="headerText">KDB Server [cd $QHOME/m64/ && rlwrap q wsInit.q -p 5001
-]</div>
+<div class="headerText">KDB+ Server[cd $QHOME/m64/ && rlwrap q FASInit.q]</div>
 <div id="iframeButton">
-  <button onclick="refreshIframe();">Refresh</button>
+  <button onclick="refreshIframe();">Refresh KDB Output</button>
+  <button onclick="location.href='localhost:5001/trainingData.csv?select from trainingData';">Download TrainingData</button>
+  <button onclick="updateKDB()">Update KDB tables</button>
+  <button onclick="KDBToPanda()">Feed The Panda</button>
   <script>
     function refreshIframe() {
     var ifr = document.getElementById("kdbiFrame");
