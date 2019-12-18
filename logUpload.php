@@ -110,7 +110,7 @@ iframe{
   function updateKDB(){
     alert('Updating KDB+!');
     if(ws.readyState === WebSocket.OPEN){
-      qCommand ="\\cd /Users/foorx/anaconda3/q/m64"
+      qCommand ="\\cd /Users/foorx/Sites/OHR400Dashboard"
       ws.send(qCommand);
       qCommand = "\\l FASUpdate.q"  
       ws.send(qCommand);
@@ -121,13 +121,13 @@ iframe{
     }
   }
 
-  function KDBToPanda(){
+  function UpdateModels(){
     if(ws.readyState === WebSocket.OPEN){
-      qCommand ="\\cd /Users/foorx/anaconda3/q/m64"
+      qCommand ="\\cd /Users/foorx/Sites/OHR400Dashboard"
       ws.send(qCommand);
-      qCommand = "\\l FASPanda.q"  
+      qCommand = "\\l FASUpdateModels.q"  
       ws.send(qCommand);
-      alert('Feeding The Panda!');
+      alert('Re-training model!');
     }
     else {
         // alert("ws state:" + ws.readyState);
@@ -205,8 +205,9 @@ iframe{
 <div id="iframeButton">
   <button onclick="refreshIframe();">Refresh KDB Output</button>
   <button onclick="location.href='localhost:5001/trainingData.csv?select from trainingData';">Download TrainingData</button>
-  <button onclick="updateKDB()">Update KDB tables</button>
-  <button onclick="KDBToPanda()">Feed The Panda</button>
+  <button onclick="updateKDB()">Force Update KDB</button>
+  <button onclick="UpdateModels()">Update Models</button>
+<button onclick="LaunchControlPredictions()">Predict Throttle</button>
   <script>
     function refreshIframe() {
     var ifr = document.getElementById("kdbiFrame");
