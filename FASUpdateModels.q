@@ -4,8 +4,6 @@ tempTable:flip (`index; `match)!(til count(trainTestSplitTrainingData[`ytrain]) 
 indexOfRowsUsedForTraining: raze flip select index from tempTable where match = 1
 indexOfRowsUsedForTesting: raze flip select index from tempTable where match = 0
 
-1 each trainTestSplitTrainingData[`ytrain]
-
 / trainingDataPDF: .ml.tab2df[trainingData]
 .p.set[`trainingDataPDF; .ml.tab2df[trainTestSplitTrainingData[`xtrain]]]
 
@@ -24,3 +22,6 @@ indexOfRowsUsedForTesting: raze flip select index from tempTable where match = 0
 /convert prediction result back to q list
 pythonVar:.p.pyget`gpsSpeedPredictions
 gpsSpeedPrediction:.p.py2q pythonVar
+
+gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
+/ select rcCommand3,predictedGPSSpeedkph from gpsSpeedPredictionTable

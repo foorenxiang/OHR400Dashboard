@@ -25,10 +25,6 @@ pidLogsFiles: raze listFromTableColumn[pidLogsTable;1]
 /create new master table if splayed table didn't load
 /add function to label each new log appended!
 if[not `GPSData in key`.; GPSData: enlistGPSCSV[first gpsLogsNumFeatures; first gpsLogsFiles];gpsLogsNumFeatures: 1_gpsLogsNumFeatures; gpsLogsFiles: 1_gpsLogsFiles] /use first log to initialise master table /drop first log already loaded
-		/ gpsLogsNumFeatures
-		/ gpsLogsFiles
-		/ GPSData{enlistGPSCSV[(gpsLogsNumFeatures@x);(gpsLogsFiles@x)]} each til count gpsLogsNumFeatures
-		/ {GPSData,enlistGPSCSV[(gpsLogsNumFeatures@x);(gpsLogsFiles@x)]}
 {`GPSData set GPSData,enlistGPSCSV[(gpsLogsNumFeatures@x);(gpsLogsFiles@x)]} each til count gpsLogsNumFeatures
 `:/Users/foorx/Sites/OHR400Dashboard/GPSData set GPSData; /save updated table
 
@@ -36,6 +32,32 @@ if[not `GPSData in key`.; GPSData: enlistGPSCSV[first gpsLogsNumFeatures; first 
 if[not `PIDData in key`.; PIDData: enlistPIDCSV[first pidLogsNumFeatures; first pidLogsFiles]; pidLogsNumFeatures: 1_pidLogsNumFeatures; pidLogsFiles: 1_pidLogsFiles] /use first log to initialise master table /drop first log already loaded
 {`PIDData set PIDData,enlistPIDCSV[(pidLogsNumFeatures@x);(pidLogsFiles@x)]} each til count pidLogsNumFeatures;
 `:/Users/foorx/Sites/OHR400Dashboard/PIDData set PIDData; /save updated table
+
+/
+//DO NOT USE THIS FUNCTION AS IT WILL RESET logsManifest.csv PERMISSIONS! WILL CAUSE PHP SCRIPT TO STOP WORKING
+//erase logsList to prep for next upload cycle
+logsManifest:([]dummyColumn:(); Files:())
+save `logsManifest.csv
+\
+
+/ \cd /Users/foorx
+
+/GPSData: ("f",(7-1)#"f";enlist csv) 0: `$directory,logName,"_GPS.csv"
+/ \ts PIDData: ("ff",(32-2)#"f";enlist csv) 0: `$directory,logName,"_PID.csv"
+
+/ directory: "tensorflow/"
+/ logName: "train_020319_LOG00049_56_58_59"
+
+/ \ts GPSData: ("f",(7-1)#"f";enlist csv) 0: `$directory,logName,"_GPS.csv"
+/ \ts PIDData: ("ff",(32-2)#"f";enlist csv) 0: `$directory,logName,"_PID.csv"
+/load data
+/ "time (ms) & space (bytes) taken to load CSVs"
+/ GPSData: ("f",(7-1)#"f";enlist csv) 0: `:tensorflow/train_020319_LOG00049_56_58_59_GPS.csv
+/ PIDData: ("ff",(32-2)#"f";enlist csv) 0: `:tensorflow/train_020319_LOG00049_56_58_59_PID.csv
+
+/trim data
+/ `GPSData set trimTable[GPSData];
+/ `PIDData set trimTable[PIDData];
 
 /adjust time data such that first time is 0us
 if[res:(PIDData[`timeus] 0)<(GPSData[`timeus] 0); startTime:PIDData[`timeus] 0] /if PID start time is earlier than GPS start time /writing "GPSData[`timeus] 0" is the same as writing "first GPSData[`timeus]"
@@ -129,12 +151,39 @@ update timeus:`float$timeus from `trainingData;
 /the 1st 'first' argument gets list from dictionary (read from right)
 /the 2nd 'first argument' (read from right) gets the first element/atom in the list
 /returns type of -9h to indicate it is a float atom
-/ averageSampleFrequency:(string reciprocal[averageFreq:first averageFreq:(first averageFreq:flip select avg timeDeltaus from trainingData where timeDeltaus>0)%1000000]),"Hz"
+averageSampleFrequency:(string reciprocal[averageFreq:first averageFreq:(first averageFreq:flip select avg timeDeltaus from trainingData where timeDeltaus>0)%1000000]),"Hz"
+/ delete averageSampleFrequency from `.;
+
+
+/ /get basic stats description of trainingData
+/ show trainingDataDescription:.ml.describe[trainingData]
+
+/ /calculate covariance matrix of trainingData
+/ / "covariance matrix of trainingData"
+/ covarianceMatrix:.ml.cvm[flip value flip trainingData] /"flip value flip" performed to strip the vectors from the table
+/ covarianceVector:raze covarianceMatrix
+/ covarianceTable: ([] featurePair:idesc covarianceVector; covarianceValue: desc covarianceVector) /sort by decreasing covariance
+/ selectedNumComponents: 50
+/ selectedPCTable: select[selectedNumComponents] from covarianceTable
+/ covarianceExplanationPercentage: first raze/[(select[selectedNumComponents] covarianceValue from covarianceTable) % sum(covarianceVector)]
+
+
+/ //DOUBLE CHECK WHAT THESE FUNCTIONS ARE RETURNING!
+/ iterateNumComponents:{[selectedNumComponents] covarianceExplanationPercentage: first raze/[(select[selectedNumComponents] covarianceValue from covarianceTable) % sum(covarianceVector)]} 
+/ maxComponents: `int$sqrt[1721344]
+/ componentNumVector: 200*1+til 50
+/ componentNumVector: 1+ til maxComponents
+/ resultsFromComponentsVector:iterateNumComponents each componentNumVector
+/ resultsFromComponentsTable:([] numOfComponents: componentNumVector[idesc resultsFromComponentsVector]; covarianceValue: desc resultsFromComponentsVector)
+
+
+/ /calculate covariance matrix permutations
+/ covarianceMatrixPermutations: pn[count cols trainingData;count cols trainingData]
+
 
 /housekeeping functions
-/ varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable
-
-/ ![`.;();0b;varsToDelete]; / delete unneeded variables using functional sql 
+varsToDelete: `PIDNumFeatures`gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`gpsNumFeatures`isGPS`isPID`logsList`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable`trainingDataDescription`varsToDelete
+![`.;();0b;varsToDelete]; / delete unneeded variables using functional sql 
 
 /return back to working directory!
 \cd /Users/foorx/Sites/OHR400Dashboard

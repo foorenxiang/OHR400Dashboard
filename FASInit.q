@@ -46,14 +46,14 @@ listFromTableColumn:{[t;c]raze each t[(cols t) c]}
 
 /load master data
 /attempt to load splayed master records table from disk if it exists
-"loading stored GPS Dataset"
-\ts GPSData:get `:/Users/foorx/Sites/OHR400Dashboard/GPSData
-"loading stored PID Dataset"
-\ts PIDData:get `:/Users/foorx/Sites/OHR400Dashboard/PIDData
-"loading stored Joined Dataset"
-\ts fullLog:get `:/Users/foorx/Sites/OHR400Dashboard/fullLog
-"loading stored Training Dataset"
-\ts trainingData: get `:/Users/foorx/Sites/OHR400Dashboard/trainingData
+/ "loading stored GPS Dataset"
+/ GPSData:get `:/Users/foorx/Sites/OHR400Dashboard/GPSData
+/ "loading stored PID Dataset"
+/ PIDData:get `:/Users/foorx/Sites/OHR400Dashboard/PIDData
+/ "loading stored Joined Dataset"
+/ fullLog:get `:/Users/foorx/Sites/OHR400Dashboard/fullLog
+/ "loading stored Training Dataset"
+/ trainingData: get `:/Users/foorx/Sites/OHR400Dashboard/trainingData
 
 
 //ML functions

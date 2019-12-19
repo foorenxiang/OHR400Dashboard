@@ -110,14 +110,15 @@ iframe{
   function updateKDB(){
     alert('Updating KDB+!');
     if(ws.readyState === WebSocket.OPEN){
-      qCommand ="\\cd /Users/foorx/Sites/OHR400Dashboard"
+      qCommand ="\\cd /Users/foorx/Sites/OHR400Dashboard";
+      // ws.send(qCommand);
+      qCommand = "\\l FASUpdate.q";
       ws.send(qCommand);
-      qCommand = "\\l FASUpdate.q"  
-      ws.send(qCommand);
+      alert("Sent q commands")
     }
     else {
         // alert("ws state:" + ws.readyState);
-        setTimeout(updateKDB, 1000); // check again in a second
+        setTimeout(updateKDB, 5000); // check again in 5 second
     }
   }
 
