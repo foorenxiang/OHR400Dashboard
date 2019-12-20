@@ -23,5 +23,4 @@ indexOfRowsUsedForTesting: raze flip select index from tempTable where match = 0
 pythonVar:.p.pyget`gpsSpeedPredictions
 gpsSpeedPrediction:.p.py2q pythonVar
 
-gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
-/ select rcCommand3,predictedGPSSpeedkph from gpsSpeedPredictionTable
+/ gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF

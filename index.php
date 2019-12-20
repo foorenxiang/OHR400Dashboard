@@ -108,17 +108,15 @@ iframe{
   }
 
   function updateKDB(){
-    alert('Updating KDB+!');
     if(ws.readyState === WebSocket.OPEN){
       qCommand ="\\cd /Users/foorx/Sites/OHR400Dashboard";
-      // ws.send(qCommand);
+      ws.send(qCommand);
       qCommand = "\\l FASUpdate.q";
       ws.send(qCommand);
-      alert("Sent q commands")
+      alert('Updating KDB+!');
     }
     else {
-        // alert("ws state:" + ws.readyState);
-        setTimeout(updateKDB, 5000); // check again in 5 second
+        setTimeout(updateKDB, 2000); // check again in 2 second
     }
   }
 
@@ -131,10 +129,41 @@ iframe{
       alert('Re-training model!');
     }
     else {
-        // alert("ws state:" + ws.readyState);
         setTimeout(KDBToPanda, 1000); // check again in a second
     } 
   }
+
+  function LaunchControlPredictions(){
+    if(ws.readyState === WebSocket.OPEN){
+      qCommand ="\\cd /Users/foorx/Sites/OHR400Dashboard"
+      ws.send(qCommand);
+      qCommand = "\\l FASUseModel.q"  
+      ws.send(qCommand);
+      alert('Re-training model!');
+    }
+    else {
+        setTimeout(KDBToPanda, 1000); // check again in a second
+    } 
+  }
+
+  function ConfirmPurgeDatabase(){
+    var r = prompt("Purge database? Type 'purge'");
+    if (r == 'purge') {
+      purgeDatabase();
+    }
+  }
+
+  function purgeDatabase(){
+    if(ws.readyState === WebSocket.OPEN){
+      qCommand ="purgeTables[];"
+      ws.send(qCommand);
+      alert('Purged database!');
+    }
+    else {
+        setTimeout(purgeDatabase, 1000); // check again in a second
+    } 
+  }
+
   connect();
 </script>
 </div>
@@ -208,7 +237,8 @@ iframe{
   <button onclick="location.href='localhost:5001/trainingData.csv?select from trainingData';">Download TrainingData</button>
   <button onclick="updateKDB()">Force Update KDB</button>
   <button onclick="UpdateModels()">Update Models</button>
-<button onclick="LaunchControlPredictions()">Predict Throttle</button>
+  <button onclick="LaunchControlPredictions()">Predict Throttle</button>
+  <button onclick="ConfirmPurgeDatabase()">Purge Database</button>
   <script>
     function refreshIframe() {
     var ifr = document.getElementById("kdbiFrame");
