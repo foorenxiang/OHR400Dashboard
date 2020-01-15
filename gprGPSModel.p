@@ -1,8 +1,9 @@
+import sys
+import numpy as np
 import pandas as pd
 import sklearn.gaussian_process as gp
 from joblib import dump, load  #model persistance library
 import mysql.connector
-import sys
 
 pd.set_option('display.max_rows', None)
 
