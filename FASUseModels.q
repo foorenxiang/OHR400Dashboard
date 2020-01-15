@@ -6,7 +6,7 @@ trainTestSplitTrainingData[`xtest] / test set
 numSamplesToUse:5
 .p.set[`inputPDF; .ml.tab2df[(neg(numSamplesToUse))#trainingData]] / take last numSamplesToUse
 / save `:trainingDataPDF.csv
-\l useModels.p
+\l useLinearGPSModel.p
 
 /convert prediction result back to q list
 pythonVar:.p.pyget`gpsSpeedPredictions
