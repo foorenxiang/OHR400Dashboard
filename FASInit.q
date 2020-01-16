@@ -47,16 +47,21 @@ listFromTableColumn:{[t;c]raze each t[(cols t) c]}
 /load master data
 /attempt to load splayed master records table from disk if it exists
 "Loading stored GPS Dataset"
-GPSData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/GPSData);0N]
+/ GPSData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/GPSData);0N]
+flatDir:"/Users/foorx/Sites/OHR400Dashboard/flat/"
+GPSData: @[get;hsym `$flatDir,"GPSData";0N]
 if[(type GPSData)<90;delete GPSData from `.;0N!"Failed to load GPSData"]
 "Loading stored PID Dataset"
-PIDData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/PIDData);0N]
+/ PIDData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/PIDData);0N]
+PIDData: @[get;hsym `$flatDir,"PIDData";0N]
 if[(type PIDData)<90;delete PIDData from `.;0N!"Failed to load PIDData"]
 "Loading stored Joined Dataset"
-fullLog: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/fullLog);0N]
+/ fullLog: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/fullLog);0N]
+fullLog: @[get;hsym `$flatDir,"fullLog";0N]
 if[(type fullLog)<90;delete fullLog from `.;0N!"Failed to load fullLog"]
 "Loading stored Training Dataset"
-trainingData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/trainingData);0N]
+/ trainingData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/trainingData);0N]
+trainingData: @[get;hsym `$flatDir,"trainingData";0N]
 if[(type trainingData)<90;delete trainingData from `.;0N!"Failed to load trainingData"]
 
 / function definition to delete unneeded variables using functional sql

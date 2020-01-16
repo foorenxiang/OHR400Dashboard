@@ -76,18 +76,20 @@ if[`GPSData in key `.; `GPSData set GPSData,GPSDataInput]
 
 /otherwise initialise GPSData table
 if[not `GPSData in key`.; GPSData:GPSDataInput]
-`:/Users/foorx/Sites/OHR400Dashboard/GPSData set GPSData; /save updated table
+/ hsym `$flatDir,"GPSData" set GPSData; /save updated table
+(hsym `$flatDir,"GPSData") set GPSData; /save updated table
+
 
 / join processed PIDDataInput with PIDDataInput splayed table if it exists
 if[`PIDData in key`.; `PIDData set PIDData,PIDDataInput]
 /otherwise initialise GPSData table
 if[not `PIDData in key`.; PIDData:PIDDataInput]
-`:/Users/foorx/Sites/OHR400Dashboard/PIDData set PIDData; /save updated table
+(hsym `$flatDir,"PIDData") set PIDData; /save updated table
 
 / as of join the PID log and GPS log
 fullLog:aj0[`timens;GPSData;PIDData];
 
-`:/Users/foorx/Sites/OHR400Dashboard/fullLog set fullLog; /save updated trainingData table
+(hsym `$flatDir,"fullLog") set fullLog; /save updated trainingData table
 
 / bucket into 1 tenths of a second
 / 1 xbar  raze each select timens from fullLog
@@ -131,7 +133,7 @@ trainingData:`GPSspeedkph xcols trainingData; /place that new column in front
 trainingData:`timeDeltaus xcols trainingData; /place that column in front
 update timeus:`float$timeus from `trainingData;
 / `timeus xkey `trainingData; /do not key the table or it will become a dictionary! must be a table to convert to dictionary
-`:/Users/foorx/Sites/OHR400Dashboard/trainingData set trainingData; /save updated trainingData table
+(hsym `$flatDir,"trainingData") set trainingData; /save updated trainingData table
 
 / find out average sample rate
 / this query returns a table of single row

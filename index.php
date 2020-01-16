@@ -153,6 +153,10 @@ iframe{
     }
   }
 
+  function DownloadRawSampleData(){
+
+  }
+
   function purgeDatabase(){
     if(ws.readyState === WebSocket.OPEN){
       qCommand ="purgeTables[];"
@@ -239,6 +243,7 @@ iframe{
   <button onclick="UpdateModels()">Update Models</button>
   <button onclick="LaunchControlPredictions()">Predict Throttle</button>
   <button onclick="ConfirmPurgeDatabase()">Purge Database</button>
+  <button onclick="DownloadRawSampleData()">Raw Sample Data for Demo</button>
   <script>
     function refreshIframe() {
     var ifr = document.getElementById("kdbiFrame");
