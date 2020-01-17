@@ -1,6 +1,5 @@
-trainTestSplitTrainingData:.ml.traintestsplit[trainingData;(count trainingData)?(0b;1b);0.2]
+trainTestSplitTrainingData:.ml.traintestsplit[trainingData;(count trainingData)?(0b;1b);testPercentage:0.2]
 trainTestSplitTrainingData[`xtest] / test set
-
 
 /actual model deployment
 numSamplesToUse:5

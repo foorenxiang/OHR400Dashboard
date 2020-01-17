@@ -11,7 +11,7 @@ csvTrainingData = 'trainingDataAbove100kph.csv'
 
 #mysql update setup variables
 #cannot use __file__ when running in KDB+
-fileName = 'updateGPRGPSModel.p'
+fileName = 'updateGPRLiPoModel.p'
 trainingSetName = 'trainingDataAbove100kph.csv'
 comments = 'Using RationalQuadratic GPR kernel'
 
@@ -40,8 +40,8 @@ trainingDataTest = trainingDataPDF[int(trainPercentage*len(trainingDataPDF)):]
 # testy <-- test labels [# points]
 
 trainX = trainingDataTrain.copy()
-trainX.drop(['GPSspeedkph'], axis=1, inplace = True)
-trainy = trainingDataTrain["GPSspeedkph"]
+trainX.drop(['vbatLatestV'], axis=1, inplace = True)
+trainy = trainingDataTrain["vbatLatestV"]
 # Index(['timeDeltaus', 'currentSampleHz', 'timeus', 'rcCommand0', 'rcCommand1',
        # 'rcCommand2', 'rcCommand3', 'vbatLatestV', 'gyroADC0', 'gyroADC1',
        # 'gyroADC2', 'accSmooth0', 'accSmooth1', 'accSmooth2', 'motor0',
@@ -49,8 +49,8 @@ trainy = trainingDataTrain["GPSspeedkph"]
       # dtype='object')
 
 testX = trainingDataTest.copy()
-testX.drop(['GPSspeedkph'], axis=1, inplace = True)
-testy = trainingDataTest["GPSspeedkph"]
+testX.drop(['vbatLatestV'], axis=1, inplace = True)
+testy = trainingDataTest["vbatLatestV"]
 
 
 #using constant gpr kernel
@@ -67,12 +67,12 @@ modelParams = model.kernel_.get_params() #call this to retrieve tuned hyperparam
 print("Model params:")
 print(modelParams)
 
-savedGPSSpeedModelGPR = dump(model, 'gprGPSSpeedModel.joblib')
+savedLiPoModelGPR = dump(model, 'gprLiPoModel.joblib')
 
 model = 0 
 
 #test model
-model = load('gprGPSSpeedModel.joblib')
+model = load('gprLiPoModel.joblib')
 # print(testX.columns)
 y_pred= model.predict(testX)
 
