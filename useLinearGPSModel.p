@@ -7,7 +7,7 @@ from joblib import dump, load  #model persistance library
 
 #model deployment:
 #load saved model from disk
-gpsSpeedLReg = load('gpsSpeedLReg.joblib')
+gpsSpeedLReg = load('gpsSpeedLReg.model')
 
 def predictGPSSpeed(inputFrame):
 	return gpsSpeedLReg.predict(inputFrame)

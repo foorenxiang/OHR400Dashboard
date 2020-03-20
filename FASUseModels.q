@@ -2,7 +2,7 @@ trainTestSplitTrainingData:.ml.traintestsplit[trainingData;(count trainingData)?
 trainTestSplitTrainingData[`xtest] / test set
 
 /actual model deployment
-numSamplesToUse:5
+numSamplesToUse: 
 .p.set[`inputPDF; .ml.tab2df[(neg(numSamplesToUse))#trainingData]] / take last numSamplesToUse
 / save `:trainingDataPDF.csv
 \l useLinearGPSModel.p

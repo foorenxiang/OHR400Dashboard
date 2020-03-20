@@ -1,0 +1,3381 @@
+Last login: Fri Mar 20 02:21:03 on ttys000
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q Process running on port 5001 [websocket mode]"
+"Loading stored GPS Dataset"
+"Loading stored PID Dataset"
+"Loading stored Joined Dataset"
+"Loading stored Training Dataset"
+"Loading Predictions Table"
+"All tables loaded!"
+"Automatic ML retraining disabled!"
+"Loading KX Developer"
+[developer] version 1.2.0
+[developer] loading...
+[developer] port already set, not changing
+[developer] successfully loaded
+[developer] connect to: http://ren-xiangs-mbp-2017.local:5001/ax or http://localhost:5001/ax with your web browser
+
+"System Up and Ready"
+q)\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+531 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+73 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+114 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+126 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+1      110                             110                        
+2      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+125 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+119 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+1      110                             110                        
+2      220                             220                        
+3      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+111 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+113 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+1      110                             110                        
+2      220                             220                        
+3      330                             330                        
+4      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+131 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+136 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+1      110                             110                        
+2      220                             220                        
+3      330                             330                        
+4      440                             440                        
+5      550                             550                        
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Completed Updating Models"
+q)\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+201 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+3058 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+85 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+105 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+121 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+133 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+119 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+134 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+119 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+136 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Completed Updating Models"
+q)\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+123 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+2622 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+157 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+170 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+90 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+117 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+124 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+113 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+151 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+232 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+180 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+184 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+206 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+213 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+184 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+203 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+303 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+199 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+217 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+220 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+213 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+245 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Completed Updating Models"
+q)warning: process not in workspace directory
+current: /Users/foorx/Sites/OHR400Dashboard
+workspace: /Users/foorx/developer/data/workspace/__nouser__/OHR400Dashboard
+\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+254 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+199 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+205 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+245 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+107 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+109 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTablsys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' meRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+133 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+156 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+118 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+115 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4     ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q) 550                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+122 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+129 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+132 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+150 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+158 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+189 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+160 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+149 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+267 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+190 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+221 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+202 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Completed Updating Models"
+\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+240 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+85 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+83 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+97 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+107 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+127 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRosys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' mwCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+117 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+134 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+111 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+133 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      55ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)0                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+148 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+155 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+139 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+149 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+126 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+140 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+139 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+181 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+152 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+177 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+140 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+181 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+`gpsSpeedPredictionTable
+"Completed Updating Models"
+\
+  \
+q)\\
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q Process running on port 5001 [websocket mode]"
+"Loading stored GPS Dataset"
+"Loading stored PID Dataset"
+"Loading stored Joined Dataset"
+"Loading stored Training Dataset"
+"Loading Predictions Table"
+"All tables loaded!"
+"Automatic ML retraining disabled!"
+"Loading KX Developer"
+[developer] version 1.2.0
+[developer] loading...
+[developer] port already set, not changing
+[developer] successfully loaded
+[developer] connect to: http://ren-xiangs-mbp-2017.local:5001/ax or http://localhost:5001/ax with your web browser
+
+"System Up and Ready"
+q)\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+1479 4241088
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+76 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+420 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+736 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+1082 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1297 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+2134 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+2217 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+3724 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+3124 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+"Generating timestep sample 6"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+5144 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+4214 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+8485 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+5610 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+9413 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+6789 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+12135 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+8348 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+15283 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+10683 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+19453 4235664
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+13625 4234720
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+"Completed Updating Models"
+q)warning: process not in workspace directory
+current: /Users/foorx/Sites/OHR400Dashboard
+workspace: /Users/foorx/developer/data/workspace/__nouser__/OHR400Dashboard
+warning: process not in workspace directory
+current: /Users/foorx/Sites/OHR400Dashboard
+workspace: /Users/foorx/developer/data/workspace/__nouser__/OHR400Dashboard
+\l FASUpdateModels.q
+\
+\
+\
+\
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+99 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+88 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+452 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+570 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+1023 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1319 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                 sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' m            330                        
+"Generating timestep sample 4"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+1835 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1847 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+2926 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+2740 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+"Generating timestep sample 6"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+4407 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+4097 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+-----ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)  q)-------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+8174 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+5548 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+9815 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+7537 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+12790 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+9193 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+16202 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+11502 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                        q)       110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+21322 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+14083 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+
+"Completed Updating Models"
+\
+  \
+q)\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+114 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+92 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+84 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+106 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+113 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+125 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRsys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' mowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+108 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+123 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+118 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+105 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      5ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)50                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+103 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+116 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+112 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+119 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+133 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+161 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+142 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+167 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+133 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+196 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+146 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+203 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+
+"Completed Updating Models"
+\
+  \
+q)\l FASUpdateModels.q
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+93 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+66 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+101 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+128 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+107 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+108 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRsys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' mowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+132 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+130 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+104 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+140 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      5ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)50                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+122 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+114 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+114 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+123 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+115 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+135 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+159 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+173 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+161 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+142 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+196 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+161 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+
+"Completed Updating Models"
+\
+  \
+q)\ts system "l FASUpdateModels.q" / ELM models
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+78 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+68 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+81 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+122 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+113 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+106 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRosys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' mwCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+98 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+130 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+108 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+139 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+133 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+133 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+163 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+148 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+156 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+169 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+138 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+139 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+192 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+199 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+179 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+187 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+
+"Completed Updating Models"
+3294 5412592
+\
+  \
+q)\ts system "l FASUpdateModels.q" / GPR models
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.42291823 121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.46789558 121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984
+ 121.4678984  121.4678984  121.4678984  121.4678984  121.4678984 ]
+gpsPredictionPDF set
+prediction complete!
+266 4237584
+"Deploying LiPo Voltage prediction model"
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+100 4234720
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Gesys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' mnerating timestep sample 2"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+368 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+533 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+998 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1404 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+2119 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1967 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440         ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)               
+"Generating timestep sample 5"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+3189 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+3188 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+"Generating timestep sample 6"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+5560 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+5137 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+7222 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+5955 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+9569 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+7854 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+11682 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+9402 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+15964 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+12795 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[121.4678984 121.4678984 121.4678984 ... 121.4678984 121.4678984
+ 121.4678984]
+gpsPredictionPDF set
+prediction complete!
+23770 4235664
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+14838 4234720
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+
+"Completed Updating Models"
+144315 5408496
+\
+  \
+q)\ts system "l FASUpdateModels.q" / GPR models
+"Training GPS speed prediction model"
+"Training LiPo Voltage prediction model"
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+238 4241088
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2020, 1918, 1816, 1714, 1612, 1510, 1408, 1306, 1204, 1102, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+115 4241216
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+85 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+122 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+100 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+127 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTablesys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' mRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+110 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+107 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+135 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+138 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      ethod is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+q)550                             550                        
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+101 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+112 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+118 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+118 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+114 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+183 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+153 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+155 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+133 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+181 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Generating timestep sample 11"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+171 4241088
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+164 4241216
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+10     1210                            1210                       
+
+"Completed Updating Models"
+3338 5416688
+\
+  \
+q)

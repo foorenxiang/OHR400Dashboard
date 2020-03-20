@@ -55,7 +55,7 @@ gpsSpeedLReg = lm.LinearRegression()
 gpsSpeedLReg.fit(gpsSpeedTrainX,gpsSpeedy)
 
 #persist model
-savedGPSSpeedModelLReg = dump(gpsSpeedLReg, 'gpsSpeedLReg.joblib') 
+savedGPSSpeedModelLReg = dump(gpsSpeedLReg, 'gpsSpeedLReg.model') 
 print("Saved model:")
 print(savedGPSSpeedModelLReg)
 
@@ -97,7 +97,7 @@ gpsSpeedLReg = 0
 
 #model deployment:
 #load saved model from disk
-gpsSpeedLReg = load('gpsSpeedLReg.joblib')
+gpsSpeedLReg = load('gpsSpeedLReg.model')
 
 def predictGPSSpeed(inputFrame):
 	return gpsSpeedLReg.predict(inputFrame)
@@ -107,8 +107,11 @@ gpsSpeedPredictions = predictGPSSpeed(gpsSpeedTestX)
 
 print("Actual vs Predictions:")
 for i in range(len(gpsSpeedPredictions)):
-	print(strFloat(gpsSpeedTesty[i]) + " || " + strFloat(gpsSpeedPredictions[i]))
+	print(strFloat(gpsSpeedTesty[i]) + "kph || " + strFloat(gpsSpeedPredictions[i]) + "kph")
 
-print("Mean square error:")
-meanSquareError = mse(gpsSpeedTesty,gpsSpeedPredictions)
-print(strFloat(meanSquareError))
+MSE = mse(gpsSpeedTesty,gpsSpeedPredictions)
+RMSE = MSE**0.5
+print("MSE:")
+print(strFloat(MSE))
+print("RMSE:")
+print(strFloat(RMSE))

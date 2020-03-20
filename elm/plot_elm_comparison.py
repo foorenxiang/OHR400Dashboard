@@ -189,6 +189,8 @@ figure = pl.figure(figsize=(18, 9))
 for ds in datasets:
     # preprocess dataset, split into training and test part
     X, y = ds
+    print("\ny: ")
+    print(y)
     X = StandardScaler().fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.4,
                                                         random_state=0)

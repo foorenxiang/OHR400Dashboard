@@ -2,7 +2,9 @@ import sys
 import numpy as np
 import pandas as pd
 import sklearn.gaussian_process as gp
+from sklearn.decomposition import PCA
 from joblib import dump, load  #model persistance library
+import matplotlib.pyplot as plt
 import mysql.connector
 
 pd.set_option('display.max_rows', None)
@@ -13,7 +15,8 @@ csvTrainingData = 'trainingDataAbove100kph.csv'
 #cannot use __file__ when running in KDB+
 fileName = 'updateGPRGPSModel.p'
 trainingSetName = 'trainingDataAbove100kph.csv'
-comments = 'Using RationalQuadratic GPR kernel'
+comments = 'Training multiple GPR kernel'
+print(comments)
 
 def mse(pred, actual):
 	return ((pred-actual)**2).mean()
@@ -22,12 +25,15 @@ def mse(pred, actual):
 def strFloat(floatVal):
 	return "{0:.2f}".format(round(floatVal,2))
 
+kdbSource = True
+
 if 'trainingDataPDF' not in globals():
+	kdbSource = False
 	trainingDataPDF = pd.read_csv(csvTrainingData)
 	print("Training using csv input!")
 
 #using else or try catch causes bugs with embedpy
-if 'trainingDataPDF' in globals():
+if kdbSource:
 	trainingSetName = "KDB+ Input"
 	print("Training using KDB+ input!")
 
@@ -52,40 +58,111 @@ testX = trainingDataTest.copy()
 testX.drop(['GPSspeedkph'], axis=1, inplace = True)
 testy = trainingDataTest["GPSspeedkph"]
 
+######if using PCA, determine principal components######
+usePCA = False
+covarianceExplanation = 0.95
+if 'usePCA' in globals():
+	if usePCA:
+		print("Using PCA!")
+		if 'pcaModel' not in globals():
+			if 'covarianceExplanation' not in globals():
+				covarianceExplanation = 1
+			pcaModel = PCA(n_components=covarianceExplanation)
+			pcaModel.fit(trainX)
+			print("principalComponents")
+			print(pcaModel.components_)
+		trainX = pd.DataFrame(pcaModel.transform(trainX))
+		testX = pd.DataFrame(pcaModel.transform(testX))
+		print(trainX)
+	else:
+		print("Not using PCA!")
+######if using PCA, determine principal components######
+
 
 #using constant gpr kernel
 # kernel = gp.kernels.ConstantKernel() * gp.kernels.RBF()
 kernel = gp.kernels.RationalQuadratic()
+kernels = [gp.kernels.ConstantKernel(), gp.kernels.RBF(), gp.kernels.Matern(), gp.kernels.RationalQuadratic()] #gp.kernels.ExpSineSquared(), gp.kernels.DotProduct()
+kernelNames = ["ConstantKernel", "RBF", "Matern", "RationalQuadratic"]
 
-print("GPR Kernel used:")
-print(kernel)
+#generate convoluted kernels
+convolutedKernels = []
+convolutedKernelNames = []
+for i in range(0, len(kernels)-1):
+	for j in range(i+1, len(kernels)):
+		convolutedKernels.append(kernels[i]*kernels[j])
+		convolutedKernelNames.append(kernelNames[i]+ "*" + kernelNames[j])
 
-model = gp.GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=10, alpha=0.001, normalize_y=True)
+print("number of convolutedKernels: " + str(len(convolutedKernels)))
+bestModel = None
+bestMSE = None
+bestRMSE = None
+RMSEs = []
+# +convolutedKernels
+for kernel, kernelName in zip(kernels+convolutedKernels, kernelNames + convolutedKernelNames):
+	# print("GPR Kernel used:")
+	# print(kernel)
 
-model.fit(trainX, trainy)
-modelParams = model.kernel_.get_params() #call this to retrieve tuned hyperparameters from model
-print("Model params:")
-print(modelParams)
+	# model = gp.GaussianProcessRegressor(kernel=gp.kernels.RationalQuadratic(), n_restarts_optimizer=10, alpha=0.001, normalize_y=True)
+	model = gp.GaussianProcessRegressor(kernel=kernel, alpha=0.001, normalize_y=True)
 
-savedGPSSpeedModelGPR = dump(model, 'gprGPSSpeedModel.joblib')
+	model.fit(trainX, trainy)
 
-model = 0 
+	savedGPSSpeedModelGPR = dump(model, 'gprGPSSpeedModel.joblib')
 
-#test model
-model = load('gprGPSSpeedModel.joblib')
-# print(testX.columns)
-y_pred= model.predict(testX)
+	#test model
+	y_pred= model.predict(testX)
 
-#calculate mean square error
-MSE = mse(y_pred,testy)
+	#calculate mean square error
+	MSE = mse(y_pred,testy)
+	RMSE = MSE**0.5
+	RMSEs.append(RMSE)
 
-#display mean square error
-# print("Actual vs Predictions:")
-# testy = testy.to_numpy()
-# for i in range(len(y_pred)):
-# 	print(strFloat(testy[i]) + " || " + strFloat(y_pred[i]))
-print("Mean Square Error:")
-print(strFloat(MSE))
+	if bestModel == None:
+		bestModel = model
+		bestKernel = kernelName
+		bestMSE = MSE
+		bestRMSE = RMSE
+	elif RMSE < bestRMSE*0.95:
+		bestModel = model
+		bestKernel = kernelName
+		bestMSE = MSE
+		bestRMSE = RMSE
+
+	print("MSE:")
+	print(strFloat(MSE))
+	print("RMSE:")
+	print(strFloat(RMSE) + "\n")
+
+print("Optimal kernel found!: " + bestKernel)
+print("bestMSE")
+print(bestMSE)
+print("bestRMSE:")
+print(bestRMSE)
+
+if kdbSource == False:
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	ax.set(ylim=(0, 100))
+	plotTitle = "Gaussian Process Regression GPS"
+	if usePCA:
+		plotTitle += " PCA"
+	else:
+		plotTitle += " no PCA"
+	plotTitle += " RMSE: " + strFloat(RMSE) + " (" + bestKernel + ")"
+	plt.title(plotTitle)
+	plt.ylabel('RMSE')
+	x = range(0, len(RMSEs))
+	plt.xticks(ticks=x, labels=kernelNames + convolutedKernelNames, rotation=20)
+	ax.scatter(x, RMSEs, s=10, c='b', marker="s")
+	figureName = "GPR GPS"
+	if usePCA:
+		figureName += " PCA"
+	else:
+		figureName += " no PCA"
+	fileExt = ".png"
+	plt.savefig(figureName + fileExt)
+	plt.show()
 
 #save model setup to mysql db
 conn = mysql.connector.connect(host="localhost", user="foorx", passwd="Mav3r1ck!", database="ml_logs")

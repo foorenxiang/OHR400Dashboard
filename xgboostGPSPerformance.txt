@@ -1,0 +1,1292 @@
+57.68
+
+SVR Kernel used:
+sigmoid
+MSE:
+33386.95
+RMSE:
+182.72
+
+Optimal model:
+linear
+Best MSE: 3113.54
+Best RMSE: 55.80
+'nyi
+  [2]  /Users/foorx/Sites/OHR400Dashboard/FASUpdateModels.q:16: :"break"
+                                                                 ^
+  [0]  (<load>)
+
+  )
+  [Restored 15 Mar 2020 at 10:12:42 AM]
+Last login: Sun Mar 15 10:12:33 on console
+Restored session: Sun Mar 15 10:12:21 +08 2020
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ clear
+
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ python3 updateXGBoostGPSModel.p 
+Training using csv input!
+Using PCA!
+XGBoost booster used:
+gbtree4 1
+MSE:
+3053.18
+RMSE:
+55.26
+
+XGBoost booster used:
+gbtree4 3
+MSE:
+2895.99
+RMSE:
+53.81
+
+XGBoost booster used:
+gbtree4 6
+MSE:
+2811.71
+RMSE:
+53.03
+
+XGBoost booster used:
+gbtree4 10
+MSE:
+2777.36
+RMSE:
+52.70
+
+XGBoost booster used:
+gbtree4 18
+MSE:
+2793.59
+RMSE:
+52.85
+
+XGBoost booster used:
+gbtree4 33
+MSE:
+2929.30
+RMSE:
+54.12
+
+XGBoost booster used:
+gbtree4 58
+MSE:
+3130.66
+RMSE:
+55.95
+
+XGBoost booster used:
+gbtree4 102
+MSE:
+3377.14
+RMSE:
+58.11
+
+XGBoost booster used:
+gbtree4 180
+MSE:
+3497.66
+RMSE:
+59.14
+
+XGBoost booster used:
+gbtree4 316
+MSE:
+3622.74
+RMSE:
+60.19
+
+XGBoost booster used:
+gbtree5 1
+MSE:
+3066.72
+RMSE:
+55.38
+
+XGBoost booster used:
+gbtree5 3
+MSE:
+2924.58
+RMSE:
+54.08
+
+XGBoost booster used:
+gbtree5 6
+MSE:
+2836.70
+RMSE:
+53.26
+
+XGBoost booster used:
+gbtree5 10
+MSE:
+2828.62
+RMSE:
+53.18
+
+XGBoost booster used:
+gbtree5 18
+MSE:
+2887.25
+RMSE:
+53.73
+
+XGBoost booster used:
+gbtree5 33
+MSE:
+3018.83
+RMSE:
+54.94
+
+XGBoost booster used:
+gbtree5 58
+MSE:
+3213.28
+RMSE:
+56.69
+
+XGBoost booster used:
+gbtree5 102
+MSE:
+3381.91
+RMSE:
+58.15
+
+XGBoost booster used:
+gbtree5 180
+MSE:
+3508.16
+RMSE:
+59.23
+
+XGBoost booster used:
+gbtree5 316
+MSE:
+3557.55
+RMSE:
+59.65
+
+XGBoost booster used:
+gbtree6 1
+MSE:
+3068.18
+RMSE:
+55.39
+
+XGBoost booster used:
+gbtree6 3
+MSE:
+2922.07
+RMSE:
+54.06
+
+XGBoost booster used:
+gbtree6 6
+MSE:
+2857.39
+RMSE:
+53.45
+
+XGBoost booster used:
+gbtree6 10
+MSE:
+2884.56
+RMSE:
+53.71
+
+XGBoost booster used:
+gbtree6 18
+MSE:
+3016.72
+RMSE:
+54.92
+
+XGBoost booster used:
+gbtree6 33
+MSE:
+3208.51
+RMSE:
+56.64
+
+XGBoost booster used:
+gbtree6 58
+MSE:
+3352.53
+RMSE:
+57.90
+
+XGBoost booster used:
+gbtree6 102
+MSE:
+3477.45
+RMSE:
+58.97
+
+XGBoost booster used:
+gbtree6 180
+MSE:
+3564.38
+RMSE:
+59.70
+
+XGBoost booster used:
+gbtree6 316
+MSE:
+3596.19
+RMSE:
+59.97
+
+XGBoost booster used:
+gbtree7 1
+MSE:
+3089.72
+RMSE:
+55.59
+
+XGBoost booster used:
+gbtree7 3
+MSE:
+2950.65
+RMSE:
+54.32
+
+XGBoost booster used:
+gbtree7 6
+MSE:
+2923.42
+RMSE:
+54.07
+
+XGBoost booster used:
+gbtree7 10
+MSE:
+2959.62
+RMSE:
+54.40
+
+XGBoost booster used:
+gbtree7 18
+MSE:
+3081.35
+RMSE:
+55.51
+
+XGBoost booster used:
+gbtree7 33
+MSE:
+3224.65
+RMSE:
+56.79
+
+XGBoost booster used:
+gbtree7 58
+MSE:
+3342.17
+RMSE:
+57.81
+
+XGBoost booster used:
+gbtree7 102
+MSE:
+3445.71
+RMSE:
+58.70
+
+XGBoost booster used:
+gbtree7 180
+MSE:
+3500.95
+RMSE:
+59.17
+
+XGBoost booster used:
+gbtree7 316
+MSE:
+3514.74
+RMSE:
+59.29
+
+XGBoost booster used:
+gbtree8 1
+MSE:
+3102.19
+RMSE:
+55.70
+
+XGBoost booster used:
+gbtree8 3
+MSE:
+2979.23
+RMSE:
+54.58
+
+XGBoost booster used:
+gbtree8 6
+MSE:
+2962.84
+RMSE:
+54.43
+
+XGBoost booster used:
+gbtree8 10
+MSE:
+3005.42
+RMSE:
+54.82
+
+XGBoost booster used:
+gbtree8 18
+MSE:
+3154.67
+RMSE:
+56.17
+
+XGBoost booster used:
+gbtree8 33
+MSE:
+3266.50
+RMSE:
+57.15
+
+XGBoost booster used:
+gbtree8 58
+MSE:
+3348.70
+RMSE:
+57.87
+
+XGBoost booster used:
+gbtree8 102
+MSE:
+3415.08
+RMSE:
+58.44
+
+XGBoost booster used:
+gbtree8 180
+MSE:
+3440.75
+RMSE:
+58.66
+
+XGBoost booster used:
+gbtree8 316
+MSE:
+3442.25
+RMSE:
+58.67
+
+XGBoost booster used:
+gbtree9 1
+MSE:
+3098.41
+RMSE:
+55.66
+
+XGBoost booster used:
+gbtree9 3
+MSE:
+3005.12
+RMSE:
+54.82
+
+XGBoost booster used:
+gbtree9 6
+MSE:
+2984.61
+RMSE:
+54.63
+
+XGBoost booster used:
+gbtree9 10
+MSE:
+3073.71
+RMSE:
+55.44
+
+XGBoost booster used:
+gbtree9 18
+MSE:
+3194.41
+RMSE:
+56.52
+
+XGBoost booster used:
+gbtree9 33
+MSE:
+3327.71
+RMSE:
+57.69
+
+XGBoost booster used:
+gbtree9 58
+MSE:
+3418.05
+RMSE:
+58.46
+
+XGBoost booster used:
+gbtree9 102
+MSE:
+3458.55
+RMSE:
+58.81
+
+XGBoost booster used:
+gbtree9 180
+MSE:
+3472.47
+RMSE:
+58.93
+
+XGBoost booster used:
+gbtree9 316
+MSE:
+3475.81
+RMSE:
+58.96
+
+XGBoost booster used:
+gblinear4 1
+MSE:
+3047.69
+RMSE:
+55.21
+
+XGBoost booster used:
+gblinear4 3
+MSE:
+2851.33
+RMSE:
+53.40
+
+XGBoost booster used:
+gblinear4 6
+MSE:
+2675.53
+RMSE:
+51.73
+
+XGBoost booster used:
+gblinear4 10
+MSE:
+2561.64
+RMSE:
+50.61
+
+XGBoost booster used:
+gblinear4 18
+MSE:
+2490.99
+RMSE:
+49.91
+
+XGBoost booster used:
+gblinear4 33
+MSE:
+2475.14
+RMSE:
+49.75
+
+XGBoost booster used:
+gblinear4 58
+MSE:
+2474.30
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear4 102
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear4 180
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear4 316
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear5 1
+MSE:
+3047.69
+RMSE:
+55.21
+
+XGBoost booster used:
+gblinear5 3
+MSE:
+2851.33
+RMSE:
+53.40
+
+XGBoost booster used:
+gblinear5 6
+MSE:
+2675.53
+RMSE:
+51.73
+
+XGBoost booster used:
+gblinear5 10
+MSE:
+2561.64
+RMSE:
+50.61
+
+XGBoost booster used:
+gblinear5 18
+MSE:
+2490.99
+RMSE:
+49.91
+
+XGBoost booster used:
+gblinear5 33
+MSE:
+2475.14
+RMSE:
+49.75
+
+XGBoost booster used:
+gblinear5 58
+MSE:
+2474.30
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear5 102
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear5 180
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear5 316
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear6 1
+MSE:
+3047.69
+RMSE:
+55.21
+
+XGBoost booster used:
+gblinear6 3
+MSE:
+2851.33
+RMSE:
+53.40
+
+XGBoost booster used:
+gblinear6 6
+MSE:
+2675.53
+RMSE:
+51.73
+
+XGBoost booster used:
+gblinear6 10
+MSE:
+2561.64
+RMSE:
+50.61
+
+XGBoost booster used:
+gblinear6 18
+MSE:
+2490.99
+RMSE:
+49.91
+
+XGBoost booster used:
+gblinear6 33
+MSE:
+2475.14
+RMSE:
+49.75
+
+XGBoost booster used:
+gblinear6 58
+MSE:
+2474.30
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear6 102
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear6 180
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear6 316
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear7 1
+MSE:
+3047.69
+RMSE:
+55.21
+
+XGBoost booster used:
+gblinear7 3
+MSE:
+2851.33
+RMSE:
+53.40
+
+XGBoost booster used:
+gblinear7 6
+MSE:
+2675.53
+RMSE:
+51.73
+
+XGBoost booster used:
+gblinear7 10
+MSE:
+2561.64
+RMSE:
+50.61
+
+XGBoost booster used:
+gblinear7 18
+MSE:
+2490.99
+RMSE:
+49.91
+
+XGBoost booster used:
+gblinear7 33
+MSE:
+2475.14
+RMSE:
+49.75
+
+XGBoost booster used:
+gblinear7 58
+MSE:
+2474.30
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear7 102
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear7 180
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear7 316
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear8 1
+MSE:
+3047.69
+RMSE:
+55.21
+
+XGBoost booster used:
+gblinear8 3
+MSE:
+2851.33
+RMSE:
+53.40
+
+XGBoost booster used:
+gblinear8 6
+MSE:
+2675.53
+RMSE:
+51.73
+
+XGBoost booster used:
+gblinear8 10
+MSE:
+2561.64
+RMSE:
+50.61
+
+XGBoost booster used:
+gblinear8 18
+MSE:
+2490.99
+RMSE:
+49.91
+
+XGBoost booster used:
+gblinear8 33
+MSE:
+2475.14
+RMSE:
+49.75
+
+XGBoost booster used:
+gblinear8 58
+MSE:
+2474.30
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear8 102
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear8 180
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear8 316
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear9 1
+MSE:
+3047.69
+RMSE:
+55.21
+
+XGBoost booster used:
+gblinear9 3
+MSE:
+2851.33
+RMSE:
+53.40
+
+XGBoost booster used:
+gblinear9 6
+MSE:
+2675.53
+RMSE:
+51.73
+
+XGBoost booster used:
+gblinear9 10
+MSE:
+2561.64
+RMSE:
+50.61
+
+XGBoost booster used:
+gblinear9 18
+MSE:
+2490.99
+RMSE:
+49.91
+
+XGBoost booster used:
+gblinear9 33
+MSE:
+2475.14
+RMSE:
+49.75
+
+XGBoost booster used:
+gblinear9 58
+MSE:
+2474.30
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear9 102
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear9 180
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+gblinear9 316
+MSE:
+2474.29
+RMSE:
+49.74
+
+XGBoost booster used:
+dart4 1
+MSE:
+3053.18
+RMSE:
+55.26
+
+XGBoost booster used:
+dart4 3
+MSE:
+2895.99
+RMSE:
+53.81
+
+XGBoost booster used:
+dart4 6
+MSE:
+2811.71
+RMSE:
+53.03
+
+XGBoost booster used:
+dart4 10
+MSE:
+2777.36
+RMSE:
+52.70
+
+XGBoost booster used:
+dart4 18
+MSE:
+2793.59
+RMSE:
+52.85
+
+XGBoost booster used:
+dart4 33
+MSE:
+2929.30
+RMSE:
+54.12
+
+XGBoost booster used:
+dart4 58
+MSE:
+3130.66
+RMSE:
+55.95
+
+XGBoost booster used:
+dart4 102
+MSE:
+3377.14
+RMSE:
+58.11
+
+XGBoost booster used:
+dart4 180
+MSE:
+3497.67
+RMSE:
+59.14
+
+XGBoost booster used:
+dart4 316
+MSE:
+3622.74
+RMSE:
+60.19
+
+XGBoost booster used:
+dart5 1
+MSE:
+3066.72
+RMSE:
+55.38
+
+XGBoost booster used:
+dart5 3
+MSE:
+2924.58
+RMSE:
+54.08
+
+XGBoost booster used:
+dart5 6
+MSE:
+2836.70
+RMSE:
+53.26
+
+XGBoost booster used:
+dart5 10
+MSE:
+2828.62
+RMSE:
+53.18
+
+XGBoost booster used:
+dart5 18
+MSE:
+2887.25
+RMSE:
+53.73
+
+XGBoost booster used:
+dart5 33
+MSE:
+3018.83
+RMSE:
+54.94
+
+XGBoost booster used:
+dart5 58
+MSE:
+3213.28
+RMSE:
+56.69
+
+XGBoost booster used:
+dart5 102
+MSE:
+3381.91
+RMSE:
+58.15
+
+XGBoost booster used:
+dart5 180
+MSE:
+3508.16
+RMSE:
+59.23
+
+XGBoost booster used:
+dart5 316
+MSE:
+3557.55
+RMSE:
+59.65
+
+XGBoost booster used:
+dart6 1
+MSE:
+3068.18
+RMSE:
+55.39
+
+XGBoost booster used:
+dart6 3
+MSE:
+2922.07
+RMSE:
+54.06
+
+XGBoost booster used:
+dart6 6
+MSE:
+2857.39
+RMSE:
+53.45
+
+XGBoost booster used:
+dart6 10
+MSE:
+2884.56
+RMSE:
+53.71
+
+XGBoost booster used:
+dart6 18
+MSE:
+3016.72
+RMSE:
+54.92
+
+XGBoost booster used:
+dart6 33
+MSE:
+3208.51
+RMSE:
+56.64
+
+XGBoost booster used:
+dart6 58
+MSE:
+3352.53
+RMSE:
+57.90
+
+XGBoost booster used:
+dart6 102
+MSE:
+3477.45
+RMSE:
+58.97
+
+XGBoost booster used:
+dart6 180
+MSE:
+3564.38
+RMSE:
+59.70
+
+XGBoost booster used:
+dart6 316
+MSE:
+3596.19
+RMSE:
+59.97
+
+XGBoost booster used:
+dart7 1
+MSE:
+3089.72
+RMSE:
+55.59
+
+XGBoost booster used:
+dart7 3
+MSE:
+2950.65
+RMSE:
+54.32
+
+XGBoost booster used:
+dart7 6
+MSE:
+2923.42
+RMSE:
+54.07
+
+XGBoost booster used:
+dart7 10
+MSE:
+2959.62
+RMSE:
+54.40
+
+XGBoost booster used:
+dart7 18
+MSE:
+3081.35
+RMSE:
+55.51
+
+XGBoost booster used:
+dart7 33
+MSE:
+3224.65
+RMSE:
+56.79
+
+XGBoost booster used:
+dart7 58
+MSE:
+3342.17
+RMSE:
+57.81
+
+XGBoost booster used:
+dart7 102
+MSE:
+3445.71
+RMSE:
+58.70
+
+XGBoost booster used:
+dart7 180
+MSE:
+3500.95
+RMSE:
+59.17
+
+XGBoost booster used:
+dart7 316
+MSE:
+3514.12
+RMSE:
+59.28
+
+XGBoost booster used:
+dart8 1
+MSE:
+3102.19
+RMSE:
+55.70
+
+XGBoost booster used:
+dart8 3
+MSE:
+2979.23
+RMSE:
+54.58
+
+XGBoost booster used:
+dart8 6
+MSE:
+2962.84
+RMSE:
+54.43
+
+XGBoost booster used:
+dart8 10
+MSE:
+3005.42
+RMSE:
+54.82
+
+XGBoost booster used:
+dart8 18
+MSE:
+3154.67
+RMSE:
+56.17
+
+XGBoost booster used:
+dart8 33
+MSE:
+3266.50
+RMSE:
+57.15
+
+XGBoost booster used:
+dart8 58
+MSE:
+3348.70
+RMSE:
+57.87
+
+XGBoost booster used:
+dart8 102
+MSE:
+3415.08
+RMSE:
+58.44
+
+XGBoost booster used:
+dart8 180
+MSE:
+3440.75
+RMSE:
+58.66
+
+XGBoost booster used:
+dart8 316
+MSE:
+3442.19
+RMSE:
+58.67
+
+XGBoost booster used:
+dart9 1
+MSE:
+3098.41
+RMSE:
+55.66
+
+XGBoost booster used:
+dart9 3
+MSE:
+3005.12
+RMSE:
+54.82
+
+XGBoost booster used:
+dart9 6
+MSE:
+2984.61
+RMSE:
+54.63
+
+XGBoost booster used:
+dart9 10
+MSE:
+3073.71
+RMSE:
+55.44
+
+XGBoost booster used:
+dart9 18
+MSE:
+3194.41
+RMSE:
+56.52
+
+XGBoost booster used:
+dart9 33
+MSE:
+3327.71
+RMSE:
+57.69
+
+XGBoost booster used:
+dart9 58
+MSE:
+3418.05
+RMSE:
+58.46
+
+XGBoost booster used:
+dart9 102
+MSE:
+3458.55
+RMSE:
+58.81
+
+XGBoost booster used:
+dart9 180
+MSE:
+3472.47
+RMSE:
+58.93
+
+XGBoost booster used:
+dart9 316
+MSE:
+3475.68
+RMSE:
+58.95
+
+Optimal model:
+gblinear4 18
+Best MSE: 2490.99
+Best RMSE: 49.91
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ 

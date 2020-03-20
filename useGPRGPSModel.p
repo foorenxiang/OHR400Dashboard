@@ -1,5 +1,4 @@
 #deploy model
-
 #this model will apply pseudo throttle values from 1000 to 2000us and create variations of single input sample
 #GPS speed will be predicted for each synthesized sample
 #output is stored as gpsPredictionPDF (retrievable from kdb through shared python space)
@@ -10,9 +9,10 @@ import pandas as pd
 import sklearn.gaussian_process as gp
 from joblib import load  #model persistance library
 
-fileName = 'updateGPRGPSModel.p'
+fileName = 'useGPRGPSModel.p'
 trainingSetName = 'trainingDataAbove100kph.csv'
-comments = 'Using RationalQuadratic GPR kernel'
+comments = 'Using GPR GPS model'
+print(comments)
 
 def mse(pred, actual):
 	return ((pred-actual)**2).mean()
@@ -35,10 +35,16 @@ if trainingDataPDFNotFound == True:
 #using else or try catch causes bugs with embedpy
 if trainingDataPDFNotFound == False:
 	trainingSetName = "KDB+ Input"
-	print("Training using KDB+ input!")
+	print("Predicting using KDB+ input!")
 
-trainPercentage = 0.7
-trainingDataTrain = trainingDataPDF[:int(trainPercentage*len(trainingDataPDF))]
+if 'synthesizedSampleIndex' not in globals():
+	synthesizedSampleIndex = 0
+
+if 'numSamplesToUse' not in globals():
+	numSamplesToUse = 10
+
+trainPercentage = 0.7 # not in use
+trainingDataTrain = trainingDataPDF[:int(trainPercentage*len(trainingDataPDF))] # not in use
 
 model = load('gprGPSSpeedModel.joblib')
 
@@ -49,7 +55,7 @@ if 'inputPDF' not in globals():
 	inputPDF = trainingDataTrain.copy()
 	print("importing data from csv source") 
 
-inputPDF = trainingDataTrain.copy()
+# inputPDF = trainingDataTrain.copy()
 
 #select number of samples used for prediction
 #COMMENT OUT WHEN USING WITH KDB+!!!
@@ -61,9 +67,14 @@ inputPDF.drop(['GPSspeedkph'], axis=1, inplace = True)
 # inputPDF = inputPDF[['rcCommand0', 'rcCommand1', 'rcCommand3']]
 
 #predict gps speed for range of throttle values
-lowThrottle = 1000
-highThrottle = 2000
-throttleSteps = 20
+if 'lowThrottle' not in globals():
+	lowThrottle = 1000
+
+if 'highThrottle' not in globals():
+	highThrottle = 2000
+
+if 'throttleSteps' not in globals():
+	throttleSteps = 10
 
 #prepare throttle variations vector and parameters
 steps = (highThrottle - lowThrottle) / throttleSteps
@@ -74,17 +85,17 @@ throttleInputRange.reverse()
 
 #prepare dataframe for throttle variations input
 tempPDF = inputPDF.copy()
-print("tempPDF")
-print(tempPDF)
+# print("tempPDF")
+# print(tempPDF)
 for x in range(throttleSteps):
 	inputPDF = inputPDF.append(tempPDF)
 inputPDF.reset_index(inplace=True)
 inputPDF.loc[:,['rcCommand3']] = 1000
 inputPDF.drop(['index'], axis=1, inplace = True)
 
-print("Throttle range: ")
-for x in range(len(throttleInputRange)):
-	print(throttleInputRange[x])
+# print("Throttle range: ")
+# for x in range(len(throttleInputRange)):
+	# print(throttleInputRange[x])
 
 # generate list of input data with varying throttle ranges for speed prediction
 for x in range(len(throttleInputRange)):
@@ -95,25 +106,33 @@ for x in range(len(throttleInputRange)):
 # print(inputPDF.columns)
 #run model to get speed predictions
 gpsSpeedPrediction, covMatrix = model.predict(inputPDF, return_cov=True)
+print("gpsSpeedPrediction")
+print(gpsSpeedPrediction)
 
 #inputPDF merge predicted values to new dataframe
-gpsPredictionPDF = pd.merge(inputPDF, pd.Series(data=gpsSpeedPrediction, name='predictedGPSSpeedkph'), how='inner', on=None, left_on=None, right_on=None,
+gpsPredictionPDF = pd.merge(inputPDF, pd.Series(data=gpsSpeedPrediction, name='GPSspeedkph'), how='inner', on=None, left_on=None, right_on=None,
          left_index=True, right_index=True, sort=False,
          suffixes=('_x', '_y'), copy=True, indicator=False,
          validate=None)
 
-#label with throttle scenario/inputSequence
-inputSequence = list()
+#label with throttle scenario/throttleInputSequence
+throttleInputSequence = list()
+synthesizedSampleIndexRef, synthesizedSampleIndex = synthesizedSampleIndex, list()
 for x in range(len(throttleInputRange)):
 	for y in range(numSamplesToUse):
-		inputSequence.append(x)
-print('inputSequence:')
-print(inputSequence)
-gpsPredictionPDF = pd.merge(gpsPredictionPDF, pd.Series(data=inputSequence, name='inputSequence'), how='inner', on=None, left_on=None, right_on=None,
+		throttleInputSequence.append(x)
+		synthesizedSampleIndex.append(synthesizedSampleIndexRef)
+# print('throttleInputSequence:')
+# print(throttleInputSequence)
+gpsPredictionPDF = pd.merge(gpsPredictionPDF, pd.Series(data=throttleInputSequence, name='throttleInputSequence'), how='inner', on=None, left_on=None, right_on=None,
+         left_index=True, right_index=True, sort=False,
+         suffixes=('_x', '_y'), copy=True, indicator=False,
+         validate=None)
+gpsPredictionPDF = pd.merge(gpsPredictionPDF, pd.Series(data=synthesizedSampleIndex, name='synthesizedSampleIndex'), how='inner', on=None, left_on=None, right_on=None,
          left_index=True, right_index=True, sort=False,
          suffixes=('_x', '_y'), copy=True, indicator=False,
          validate=None)
 print('gpsPredictionPDF set')
-print(gpsPredictionPDF)
-
+# print(gpsPredictionPDF)
+print('prediction complete!')
 #retrieve predictionPDF using KDB+!
