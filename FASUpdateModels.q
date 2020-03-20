@@ -88,10 +88,12 @@ show throttleSteps
 "Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
 / note that 1 timestep is already created at this point
 / numTimeSteps indicate how many ADDITIONAL timesteps to synthesize
-numTimeSteps:10
-getSynthesizedDataCount:{synthesizedSampleIndex+:1; :flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
+numTimeSteps:20
+getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
 synthesizedDataCount: getSynthesizedDataCount[]
 {system "l FASSynthesizeSample.q"} each til numTimeSteps;
+
+/ EACH TIMESTEP SHOULD CONSIDER BOTH SPEED AND VOLTAGE PREDICTIONS. I.E DROP VOLTAGE FEATURE FROM GPS PREDICTION DF AND VICE VERSA, THEN JOIN THE TWO PREDICTION TABLES TOGETHER
 
 / clean up synthesized sample index in tables
 / CONSIDER IF DELETE OF COLUMN SHOULD BE DONE IN FASSynthesizeSample.q
@@ -99,15 +101,14 @@ update synthesizedSampleIndex:first each synthesizedSampleIndex from `LiPoPredic
 delete GPSspeedkph from `LiPoPredictionTable;
 update synthesizedSampleIndex:first each synthesizedSampleIndex from `gpsSpeedPredictionTable;
 delete vbatLatestV from `gpsSpeedPredictionTable;
+
 / cols LiPoPredictionTable
 / `timeDeltaus`timeus`rcCommand3`GPSspeedkph`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`vbatLatestV`throttleInputSequence`synthesizedSampleIndex
-
 / cols gpsSpeedPredictionTable
 / `timeDeltaus`timeus`rcCommand3`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`vbatLatestV`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`GPSspeedkph`throttleInputSequence`synthesizedSampleIndex
 
-
 / key each table in preparation for inner join
-keyTableFeatures: `timeDeltaus`timeus`rcCommand3`synthesizedSampleIndex / `vbatLatestV`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`GPSspeedkph`throttleInputSequence`synthesizedSampleIndex
+keyTableFeatures: `synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus / `vbatLatestV`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`GPSspeedkph`throttleInputSequence`synthesizedSampleIndex
 keyTableFeatures xkey `gpsSpeedPredictionTable;
 keyTableFeatures xkey `LiPoPredictionTable;
 fullPredictionTable:LiPoPredictionTable ij gpsSpeedPredictionTable;
