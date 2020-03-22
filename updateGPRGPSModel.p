@@ -45,8 +45,7 @@ trainingDataTest = trainingDataPDF[int(trainPercentage*len(trainingDataPDF)):]
 # testX <-- test observations [# points, # features]
 # testy <-- test labels [# points]
 
-trainX = trainingDataTrain.copy()
-trainX.drop(['GPSspeedkph'], axis=1, inplace = True)
+trainX = trainingDataTrain.drop(['GPSspeedkph'], axis=1, inplace = False)
 trainy = trainingDataTrain["GPSspeedkph"]
 # Index(['timeDeltaus', 'currentSampleHz', 'timeus', 'rcCommand0', 'rcCommand1',
        # 'rcCommand2', 'rcCommand3', 'vbatLatestV', 'gyroADC0', 'gyroADC1',
@@ -54,8 +53,7 @@ trainy = trainingDataTrain["GPSspeedkph"]
        # 'motor1', 'motor2', 'motor3'],
       # dtype='object')
 
-testX = trainingDataTest.copy()
-testX.drop(['GPSspeedkph'], axis=1, inplace = True)
+testX = trainingDataTest.drop(['GPSspeedkph'], axis=1, inplace = False)
 testy = trainingDataTest["GPSspeedkph"]
 
 ######if using PCA, determine principal components######
@@ -81,9 +79,11 @@ if 'usePCA' in globals():
 
 #using constant gpr kernel
 # kernel = gp.kernels.ConstantKernel() * gp.kernels.RBF()
-kernel = gp.kernels.RationalQuadratic()
-kernels = [gp.kernels.ConstantKernel(), gp.kernels.RBF(), gp.kernels.Matern(), gp.kernels.RationalQuadratic()] #gp.kernels.ExpSineSquared(), gp.kernels.DotProduct()
-kernelNames = ["ConstantKernel", "RBF", "Matern", "RationalQuadratic"]
+# kernel = gp.kernels.RationalQuadratic()
+# kernels = [gp.kernels.ConstantKernel(), gp.kernels.RBF(), gp.kernels.Matern(), gp.kernels.RationalQuadratic()] #gp.kernels.ExpSineSquared(), gp.kernels.DotProduct()
+# kernelNames = ["ConstantKernel", "RBF", "Matern", "RationalQuadratic"]
+kernels = [gp.kernels.RationalQuadratic()] #gp.kernels.ExpSineSquared(), gp.kernels.DotProduct()
+kernelNames = ["RationalQuadratic"]
 
 #generate convoluted kernels
 convolutedKernels = []

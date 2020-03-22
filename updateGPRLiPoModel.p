@@ -39,8 +39,7 @@ trainingDataTest = trainingDataPDF[int(trainPercentage*len(trainingDataPDF)):]
 # testX <-- test observations [# points, # features]
 # testy <-- test labels [# points]
 
-trainX = trainingDataTrain.copy()
-trainX.drop(['vbatLatestV'], axis=1, inplace = True)
+trainX = trainingDataTrain.drop(['vbatLatestV'], axis=1, inplace = False)
 trainy = trainingDataTrain["vbatLatestV"]
 # Index(['timeDeltaus', 'currentSampleHz', 'timeus', 'rcCommand0', 'rcCommand1',
        # 'rcCommand2', 'rcCommand3', 'vbatLatestV', 'gyroADC0', 'gyroADC1',
@@ -48,10 +47,8 @@ trainy = trainingDataTrain["vbatLatestV"]
        # 'motor1', 'motor2', 'motor3'],
       # dtype='object')
 
-testX = trainingDataTest.copy()
-testX.drop(['vbatLatestV'], axis=1, inplace = True)
+testX = trainingDataTest.drop(['vbatLatestV'], axis=1, inplace = False)
 testy = trainingDataTest["vbatLatestV"]
-
 
 #using constant gpr kernel
 # kernel = gp.kernels.ConstantKernel() * gp.kernels.RBF()
