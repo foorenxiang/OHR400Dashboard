@@ -135,7 +135,7 @@ update synthesizedSampleIndex:first each synthesizedSampleIndex from `gpsSpeedPr
 delete vbatLatestV from `gpsSpeedPredictionTable;
 
 / key each table in preparation for inner join
-keyTableFeatures: `synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus / `vbatLatestV`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`GPSspeedkph`throttleInputSequence`synthesizedSampleIndex
+keyTableFeatures: `synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus / possible columns: `vbatLatestV`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`GPSspeedkph`throttleInputSequence`synthesizedSampleIndex
 keyTableFeatures xkey `gpsSpeedPredictionTable;
 keyTableFeatures xkey `LiPoPredictionTable;
 fullPredictionTable:LiPoPredictionTable ij gpsSpeedPredictionTable;
@@ -145,10 +145,12 @@ fullPredictionTable: `GPSspeedkph xcols fullPredictionTable
 /save updated fullPredictionTable table
 (hsym `$flatDir,"fullPredictionTable") set fullPredictionTable; / use hsym t cast directory string to file symbol
 
-/////Select optimal training sequences for LSTM/////
+/////Select optimal training sequences from synthesized for LSTM Training/////
 / determine optimal throttle sequence by ranking leaf of synthesized sample sequence (tree data structure)
 lookbackSteps:4
+//
 / ASSUMING TABLE IS ORDERED WITH LATEST SAMPLE LAST
+//
 / \ts throttleHistoryLengthOfLeaf:count (last fullPredictionTable)[`throttleInputHistory]
 / find throttle history length of each synthesized sample
 throttleHistoryLength: count each (raze each select throttleInputHistory from fullPredictionTable)
@@ -161,32 +163,39 @@ bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV,
 `GPSspeedkph xasc `bestPredictionsTable;
 / remove non-optimal throttle sequences
 bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
-/ available features in fullPredictionTable
-`GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory;
-
+/ available features in fullPredictionTable: `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
 encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#0)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
-/ raze/flatten into one long time series
-/ encodedOptimalThrottles: raze (select throttleInputHistory from () ))[`throttleInputHistory]
-
 / create sliding window for samples and labels / https://stackoverflow.com/questions/44071613/understanding-moving-window-calcs-in-kdb
+/ cut non-valid samples from start
 optimalThrottleSlidingWindowX: (lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;encodedOptimalThrottles] / training time sequence feature
+/ take last throttle value from each throttle sequence
 optimalThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
 / create LSTM trainingData table
-LSTMTrainingData:flip `throttleSeries`expectedThrottle!((lookbackSteps)_encodedOptimalThrottles;optimalThrottleSlidingWindowy)
-/ LSTMTrainingData:([]throttleSeries:optimalThrottleSlidingWindowX; expectedThrottle:optimalThrottleSlidingWindowy)
-/ save copy of LSTMTrainingData as csv
-save `:LSTMTrainingData.csv
+/ LSTMTrainingData:flip `throttleSeries`expectedThrottle!((lookbackSteps)_encodedOptimalThrottles;optimalThrottleSlidingWindowy) / declaring using dict !
+synthesizedThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_encodedOptimalThrottles; expectedThrottle:-1_optimalThrottleSlidingWindowy) / declaring using table-definition syntax
+/ save copy of synthesizedThrottleLSTMTrainingData as csv
+if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show "synthesizedThrottleLSTMTrainingData.csv saved to disk"]
+
+/////Select throttle time series sequence from real flight logs for LSTM Training/////
+realThrottles:trainingData[`rcCommand3]
+realThrottleSlidingWindowX:(lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;realThrottles] / training time sequence feature
+realThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
+realThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_realThrottles; expectedThrottle:-1_realThrottleSlidingWindowy) / declaring using table-definition syntax
+if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;show "realThrottleLSTMTrainingData.csv saved to disk"]
 
 / https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
 /////Train LSTM models/////
 /////Reference Material Used/////
 / https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
-trainUsingSynthesizedData: 0b
+trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
+if[trainUsingSynthesizedData;LSTMTrainingData:synthesizedThrottleLSTMTrainingData; show "Training LSTM using synthesized throttle data"]
+if[trainUsingRealData;LSTMTrainingData:realThrottleLSTMTrainingData; show "Training LSTM using throttle values from real flight data"]
+if[saveCSVs ;save `:LSTMTrainingData.csv;show "LSTMTrainingData.csv saved to disk"]
 / LSTMModel: `window / options: `regressionNormal `regressionWindow `regressionTimeStep `batch
 / Real Data Input, LSTM Regression
 / if[trainUsingRealData;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Normal) using real flight data!"; system "l updateRegressionLSTM.p"]

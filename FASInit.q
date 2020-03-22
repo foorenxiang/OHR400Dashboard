@@ -86,6 +86,10 @@ delete tickFreqMins from `.; / delete tickFreqMinsvariable (no longer needed)
 / print error if could not load historical data on disk
 if[not allTablesLoaded;0N!"Failure to load data from disk!"] 
 
+saveCSVs:1b
+if[saveCSVs; show "CSVs of tables will be saved"]
+if[not saveCSVs; show "Not saving tables to CSVs"]
+
 "Loading KX Developer"
 \cd /Users/foorx/developer/
 \l launcher.q_
