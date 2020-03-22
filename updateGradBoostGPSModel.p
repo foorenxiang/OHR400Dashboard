@@ -105,6 +105,7 @@ for lossFunction in lossFunctions:
 			models.append(model)
 			modelNames.append(lossFunctionVariation)
 
+			# save trained model to disk and reload it
 			savedGPSSpeedModelSVR = dump(model, 'GradBoostGPSSpeedModel.joblib')
 			y_pred= model.predict(testX)
 			y_pred = yStandardScalar.inverse_transform(y_pred)

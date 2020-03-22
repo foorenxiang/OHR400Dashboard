@@ -107,7 +107,7 @@ show highThrottle
 show throttleSteps
 
 "Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
-numTimeSteps:20
+numTimeSteps:10
 .p.set[`syntheticSampleTimeDelta; syntheticSampleTimeDelta: 0.2] / in seconds
 getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
 synthesizedDataCount: getSynthesizedDataCount[]
@@ -147,7 +147,7 @@ fullPredictionTable: `GPSspeedkph xcols fullPredictionTable
 
 /////Select optimal training sequences for LSTM/////
 / determine optimal throttle sequence by ranking leaf of synthesized sample sequence (tree data structure)
-lookbackSteps:3
+lookbackSteps:4
 / ASSUMING TABLE IS ORDERED WITH LATEST SAMPLE LAST
 / \ts throttleHistoryLengthOfLeaf:count (last fullPredictionTable)[`throttleInputHistory]
 / find throttle history length of each synthesized sample
@@ -157,12 +157,30 @@ throttleHistoryLengthOfLeaf:last throttleHistoryLength
 leafIndices:asc where throttleHistoryLength=throttleHistoryLengthOfLeaf
 optimalSequencesPercentage:0.2
 / create LSTM training dataset from leaf samples
-LSTMTrainingSet:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV, previousThrottleSequence:({lookbackSteps#x} each throttleInputHistory),throttleInputHistory from fullPredictionTable where i within (first leafIndices; last leafIndices)
-`GPSspeedkph xasc `LSTMTrainingSet;
+bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV, previousThrottleSequence:({lookbackSteps#x} each throttleInputHistory),throttleInputHistory from fullPredictionTable where i within (first leafIndices; last leafIndices)
+`GPSspeedkph xasc `bestPredictionsTable;
 / remove non-optimal throttle sequences
-LSTMTrainingSet:(`int$optimalSequencesPercentage*count LSTMTrainingSet)#LSTMTrainingSet
+bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
 / available features in fullPredictionTable
 `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory;
+
+/ encode end of sequence to each throttle sequencesample with lookbackSteps#0
+encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#0)) from bestPredictionsTable
+/ flatten all samples into single time series
+encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
+/ raze/flatten into one long time series
+/ encodedOptimalThrottles: raze (select throttleInputHistory from () ))[`throttleInputHistory]
+
+/ create sliding window for samples and labels / https://stackoverflow.com/questions/44071613/understanding-moving-window-calcs-in-kdb
+optimalThrottleSlidingWindowX: (lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;encodedOptimalThrottles] / training time sequence feature
+optimalThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+/ create LSTM trainingData table
+LSTMTrainingData:flip `throttleSeries`expectedThrottle!((lookbackSteps)_encodedOptimalThrottles;optimalThrottleSlidingWindowy)
+/ LSTMTrainingData:([]throttleSeries:optimalThrottleSlidingWindowX; expectedThrottle:optimalThrottleSlidingWindowy)
+/ save copy of LSTMTrainingData as csv
+save `:LSTMTrainingData.csv
+
+/ https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
 /////Train LSTM models/////
 /////Reference Material Used/////
