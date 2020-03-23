@@ -90,6 +90,9 @@ saveCSVs:1b
 if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
 
+"Pre-importing Python ML libraries"
+\l FASPythonLibraries.q
+
 "Loading KX Developer"
 \cd /Users/foorx/developer/
 \l launcher.q_
