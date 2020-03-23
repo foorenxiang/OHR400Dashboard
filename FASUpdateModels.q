@@ -166,7 +166,7 @@ bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable
 / available features in fullPredictionTable: `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
 fillValue:0
-encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue1)) from bestPredictionsTable
+encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
 / create sliding window for samples and labels 
@@ -189,6 +189,10 @@ synthesizedThrottleLSTMTrainingData:1_([]throttleSeries:1_encodedOptimalThrottle
 / save copy of synthesizedThrottleLSTMTrainingData as csv
 if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show "synthesizedThrottleLSTMTrainingData.csv saved to disk"]
 
+/ alternative encoding format: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
+optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+synthesizedThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'optimalThrottleSlidingWindow;expectedThrottle:-1#'optimalThrottleSlidingWindow)
+
 /////Select throttle time series sequence from real flight logs for LSTM Training/////
 realThrottles:trainingData[`rcCommand3]
 /
@@ -200,6 +204,10 @@ realThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_realThrottles; 
 / calculate using direct timeshift transformation (method b, faster)
 realThrottleLSTMTrainingData:1_([]throttleSeries:1_realThrottles; expectedThrottle:-1_realThrottles) / declaring using table-definition syntax
 if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;show "realThrottleLSTMTrainingData.csv saved to disk"]
+
+/ alternative encoding format: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
+realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+realThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'realThrottleSlidingWindow;expectedThrottle:-1#'realThrottleSlidingWindow)
 
 / https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
