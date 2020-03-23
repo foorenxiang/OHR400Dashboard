@@ -165,10 +165,15 @@ bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV,
 bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
 / available features in fullPredictionTable: `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
-encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#0)) from bestPredictionsTable
+fillValue:0
+encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue1)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
-/ create sliding window for samples and labels / https://stackoverflow.com/questions/44071613/understanding-moving-window-calcs-in-kdb
+/ create sliding window for samples and labels 
+
+/
+/ Calculating sliding window using step by step method (method a)
+/ https://stackoverflow.com/questions/44071613/understanding-moving-window-calcs-in-kdb
 / cut non-valid samples from start
 optimalThrottleSlidingWindowX: (lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;encodedOptimalThrottles] / training time sequence feature
 / take last throttle value from each throttle sequence
@@ -176,14 +181,24 @@ optimalThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+
 / create LSTM trainingData table
 / LSTMTrainingData:flip `throttleSeries`expectedThrottle!((lookbackSteps)_encodedOptimalThrottles;optimalThrottleSlidingWindowy) / declaring using dict !
 synthesizedThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_encodedOptimalThrottles; expectedThrottle:-1_optimalThrottleSlidingWindowy) / declaring using table-definition syntax
+\
+
+/ calculate using direct timeshift transformation (method b, faster)
+/ cut first row due to wrong data appearing
+synthesizedThrottleLSTMTrainingData:1_([]throttleSeries:1_encodedOptimalThrottles; expectedThrottle:-1_encodedOptimalThrottles) / declaring using table-definition syntax
 / save copy of synthesizedThrottleLSTMTrainingData as csv
 if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show "synthesizedThrottleLSTMTrainingData.csv saved to disk"]
 
 /////Select throttle time series sequence from real flight logs for LSTM Training/////
 realThrottles:trainingData[`rcCommand3]
+/
+/ calculate using step by step method (method a)
 realThrottleSlidingWindowX:(lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;realThrottles] / training time sequence feature
 realThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
 realThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_realThrottles; expectedThrottle:-1_realThrottleSlidingWindowy) / declaring using table-definition syntax
+\
+/ calculate using direct timeshift transformation (method b, faster)
+realThrottleLSTMTrainingData:1_([]throttleSeries:1_realThrottles; expectedThrottle:-1_realThrottles) / declaring using table-definition syntax
 if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;show "realThrottleLSTMTrainingData.csv saved to disk"]
 
 / https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
