@@ -169,7 +169,7 @@ fillValue:0
 encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
-/ create sliding window for samples and labels 
+/ Encoding format A: Create sliding window for samples and labels 
 
 /
 / Calculating sliding window using step by step method (method a)
@@ -189,13 +189,24 @@ synthesizedThrottleLSTMTrainingData:1_([]throttleSeries:1_encodedOptimalThrottle
 / save copy of synthesizedThrottleLSTMTrainingData as csv
 if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show "synthesizedThrottleLSTMTrainingData.csv saved to disk"]
 
-/ alternative encoding format: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
+/ Encoding format B: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
 optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
 synthesizedThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'optimalThrottleSlidingWindow;expectedThrottle:-1#'optimalThrottleSlidingWindow)
+/remove rows with invalid prediction throttle sequences due to timeshift effect
+/ delete from synthesizedThrottleLSTMTrainingDataMatrix where expectedThrottle=0 / bug with query
+
+/ Encoding format C: each timestep is a feature
+optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+columns:{x} each flip optimalThrottleSlidingWindow
+synthesizedThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a)!columns
+/remove rows with invalid prediction throttle sequences due to timeshift effect
+/ perform functional query equivalent for "delete from `synthesizedThrottleLSTMTrainingDataMatrix where (last cols synthesizedThrottleLSTMTrainingDataMatrix)=0" as qsql does not support column names as variables
+![`synthesizedThrottleLSTMTrainingDataMatrix;enlist (=;last cols synthesizedThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
 
 /////Select throttle time series sequence from real flight logs for LSTM Training/////
 realThrottles:trainingData[`rcCommand3]
 /
+/ Encoding format A: Create sliding window for samples and labels 
 / calculate using step by step method (method a)
 realThrottleSlidingWindowX:(lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;realThrottles] / training time sequence feature
 realThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
@@ -205,9 +216,19 @@ realThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_realThrottles; 
 realThrottleLSTMTrainingData:1_([]throttleSeries:1_realThrottles; expectedThrottle:-1_realThrottles) / declaring using table-definition syntax
 if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;show "realThrottleLSTMTrainingData.csv saved to disk"]
 
-/ alternative encoding format: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
-realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+/ Encoding format B: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
+realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
 realThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'realThrottleSlidingWindow;expectedThrottle:-1#'realThrottleSlidingWindow)
+/remove rows with invalid prediction throttle sequences due to timeshift effect
+/ delete from realThrottleLSTMTrainingDataMatrix where expectedThrottle=0 / bug with query
+
+/ Encoding format C: each timestep is a feature
+realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
+columns:{x} each flip realThrottleSlidingWindow
+realThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a)!columns
+/remove rows with invalid prediction throttle sequences due to timeshift effect
+/ perform functional query equivalent for "delete from `realThrottleLSTMTrainingDataMatrix where (last cols realThrottleLSTMTrainingDataMatrix)=0" as qsql does not support column names as variables
+![realThrottleLSTMTrainingDataMatrix;enlist(=;last cols realThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
 
 / https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
