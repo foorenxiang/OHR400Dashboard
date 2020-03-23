@@ -11,7 +11,7 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 
 //////TRAIN GPS PREDICTION MODEL//////
 "Training GPS speed prediction model"
-/ \l updateELMGPSModel.p / train Extreme Learning Machine model
+\l updateELMGPSModel.p / train Extreme Learning Machine model
 / \l updateGPRGPSModel.p / train gaussian process regression model
 / \l updateLinearGPSModel.p / train linear regression model
 / \l updateSVRGPSModel.p / train support vector regression model
@@ -24,8 +24,8 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 //////TRAIN LIPO PREDICTION MODEL//////
 "Training LiPo Voltage prediction model"
 .p.set[`trainingDataPDF; .ml.tab2df[trainingData]]
+\l updateELMLiPoModel.p / train ELM model
 / \l updateGPRLiPoModel.p / train gaussian process regression model
-/ \l updateELMLiPoModel.p / train ELM model
 / \l updateSVRLiPoModel.p / train support vector regression model (To be implemented)
 / \l updateAdaboostLiPoModel.p / train adaboost model (To be implemented)
 / \l updateGradboostLiPoModel.p / train Gradient Boost model (To be implemented)
@@ -147,7 +147,7 @@ fullPredictionTable: `GPSspeedkph xcols fullPredictionTable
 
 /////Select optimal training sequences from synthesized for LSTM Training/////
 / determine optimal throttle sequence by ranking leaf of synthesized sample sequence (tree data structure)
-lookbackSteps:4
+lookbackSteps:numTimeSteps
 //
 / ASSUMING TABLE IS ORDERED WITH LATEST SAMPLE LAST
 //
@@ -157,20 +157,21 @@ throttleHistoryLength: count each (raze each select throttleInputHistory from fu
 throttleHistoryLengthOfLeaf:last throttleHistoryLength
 / determine samples which are leafs of the tree (end of cascade sequence)
 leafIndices:asc where throttleHistoryLength=throttleHistoryLengthOfLeaf
-optimalSequencesPercentage:0.2
+optimalSequencesPercentage:0.2 / Top percentile to keep/regard as "optimal throttle sequences"
 / create LSTM training dataset from leaf samples
 bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV, previousThrottleSequence:({lookbackSteps#x} each throttleInputHistory),throttleInputHistory from fullPredictionTable where i within (first leafIndices; last leafIndices)
 `GPSspeedkph xasc `bestPredictionsTable;
 / remove non-optimal throttle sequences
 bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
 / available features in fullPredictionTable: `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory
+
+/////Encode throttle sequences into format usable by LSTM models/////
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
 fillValue:0
 encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
 / Encoding format A: Create sliding window for samples and labels 
-
 /
 / Calculating sliding window using step by step method (method a)
 / https://stackoverflow.com/questions/44071613/understanding-moving-window-calcs-in-kdb
@@ -183,17 +184,21 @@ optimalThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+
 synthesizedThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_encodedOptimalThrottles; expectedThrottle:-1_optimalThrottleSlidingWindowy) / declaring using table-definition syntax
 \
 
-/ calculate using direct timeshift transformation (method b, faster)
+/ Encoding format A: calculate using direct timeshift transformation (method b, faster)
+/
 / cut first row due to wrong data appearing
 synthesizedThrottleLSTMTrainingData:1_([]throttleSeries:1_encodedOptimalThrottles; expectedThrottle:-1_encodedOptimalThrottles) / declaring using table-definition syntax
 / save copy of synthesizedThrottleLSTMTrainingData as csv
 if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show "synthesizedThrottleLSTMTrainingData.csv saved to disk"]
+\
 
 / Encoding format B: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
+/
 optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
 synthesizedThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'optimalThrottleSlidingWindow;expectedThrottle:-1#'optimalThrottleSlidingWindow)
 /remove rows with invalid prediction throttle sequences due to timeshift effect
 / delete from synthesizedThrottleLSTMTrainingDataMatrix where expectedThrottle=0 / bug with query
+\
 
 / Encoding format C: each timestep is a feature
 optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
@@ -202,6 +207,12 @@ synthesizedThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.
 /remove rows with invalid prediction throttle sequences due to timeshift effect
 / perform functional query equivalent for "delete from `synthesizedThrottleLSTMTrainingDataMatrix where (last cols synthesizedThrottleLSTMTrainingDataMatrix)=0" as qsql does not support column names as variables
 ![`synthesizedThrottleLSTMTrainingDataMatrix;enlist (=;last cols synthesizedThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
+
+///For diagnostics with LSTM model/////
+"Saving synthesizedThrottleLSTMTrainingDataMatrix to disk"
+p)from joblib import dump
+.p.set[`synthesizedThrottleLSTMTrainingDataMatrix; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]]
+p)dump(synthesizedThrottleLSTMTrainingDataMatrix, 'synthesizedThrottleLSTMTrainingDataMatrix.joblib')
 
 /////Select throttle time series sequence from real flight logs for LSTM Training/////
 realThrottles:trainingData[`rcCommand3]
@@ -212,15 +223,20 @@ realThrottleSlidingWindowX:(lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;realThrott
 realThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
 realThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_realThrottles; expectedThrottle:-1_realThrottleSlidingWindowy) / declaring using table-definition syntax
 \
-/ calculate using direct timeshift transformation (method b, faster)
+
+/ Encoding format A: calculate using direct timeshift transformation (method b, faster)
+/
 realThrottleLSTMTrainingData:1_([]throttleSeries:1_realThrottles; expectedThrottle:-1_realThrottles) / declaring using table-definition syntax
 if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;show "realThrottleLSTMTrainingData.csv saved to disk"]
+\
 
 / Encoding format B: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
 realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
 realThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'realThrottleSlidingWindow;expectedThrottle:-1#'realThrottleSlidingWindow)
 /remove rows with invalid prediction throttle sequences due to timeshift effect
-/ delete from realThrottleLSTMTrainingDataMatrix where expectedThrottle=0 / bug with query
+/ parse "delete from realThrottleLSTMTrainingDataMatrix where (last cols realThrottleLSTMTrainingDataMatrix)=0" / bug with query
+/ ![`realThrottleLSTMTrainingDataMatrix;enlist (=;(last;(k){$[.Q.qp x:.Q.v x;.Q.pf,!+x;98h=@x;!+x;11h=@!x;!x;!+0!x]};`realThrottleLSTMTrainingDataMatrix));0);0b;`symbol$()]/ bug with query
+
 
 / Encoding format C: each timestep is a feature
 realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
@@ -230,59 +246,44 @@ realThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a)!colu
 / perform functional query equivalent for "delete from `realThrottleLSTMTrainingDataMatrix where (last cols realThrottleLSTMTrainingDataMatrix)=0" as qsql does not support column names as variables
 ![realThrottleLSTMTrainingDataMatrix;enlist(=;last cols realThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
 
+///For diagnostics with LSTM model/////
+"Saving realThrottleLSTMTrainingDataMatrix to disk"
+p)from joblib import dump
+.p.set[`realThrottleLSTMTrainingDataMatrix; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]]
+p)dump(realThrottleLSTMTrainingDataMatrix, 'realThrottleLSTMTrainingDataMatrix.joblib')
+
 / https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
 /////Train LSTM models/////
 /////Reference Material Used/////
 / https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
-trainUsingSynthesizedData: 1b
-trainUsingRealData: not trainUsingSynthesizedData
-if[trainUsingSynthesizedData;LSTMTrainingData:synthesizedThrottleLSTMTrainingData; show "Training LSTM using synthesized throttle data"]
-if[trainUsingRealData;LSTMTrainingData:realThrottleLSTMTrainingData; show "Training LSTM using throttle values from real flight data"]
-if[saveCSVs ;save `:LSTMTrainingData.csv;show "LSTMTrainingData.csv saved to disk"]
-/ LSTMModel: `window / options: `regressionNormal `regressionWindow `regressionTimeStep `batch
-/ Real Data Input, LSTM Regression
-/ if[trainUsingRealData;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Normal) using real flight data!"; system "l updateRegressionLSTM.p"]
-/ Real Data Input, LSTM Regression using Window
-/ if[trainUsingRealData;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
-/ Real Data Input, LSTM Regression with Time Step
-/ if[trainUsingRealData;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Time Step) using real flight data!"; system "l updateRegressionTimeStepLSTM.p"]
-/ Real Data Input, LSTM with Memory Between Batches
-/ if[trainUsingRealData;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Memory Between Batches) using real flight data!"; system "l updateMemoryLSTM.p"]
 
-trainUsingSynthesizedData: 1b
-trainUsingRealData: not trainUsingSynthesizedData
-/ Synthesized Data Input, LSTM Regression (To be implemented)
-/ if[trainUsingSynthesizedData;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Regression Normal) using synthesized data!"; system "l updateRegressionLSTM.p"]
-/ Synthesized Data Input, LSTM Regression using Window (To be implemented)
-/ if[trainUsingSynthesizedData;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Regression Window) using synthesized data!"; system "l updateRegressionWindowLSTM.p"]
-/ Synthesized Data Input, LSTM Regression with Time Step (To be implemented)
-/ if[trainUsingSynthesizedData;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Regression Time Step) using synthesized data!"; system "l updateRegressionTimeStepLSTM.p"]
-/ Synthesized Data Input, LSTM with Memory Between Batches (To be implemented)
-/ if[trainUsingSynthesizedData;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Memory Between Batches) using synthesized data!";system "l updateMemoryLSTM.p"]
-/////Train LSTM models/////
-
-/////Test LSTM models/////
 trainUsingSynthesizedData: 0b
 trainUsingRealData: not trainUsingSynthesizedData
+/ system "l updateRegressionLSTM.p"
+LSTMModel: `regressionNormal / options: `regressionNormal `regressionWindow `regressionTimeStep `batch `Disabled
+/ Real Data Input, LSTM Regression / Using encoding format C
+if[trainUsingRealData and LSTMModel = `regressionNormal;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Normal) using real flight data!"; system "l updateRegressionLSTM.p"]
+/ Real Data Input, LSTM Regression using Window / Using encoding format C
+if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
+/ Real Data Input, LSTM Regression with Time Step / Using encoding format C
+if[trainUsingRealData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Time Step) using real flight data!"; system "l updateRegressionTimeStepLSTM.p"]
+/ Real Data Input, LSTM with Memory Between Batches / Using encoding format C
+if[trainUsingRealData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Memory Between Batches) using real flight data!"; system "l updateMemoryLSTM.p"]
 
-/ Real Data Input, LSTM Regression
-/ if[trainUsingRealData  and LSTMModel = `regressionNormal;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Normal) using real flight data!"; system "l updateRegressionLSTM.p"]
-/ Real Data Input, LSTM Regression using Window
-/ if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
-/ Real Data Input, LSTM Regression with Time Step
-/ if[trainUsingRealData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Regression Time Step) using real flight data!"; system "l updateRegressionTimeStepLSTM.p"]
-/ Real Data Input, LSTM with Memory Between Batches
-/ if[trainUsingRealData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Training LSTM (Memory Between Batches) using real flight data!"; system "l updateMemoryLSTM.p"]
+/ Synthesized Data Input, LSTM Regression / Using encoding format C
+if[trainUsingSynthesizedData and LSTMModel = `regressionNormal;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Normal) using synthesized data!"; system "l updateRegressionLSTM.p"]
+/ Synthesized Data Input, LSTM Regression using Window / Using encoding format C (To be implemented)
+if[trainUsingSynthesizedData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using synthesized data!"; system "l updateRegressionWindowLSTM.p"]
+/ Synthesized Data Input, LSTM Regression with Time Step / Using encoding format C (To be implemented)
+if[trainUsingSynthesizedData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Time Step) using synthesized data!"; system "l updateRegressionTimeStepLSTM.p"]
+/ Synthesized Data Input, LSTM with Memory Between Batches / Using encoding format C (To be implemented)
+if[trainUsingSynthesizedData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Memory Between Batches) using synthesized data!";system "l updateMemoryLSTM.p"]
 
-/ Synthesized Data Input, LSTM Regression (To be implemented)
-/ if[trainUsingSynthesizedData and LSTMModel = `regressionNormal;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Regression Normal) using synthesized data!"; system "l updateRegressionLSTM.p"]
-/ Synthesized Data Input, LSTM Regression using Window (To be implemented)
-/ if[trainUsingSynthesizedData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Regression Window) using synthesized data!"; system "l updateRegressionWindowLSTM.p"]
-/ Synthesized Data Input, LSTM Regression with Time Step (To be implemented)
-/ if[trainUsingSynthesizedData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Regression Time Step) using synthesized data!"; system "l updateRegressionTimeStepLSTM.p"]
-/ Synthesized Data Input, LSTM with Memory Between Batches (To be implemented)
-/ if[trainUsingSynthesizedData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml.tab2df[fullPredictionTable]];show "Training LSTM (Memory Between Batches) using synthesized data!";system "l updateMemoryLSTM.p"]
-/////Test LSTM models/////
+if [LSTMModel=`Disabled; show "LSTM training disabled"]
+
+/////Test Deploy trained LSTM model/////
+.p.set[`inputPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]]
+\ts system "l useLSTM.p"
 
 "Completed Updating Models"
