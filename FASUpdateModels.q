@@ -107,7 +107,7 @@ show highThrottle
 show throttleSteps
 
 "Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
-numTimeSteps:8
+numTimeSteps:10
 .p.set[`syntheticSampleTimeDelta; syntheticSampleTimeDelta: 0.2] / in seconds
 getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
 synthesizedDataCount: getSynthesizedDataCount[]
@@ -212,7 +212,8 @@ synthesizedThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'optimalThrottleS
 / Encoding format C: each timestep is a feature
 optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
 columns:{x} each flip optimalThrottleSlidingWindow
-synthesizedThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a)!columns
+synthesizedThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a,.Q.A)!columns
+
 /remove rows with invalid prediction throttle sequences due to timeshift effect
 / perform functional query equivalent for "delete from `synthesizedThrottleLSTMTrainingDataMatrix where (last cols synthesizedThrottleLSTMTrainingDataMatrix)=0" as qsql does not support column names as variables
 ![`synthesizedThrottleLSTMTrainingDataMatrix;enlist (=;last cols synthesizedThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
