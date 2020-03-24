@@ -1,3 +1,6 @@
+/ retrieve latest training data
+trainingData:h"trainingData"
+
 useTrainTestSplit:0b
 
 //////split dataset into training and test data//////
@@ -52,7 +55,7 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 / \l useRFGPSModel.p / train adaboost model (To be implemented)
 / \l useStackGeneralizerGPSModel.p / train Stack Generalizer model (To be implemented)
 / convert prediction result from python object back to q list
-gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF	
+gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
 
 //////DEPLOY LIPO MODEL//////
 "Deploying LiPo Voltage prediction model"
@@ -120,7 +123,6 @@ update throttleInputHistory:rcCommand3 from `gpsSpeedPredictionTable
 / synthesize timesteps by numTimeSteps
 / need to cut 1 from timestep as 1 sample is already generated during model deployment
 {system "l FASSynthesizeSample.q"} each 1_til numTimeSteps;
-
 / EACH TIMESTEP SHOULD CONSIDER BOTH SPEED AND VOLTAGE PREDICTIONS. I.E DROP VOLTAGE FEATURE FROM GPS PREDICTION DF AND VICE VERSA, THEN JOIN THE TWO PREDICTION TABLES TOGETHER
 
 / clean up synthesized sample index in tables
@@ -277,7 +279,7 @@ p)dump(realThrottleLSTMTrainingDataMatrix, 'realThrottleLSTMTrainingDataMatrix.j
 trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
 / system "l updateRegressionLSTM.p"
-LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
+LSTMModel: `Disabled / options: `regressionWindow `regressionTimeStep `batch `Disabled
 / Real Data Input, LSTM Regression / Using encoding format C
 / Real Data Input, LSTM Regression using Window / Using encoding format C
 if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
@@ -299,5 +301,13 @@ if [LSTMModel=`Disabled; show "LSTM training disabled"]
 /////Test Deploy trained LSTM model/////
 .p.set[`inputPDF; .ml.tab2df[(neg lookbackSteps)#realThrottleLSTMTrainingDataMatrix]]
 \l useRegressionWindowLSTM.p
+yPred:.p.py2q .p.pyget`yPred
+
+/ h (`clearyPredTable;0) / clear yPredTable on Server
+{h (`insertyPredTable;x)} each yPred / insert new predictions to yPredTable on Server
+/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
+neg[h][]
+/ To ensure an async message has been processed by the remote, follow with a sync chaser
+h"";
 
 "Completed Updating Models"

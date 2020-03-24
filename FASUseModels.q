@@ -18,4 +18,4 @@ FASUseModels:{
 	/ LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
 	/////Test Deploy trained LSTM model/////
 	.p.set[`inputPDF; .ml.tab2df[(neg lookbackSteps)#realThrottleLSTMTrainingDataMatrix]];
-	system"l useRegressionWindowLSTM.p"}
+	system"l useRegressionWindowLSTM.p";}
