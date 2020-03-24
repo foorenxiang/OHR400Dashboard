@@ -73,15 +73,18 @@ allTablesLoaded:min {x in key `.} each `GPSData`PIDData`fullLog`trainingData
 
 /prepare ticker function for ML batch training
 tickerIterations:0
-tickFreqMins:7
-enableTimer:0b / enable timer(ticker function)
+tickFreqMins:1%60
+enableTimer:1b / enable timer(ticker function)
 / print success message if historical data on disk is successfully loaded
 if[allTablesLoaded;0N!"All tables loaded!"]
 / define timer(ticker) callback function
-.z.ts:{0N!"Automatic ML retraining triggered by timer!";system "l FASUpdateModels.q"}
+/ .z.ts:{0N!"Automatic ML retraining triggered by timer!";system "l FASUpdateModels.q"}
+.z.ts:{0N!"Continuous prediction triggered by timer!";system "l FASUseModels.q"}
 / if training data is already loaded, enable timer (ticker)
-if[allTablesLoaded & enableTimer;0N!"Automatic ML retraining enabled!";system "t ",string tickFreqMins*60*1000]
-if[not allTablesLoaded & enableTimer;0N!"Automatic ML retraining disabled!"]
+/ if[allTablesLoaded & enableTimer;0N!"Automatic ML retraining enabled!";system "t ",string tickFreqMins*60*1000]
+if[allTablesLoaded & enableTimer;0N!"Continuous prediction enabled!";system "t ",string tickFreqMins*60*1000]
+/ if[not allTablesLoaded & enableTimer;0N!"Automatic ML retraining disabled!"]
+if[not allTablesLoaded & enableTimer;0N!"Continuous prediction disabled!"]
 / print error if could not load historical data on disk
 if[not allTablesLoaded;0N!"Failure to load data from disk!"] 
 
