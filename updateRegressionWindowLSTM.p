@@ -16,8 +16,8 @@ pd.set_option('display.max_rows', None)
 #mysql update setup variables
 #cannot use __file__ when running in KDB+
 fileName = 'updateRegressionWindowLSTM.p'
-# trainingSetName = 'synthesizedThrottleLSTMTrainingData.csv'
-realThrottleLSTMTrainingDataMatrix.joblib
+trainingFile = 'synthesizedThrottleLSTMTrainingDataMatrix'
+trainingSetName = trainingFile + '.joblib'
 comments = 'Using Regression (Window) LSTM'
 
 def mse(pred, actual):
@@ -31,7 +31,7 @@ kdbSource = True
 
 if 'trainingDataPDF' not in globals():
 	kdbSource = False
-	trainingDataPDF = load('realThrottleLSTMTrainingDataMatrix.joblib')
+	trainingDataPDF = load(trainingFile + '.joblib')
 	print("Training using LSTM training data on disk!")
 
 #using else or try catch causes bugs with embedpy
@@ -107,7 +107,7 @@ RMSE = MSE**0.5
 if kdbSource == False:
 	# plot and save training result to disk
 	from pandas import read_csv
-	dataframe = read_csv("realThrottleLSTMTrainingData.csv", usecols=[1], engine='python')
+	dataframe = read_csv(trainingFile[:-len("Matrix")] + ".csv", usecols=[1], engine='python')
 	dataset = dataframe.values
 	dataset = dataset.astype('float32')
 	trainyPredPlot = np.empty_like(dataset)
