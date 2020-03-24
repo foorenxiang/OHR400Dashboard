@@ -25,16 +25,14 @@ print("samples in trainingDataTest: " + str(len(trainingDataTest)))
 # sys.exit(0)
 
 #create dataframe with training inputs
-gpsSpeedTrainX = trainingDataTrain.copy()
-gpsSpeedTrainX.drop(['GPSspeedkph'], axis=1, inplace = True)
+gpsSpeedTrainX = trainingDataTrain.drop(['GPSspeedkph'], axis=1, inplace = False)
 print("gpsSpeedTrainX: ")
 # print(gpsSpeedX)
 # for x in gpsSpeedTrainX.columns:
 	# print(x)
 
 #create dataframe from test inputs
-gpsSpeedTestX = trainingDataTest.copy()
-gpsSpeedTestX.drop(['GPSspeedkph'], axis=1, inplace = True)
+gpsSpeedTestX = trainingDataTest.drop(['GPSspeedkph'], axis=1, inplace = False)
 
 #create series of labelled output
 gpsSpeedy = trainingDataTrain["GPSspeedkph"]

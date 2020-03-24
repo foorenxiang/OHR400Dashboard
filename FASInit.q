@@ -73,8 +73,8 @@ allTablesLoaded:min {x in key `.} each `GPSData`PIDData`fullLog`trainingData
 
 /prepare ticker function for ML batch training
 tickerIterations:0
-tickFreqMins:0.5
-enableTimer:0 / enable timer(ticker function)
+tickFreqMins:7
+enableTimer:0b / enable timer(ticker function)
 / print success message if historical data on disk is successfully loaded
 if[allTablesLoaded;0N!"All tables loaded!"]
 / define timer(ticker) callback function
@@ -82,9 +82,15 @@ if[allTablesLoaded;0N!"All tables loaded!"]
 / if training data is already loaded, enable timer (ticker)
 if[allTablesLoaded & enableTimer;0N!"Automatic ML retraining enabled!";system "t ",string tickFreqMins*60*1000]
 if[not allTablesLoaded & enableTimer;0N!"Automatic ML retraining disabled!"]
-delete tickFreqMins from `.; / delete tickFreqMinsvariable (no longer needed)
 / print error if could not load historical data on disk
 if[not allTablesLoaded;0N!"Failure to load data from disk!"] 
+
+saveCSVs:1b
+if[saveCSVs; show "CSVs of tables will be saved"]
+if[not saveCSVs; show "Not saving tables to CSVs"]
+
+"Pre-importing Python ML libraries"
+\l FASPythonLibraries.q
 
 "Loading KX Developer"
 \cd /Users/foorx/developer/

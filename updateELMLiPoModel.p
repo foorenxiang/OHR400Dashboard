@@ -55,8 +55,7 @@ trainingDataTest = trainingDataPDF[int(trainPercentage*len(trainingDataPDF)):]
 # testX <-- test observations [# points, # features]
 # testy <-- test labels [# points]
 
-trainX = trainingDataTrain.copy()
-trainX.drop(['vbatLatestV'], axis=1, inplace = True)
+trainX = trainingDataTrain.drop(['vbatLatestV'], axis=1, inplace = False)
 
 #####APPLYING NORMALISATION TO DATASET AS REQUIRED BY ELM#####
 trainXStandardScalar = StandardScaler()
@@ -70,8 +69,7 @@ trainy = yStandardScalar.fit_transform(trainy)
        # 'motor1', 'motor2', 'motor3'],
       # dtype='object')
 
-testX = trainingDataTest.copy()
-testX.drop(['vbatLatestV'], axis=1, inplace = True)
+testX = trainingDataTest.drop(['vbatLatestV'], axis=1, inplace = False)
 testXStandardScalar = StandardScaler()
 testX = testXStandardScalar.fit_transform(testX)
 testy = trainingDataTest["vbatLatestV"].to_frame()

@@ -40,6 +40,7 @@ if trainingDataPDFNotFound == False:
 if 'synthesizedSampleIndex' not in globals():
 	synthesizedSampleIndex = 0
 
+#train test split only applied when debugging using csv file
 trainPercentage = 0.7 # not in use
 trainingDataTrain = trainingDataPDF[:int(trainPercentage*len(trainingDataPDF))] # not in use
 
@@ -49,7 +50,7 @@ pd.set_option('display.max_rows', None)
 
 #if not importing data from kdb+ (testing purposes)
 if 'inputPDF' not in globals():
-	inputPDF = trainingDataTrain.copy()
+	inputPDF = trainingDataTrain.copy() #train test split only applied when debugging using csv file
 	print("importing data from csv source") 
 
 # inputPDF = trainingDataTrain.copy()

@@ -78,6 +78,7 @@ if[`GPSData in key `.; `GPSData set GPSData,GPSDataInput]
 if[not `GPSData in key`.; GPSData:GPSDataInput]
 /save updated table
 (hsym `$flatDir,"GPSData") set GPSData; / use hsym t cast directory string to file symbol
+if[saveCSVs;save `:GPSData.csv;show "GPSData.csv saved to disk"]
 
 / join processed PIDDataInput with PIDDataInput splayed table if it exists
 if[`PIDData in key`.; `PIDData set PIDData,PIDDataInput]
@@ -85,12 +86,13 @@ if[`PIDData in key`.; `PIDData set PIDData,PIDDataInput]
 if[not `PIDData in key`.; PIDData:PIDDataInput]
 /save updated table
 (hsym `$flatDir,"PIDData") set PIDData; / use hsym t cast directory string to file symbol
+if[saveCSVs;save `:PIDData.csv;show "PIDData.csv saved to disk"]
 
 / as of join the PID log and GPS log
 fullLog:aj0[`timens;GPSData;PIDData];
 /save updated trainingData table
 (hsym `$flatDir,"fullLog") set fullLog; / use hsym t cast directory string to file symbol
-
+if[saveCSVs;save `:fullLog.csv;show "fullLog.csv saved to disk"]
 / bucket into 1 tenths of a second
 / 1 xbar raze each select timens from fullLog
 
@@ -129,6 +131,7 @@ update timeus:`float$timeus from `trainingData;
 /do not key the table or it will become a dictionary! must be a table to convert to dictionary
 / `timeus xkey `trainingData; 
 (hsym `$flatDir,"trainingData") set trainingData; /save updated trainingData table
+if[saveCSVs;save `:trainingData.csv;show "trainingData.csv saved to disk"]
 
 / find out average sample rate
 / this query returns a table of single row

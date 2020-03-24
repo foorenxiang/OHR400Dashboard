@@ -1,0 +1,532 @@
+Last login: Tue Mar 24 00:35:09 on ttys003
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ # training using all GPR models
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q Process running on port 5001 [websocket mode]"
+"Loading stored GPS Dataset"
+"Loading stored PID Dataset"
+"Loading stored Joined Dataset"
+"Loading stored Training Dataset"
+"Loading Predictions Table"
+"All tables loaded!"
+"Automatic ML retraining disabled!"
+"CSVs of tables will be saved"
+"Pre-importing Python ML libraries"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using TensorFlow backend.
+"Loading KX Developer"
+[developer] version 1.2.0
+[developer] loading...
+[developer] port already set, not changing
+[developer] successfully loaded
+[developer] connect to: http://ren-xiangs-mbp-2017.local:5001/ax or http://localhost:5001/ax with your web browser
+
+"System Up and Ready"
+q)\ts system "l FASUpdateModels.q"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training multiple GPR kernel
+Training using KDB+ input!
+Not using PCA!
+number of convolutedKernels: 0
+MSE:
+3685.16
+RMSE:
+60.71
+
+Optimal kernel found!: RationalQuadratic
+bestMSE
+3685.157272087561
+bestRMSE:
+60.70549622635138
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+GPR Kernel used:
+RationalQuadratic(alpha=1, length_scale=1)
+Model params:
+{'length_scale': 100000.00000000001, 'alpha': 0.013789065470863395, 'length_scale_bounds': (1e-05, 100000.0), 'alpha_bounds': (1e-05, 100000.0)}
+Mean Square Error:
+0.61
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+128 4241648
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+110 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
+"calling FASSynthesizeSample.q"
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Generating timestep sample 2"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983742 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+254 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+799 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+1450 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1182 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+1257 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+2058 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+2004 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+3020 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+"Generating timestep sample 6"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+3052 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+4179 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+4163 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+5599 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+5698 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+7203 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+7361 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+9165 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[122.13983743 122.13983743 122.13983743 ... 122.13983731 122.13983742
+ 122.13983742]
+gpsPredictionPDF set
+prediction complete!
+9318 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+11162 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+"Saving synthesizedThrottleLSTMTrainingDataMatrix to disk"
+"Saving realThrottleLSTMTrainingDataMatrix to disk"
+"Training LSTM (Regression Normal) using real flight data!"
+Training using KDB+ input!
+Look back steps detected: 10
+2020-03-24 00:38:51.693682: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-03-24 00:38:51.753703: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fbb5dd52140 executing computations on platform Host. Devices:
+2020-03-24 00:38:51.753756: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+Epoch 1/100
+ - 2s - loss: 0.3592
+Epoch 2/100
+ - 1s - loss: 0.0869
+Epoch 3/100
+ - 1s - loss: 0.0580
+Epoch 4/100
+ - 1s - loss: 0.0495
+Epoch 5/100
+ - 1s - loss: 0.0443
+Epoch 6/100
+ - 1s - loss: 0.0413
+Epoch 7/100
+ - 1s - loss: 0.0396
+Epoch 8/100
+ - 1s - loss: 0.0381
+Epoch 9/100
+ - 1s - loss: 0.0374
+Epoch 10/100
+ - 1s - loss: 0.0366
+Epoch 11/100
+ - 1s - loss: 0.0359
+Epoch 12/100
+ - 1s - loss: 0.0347
+Epoch 13/100
+ - 1s - loss: 0.0346
+Epoch 14/100
+ - 1s - loss: 0.0338
+Epoch 15/100
+ - 1s - loss: 0.0341
+Epoch 16/100
+ - 2s - loss: 0.0331
+Epoch 17/100
+ - 1s - loss: 0.0336
+Epoch 18/100
+ - 1s - loss: 0.0327
+Epoch 19/100
+ - 1s - loss: 0.0329
+Epoch 20/100
+ - 2s - loss: 0.0325
+Epoch 21/100
+ - 1s - loss: 0.0327
+Epoch 22/100
+ - 1s - loss: 0.0321
+Epoch 23/100
+ - 1s - loss: 0.0329
+Epoch 24/100
+ - 1s - loss: 0.0313
+Epoch 25/100
+ - 1s - loss: 0.0318
+Epoch 26/100
+ - 1s - loss: 0.0312
+Epoch 27/100
+ - 1s - loss: 0.0313
+Epoch 28/100
+ - 1s - loss: 0.0315
+Epoch 29/100
+ - 1s - loss: 0.0313
+Epoch 30/100
+ - 1s - loss: 0.0319
+Epoch 31/100
+ - 1s - loss: 0.0315
+Epoch 32/100
+ - 1s - loss: 0.0304
+Epoch 33/100
+ - 1s - loss: 0.0311
+Epoch 34/100
+ - 1s - loss: 0.0309
+Epoch 35/100
+ - 1s - loss: 0.0309
+Epoch 36/100
+ - 1s - loss: 0.0305
+Epoch 37/100
+ - 1s - loss: 0.0314
+Epoch 38/100
+ - 1s - loss: 0.0309
+Epoch 39/100
+ - 1s - loss: 0.0307
+Epoch 40/100
+ - 1s - loss: 0.0305
+Epoch 41/100
+ - 1s - loss: 0.0303
+Epoch 42/100
+ - 1s - loss: 0.0304
+Epoch 43/100
+ - 1s - loss: 0.0306
+Epoch 44/100
+ - 1s - loss: 0.0302
+Epoch 45/100
+ - 1s - loss: 0.0304
+Epoch 46/100
+ - 1s - loss: 0.0306
+Epoch 47/100
+ - 1s - loss: 0.0302
+Epoch 48/100
+ - 1s - loss: 0.0305
+Epoch 49/100
+ - 1s - loss: 0.0298
+Epoch 50/100
+ - 1s - loss: 0.0304
+Epoch 51/100
+ - 1s - loss: 0.0301
+Epoch 52/100
+ - 1s - loss: 0.0306
+Epoch 53/100
+ - 1s - loss: 0.0305
+Epoch 54/100
+ - 1s - loss: 0.0301
+Epoch 55/100
+ - 1s - loss: 0.0301
+Epoch 56/100
+ - 1s - loss: 0.0300
+Epoch 57/100
+ - 1s - loss: 0.0300
+Epoch 58/100
+ - 1s - loss: 0.0297
+Epoch 59/100
+ - 1s - loss: 0.0296
+Epoch 60/100
+ - 1s - loss: 0.0293
+Epoch 61/100
+ - 1s - loss: 0.0292
+Epoch 62/100
+ - 1s - loss: 0.0299
+Epoch 63/100
+ - 1s - loss: 0.0297
+Epoch 64/100
+ - 1s - loss: 0.0298
+Epoch 65/100
+ - 1s - loss: 0.0295
+Epoch 66/100
+ - 1s - loss: 0.0300
+Epoch 67/100
+ - 1s - loss: 0.0293
+Epoch 68/100
+ - 1s - loss: 0.0296
+Epoch 69/100
+ - 1s - loss: 0.0295
+Epoch 70/100
+ - 1s - loss: 0.0294
+Epoch 71/100
+ - 1s - loss: 0.0297
+Epoch 72/100
+ - 1s - loss: 0.0292
+Epoch 73/100
+ - 1s - loss: 0.0299
+Epoch 74/100
+ - 1s - loss: 0.0290
+Epoch 75/100
+ - 1s - loss: 0.0296
+Epoch 76/100
+ - 1s - loss: 0.0292
+Epoch 77/100
+ - 1s - loss: 0.0299
+Epoch 78/100
+ - 1s - loss: 0.0288
+Epoch 79/100
+ - 1s - loss: 0.0292
+Epoch 80/100
+ - 1s - loss: 0.0291
+Epoch 81/100
+ - 1s - loss: 0.0291
+Epoch 82/100
+ - 1s - loss: 0.0288
+Epoch 83/100
+ - 1s - loss: 0.0289
+Epoch 84/100
+ - 1s - loss: 0.0286
+Epoch 85/100
+ - 1s - loss: 0.0289
+Epoch 86/100
+ - 1s - loss: 0.0292
+Epoch 87/100
+ - 1s - loss: 0.0287
+Epoch 88/100
+ - 1s - loss: 0.0292
+Epoch 89/100
+ - 1s - loss: 0.0290
+Epoch 90/100
+ - 1s - loss: 0.0282
+Epoch 91/100
+ - 1s - loss: 0.0286
+Epoch 92/100
+ - 1s - loss: 0.0283
+Epoch 93/100
+ - 1s - loss: 0.0288
+Epoch 94/100
+ - 1s - loss: 0.0288
+Epoch 95/100
+ - 1s - loss: 0.0282
+Epoch 96/100
+ - 1s - loss: 0.0283
+Epoch 97/100
+ - 1s - loss: 0.0286
+Epoch 98/100
+ - 1s - loss: 0.0286
+Epoch 99/100
+ - 1s - loss: 0.0287
+Epoch 100/100
+ - 1s - loss: 0.0288
+Finished training Regression (Normal) LSTM!
+Using Regression (Normal) LSTM
+Predicting throttle using KDB+ input!
+Look back steps detected: 10
+yPred Throttle predictions set!
+1318 4214528
+"Completed Updating Models"
+222546 6906640
+q)

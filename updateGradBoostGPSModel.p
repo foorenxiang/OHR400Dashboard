@@ -46,8 +46,7 @@ trainingDataTest = trainingDataPDF[int(trainPercentage*len(trainingDataPDF)):]
 # testX <-- test observations [# points, # features]
 # testy <-- test labels [# points]
 
-trainX = trainingDataTrain.copy()
-trainX.drop(['GPSspeedkph'], axis=1, inplace = True)
+trainX = trainingDataTrain.drop(['GPSspeedkph'], axis=1, inplace = False)
 
 #####APPLYING NORMALISATION TO DATASET#####
 trainXStandardScalar = StandardScaler()
@@ -56,8 +55,7 @@ trainX = trainXStandardScalar.fit_transform(trainX)
 trainy = trainingDataTrain["GPSspeedkph"].to_frame()
 trainy = yStandardScalar.fit_transform(trainy)
 
-testX = trainingDataTest.copy()
-testX.drop(['GPSspeedkph'], axis=1, inplace = True)
+testX = trainingDataTest.drop(['GPSspeedkph'], axis=1, inplace = False)
 testXStandardScalar = StandardScaler()
 testX = testXStandardScalar.fit_transform(testX)
 testy = trainingDataTest["GPSspeedkph"].to_frame()
@@ -105,6 +103,7 @@ for lossFunction in lossFunctions:
 			models.append(model)
 			modelNames.append(lossFunctionVariation)
 
+			# save trained model to disk and reload it
 			savedGPSSpeedModelSVR = dump(model, 'GradBoostGPSSpeedModel.joblib')
 			y_pred= model.predict(testX)
 			y_pred = yStandardScalar.inverse_transform(y_pred)
