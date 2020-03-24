@@ -34,7 +34,7 @@ if 'inputPDF' not in globals():
 
 #using else or try catch causes bugs with embedpy
 if kdbSource:
-	print("Predicting throttle using KDB+ input!")
+	print("Generating Rolling Launch Control Throttle sequence using KDB+ input!")
 
 X = inputPDF.drop(inputPDF.columns[-1], axis=1, inplace = False)
 y = inputPDF.iloc[:,-1].to_frame() # 
@@ -55,4 +55,4 @@ X = np.reshape(X, (X.shape[0], 1, X.shape[1]))
 yPred = model.predict(X, batch_size=batchSize)
 # transform back to throttle range [1000,2000]
 yPred = ((yPred*1000)+1000).astype('int')
-print("yPred Throttle predictions set!")
+print("Rolling Launch Control Throttle generated!")

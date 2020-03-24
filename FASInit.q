@@ -85,9 +85,13 @@ if[not allTablesLoaded & enableTimer;0N!"Automatic ML retraining disabled!"]
 / print error if could not load historical data on disk
 if[not allTablesLoaded;0N!"Failure to load data from disk!"] 
 
+"Retrieving LSTM lookbackSteps from disk:"
+show lookbackSteps: get `:lookbackSteps.dat 
+
 saveCSVs:1b
 if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
+
 
 "Pre-importing Python ML libraries"
 \l FASPythonLibraries.q

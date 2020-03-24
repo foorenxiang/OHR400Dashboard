@@ -148,6 +148,8 @@ fullPredictionTable: `GPSspeedkph xcols fullPredictionTable
 /////Select optimal training sequences from synthesized for LSTM Training/////
 / determine optimal throttle sequence by ranking leaf of synthesized sample sequence (tree data structure)
 lookbackSteps:numTimeSteps
+/ save value to disk for future retrieval when deploying LSTM model without retraining
+`:lookbackSteps.dat set lookbackSteps
 //
 / ASSUMING TABLE IS ORDERED WITH LATEST SAMPLE LAST
 //
@@ -294,7 +296,7 @@ if[trainUsingSynthesizedData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml
 if [LSTMModel=`Disabled; show "LSTM training disabled"]
 
 /////Test Deploy trained LSTM model/////
-.p.set[`inputPDF; .ml.tab2df[(neg numTimeSteps)#realThrottleLSTMTrainingDataMatrix]]
+.p.set[`inputPDF; .ml.tab2df[(neg lookbackSteps)#realThrottleLSTMTrainingDataMatrix]]
 \l useRegressionWindowLSTM.p
 
 "Completed Updating Models"
