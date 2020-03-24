@@ -43,6 +43,12 @@ trimTable:{[inputTable] inputTable:(`$ssr[;" ";""] each trim each string cols in
 / needed as we want to still keep strings for conversion to symbols
 listFromTableColumn:{[t;c]raze each t[(cols t) c]}
 
+"Pre-importing Python ML libraries"
+\l FASPythonLibraries.q
+
+"Loading FASUseModels function"
+\l FASUseModels.q
+
 /load master data
 /attempt to load splayed master records table from disk if it exists
 "Loading stored GPS Dataset"
@@ -79,7 +85,7 @@ enableTimer:1b / enable timer(ticker function)
 if[allTablesLoaded;0N!"All tables loaded!"]
 / define timer(ticker) callback function
 / .z.ts:{0N!"Automatic ML retraining triggered by timer!";system "l FASUpdateModels.q"}
-.z.ts:{0N!"Continuous prediction triggered by timer!";system "l FASUseModels.q"}
+.z.ts:{0N!"Continuous prediction triggered by timer!"; FASUseModels[]}
 / if training data is already loaded, enable timer (ticker)
 / if[allTablesLoaded & enableTimer;0N!"Automatic ML retraining enabled!";system "t ",string tickFreqMins*60*1000]
 if[allTablesLoaded & enableTimer;0N!"Continuous prediction enabled!";system "t ",string tickFreqMins*60*1000]
@@ -94,10 +100,6 @@ show lookbackSteps: get `:lookbackSteps.dat
 saveCSVs:1b
 if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
-
-
-"Pre-importing Python ML libraries"
-\l FASPythonLibraries.q
 
 "Loading KX Developer"
 \cd /Users/foorx/developer/
