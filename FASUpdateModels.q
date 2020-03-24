@@ -251,19 +251,17 @@ realThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a)!colu
 p)from joblib import dump
 .p.set[`realThrottleLSTMTrainingDataMatrix; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]]
 p)dump(realThrottleLSTMTrainingDataMatrix, 'realThrottleLSTMTrainingDataMatrix.joblib')
-
 / https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
 /////Train LSTM models/////
 /////Reference Material Used/////
 / https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
 
-trainUsingSynthesizedData: 0b
+trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
 / system "l updateRegressionLSTM.p"
-LSTMModel: `regressionNormal / options: `regressionNormal `regressionWindow `regressionTimeStep `batch `Disabled
+LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
 / Real Data Input, LSTM Regression / Using encoding format C
-if[trainUsingRealData and LSTMModel = `regressionNormal;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Normal) using real flight data!"; system "l updateRegressionLSTM.p"]
 / Real Data Input, LSTM Regression using Window / Using encoding format C
 if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
 / Real Data Input, LSTM Regression with Time Step / Using encoding format C
@@ -272,7 +270,6 @@ if[trainUsingRealData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPD
 if[trainUsingRealData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Memory Between Batches) using real flight data!"; system "l updateMemoryLSTM.p"]
 
 / Synthesized Data Input, LSTM Regression / Using encoding format C
-if[trainUsingSynthesizedData and LSTMModel = `regressionNormal;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Normal) using synthesized data!"; system "l updateRegressionLSTM.p"]
 / Synthesized Data Input, LSTM Regression using Window / Using encoding format C (To be implemented)
 if[trainUsingSynthesizedData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using synthesized data!"; system "l updateRegressionWindowLSTM.p"]
 / Synthesized Data Input, LSTM Regression with Time Step / Using encoding format C (To be implemented)
@@ -283,7 +280,7 @@ if[trainUsingSynthesizedData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml
 if [LSTMModel=`Disabled; show "LSTM training disabled"]
 
 /////Test Deploy trained LSTM model/////
-.p.set[`inputPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]]
-\ts system "l useLSTM.p"
+.p.set[`inputPDF; .ml.tab2df[(neg numTimeSteps)#realThrottleLSTMTrainingDataMatrix]]
+\l useRegressionWindowLSTM.p
 
 "Completed Updating Models"
