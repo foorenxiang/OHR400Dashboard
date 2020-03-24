@@ -168,7 +168,7 @@ bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable
 /////Encode throttle sequences into format usable by LSTM models/////
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
 fillValue:1000
-encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
+encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable / vertical join each
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
 
