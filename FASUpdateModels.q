@@ -107,7 +107,7 @@ show highThrottle
 show throttleSteps
 
 "Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
-numTimeSteps:10
+numTimeSteps:8
 .p.set[`syntheticSampleTimeDelta; syntheticSampleTimeDelta: 0.2] / in seconds
 getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
 synthesizedDataCount: getSynthesizedDataCount[]
