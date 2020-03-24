@@ -16,6 +16,9 @@
 / switch back to q working folder
 \cd /Users/foorx/Sites/OHR400Dashboard
 
+/ "Pre-importing Python ML libraries"
+\l FASPythonLibraries.q
+
 / open IPC connection to server
 h:hopen 5001
 flatDir:h"flatDir"
@@ -24,4 +27,3 @@ flatDir:h"flatDir"
 
 reTrainTimer: 6 / in mins
 system"t ", string 1000*60*reTrainTimer
-hclose

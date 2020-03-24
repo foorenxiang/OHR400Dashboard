@@ -9,8 +9,8 @@ LiPoPredictionTimeShiftedTable: delete throttleInputSequence, synthesizedSampleI
 / timeshift LiPoPredictionTable before feeding to ML model
 update timeus:timeus+(syntheticSampleTimeDelta*1000000) from `LiPoPredictionTimeShiftedTable;
 .p.set[`inputPDF; .ml.tab2df[LiPoPredictionTimeShiftedTable]]
-/ \ts \l useGPRGPSModel.p / deploy gaussian process regression model
-\ts \l useELMGPSModel.p
+\ts \l useGPRGPSModel.p / deploy gaussian process regression model
+/ \ts \l useELMGPSModel.p
 newGPSPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
 / do sample count matching
 existingThrottleHistory:(neg count newGPSPredictionTable)#existingThrottleHistory
@@ -28,8 +28,8 @@ gpsSpeedPredictionTimeShiftedTable: delete throttleInputSequence, synthesizedSam
 / timeshift gpsSpeedPredictionTable before feeding to ML model
 update timeus:timeus+(syntheticSampleTimeDelta*1000000) from `gpsSpeedPredictionTimeShiftedTable;
 .p.set[`inputPDF; .ml.tab2df[gpsSpeedPredictionTimeShiftedTable]]
-/ \ts \l useGPRLiPoModel.p / deploy gaussian process regression model
-\ts \l useELMLiPoModel.p / deploy ELM model
+\ts \l useGPRLiPoModel.p / deploy gaussian process regression model
+/ \ts \l useELMLiPoModel.p / deploy ELM model
 newLiPoPredictionTable:.ml.df2tab .p.wrap .p.pyget`LiPoPredictionPDF
 / do sample count matching
 existingThrottleHistory:(neg count newLiPoPredictionTable)#existingThrottleHistory

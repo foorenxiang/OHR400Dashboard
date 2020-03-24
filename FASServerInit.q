@@ -110,8 +110,11 @@ if[not saveCSVs; show "Not saving tables to CSVs"]
 yPredTable:2_([]yPred:(1000 1000 100;1000))
 insertyPredTable:{`yPredTable insert (x)} 
 clearyPredTable:{delete from `yPredTable} / delete all rows from table
+showyPredTable:{show (neg lookbackSteps)#yPredTable}
 
 "System Up and Ready"
+
+show yPredTable
 
 / function definition to delete unneeded variables using functional sql
 purgeTables: {system "rm GPSData PIDData fullLog trainingData"; varsToDelete:`GPSData`PIDData`fullLog`trainingData`varsToDelete;![`.;();0b;varsToDelete]};

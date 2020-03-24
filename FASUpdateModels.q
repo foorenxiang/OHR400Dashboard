@@ -1,4 +1,4 @@
-/ retrieve latest training data
+/ retrieve latest training data using synchronous IPC
 trainingData:h"trainingData"
 
 useTrainTestSplit:0b
@@ -14,8 +14,8 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 
 //////TRAIN GPS PREDICTION MODEL//////
 "Training GPS speed prediction model"
-\l updateELMGPSModel.p / train Extreme Learning Machine model
-/ \l updateGPRGPSModel.p / train gaussian process regression model
+/ \l updateELMGPSModel.p / train Extreme Learning Machine model
+\l updateGPRGPSModel.p / train gaussian process regression model
 / \l updateLinearGPSModel.p / train linear regression model
 / \l updateSVRGPSModel.p / train support vector regression model
 / \l updateAdaboostGPSModel.p / train adaboost model
@@ -27,8 +27,8 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 //////TRAIN LIPO PREDICTION MODEL//////
 "Training LiPo Voltage prediction model"
 .p.set[`trainingDataPDF; .ml.tab2df[trainingData]]
-\l updateELMLiPoModel.p / train ELM model
-/ \l updateGPRLiPoModel.p / train gaussian process regression model
+/ \l updateELMLiPoModel.p / train ELM model
+\l updateGPRLiPoModel.p / train gaussian process regression model
 / \l updateSVRLiPoModel.p / train support vector regression model (To be implemented)
 / \l updateAdaboostLiPoModel.p / train adaboost model (To be implemented)
 / \l updateGradboostLiPoModel.p / train Gradient Boost model (To be implemented)
@@ -279,7 +279,7 @@ p)dump(realThrottleLSTMTrainingDataMatrix, 'realThrottleLSTMTrainingDataMatrix.j
 trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
 / system "l updateRegressionLSTM.p"
-LSTMModel: `Disabled / options: `regressionWindow `regressionTimeStep `batch `Disabled
+LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
 / Real Data Input, LSTM Regression / Using encoding format C
 / Real Data Input, LSTM Regression using Window / Using encoding format C
 if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
@@ -304,10 +304,12 @@ if [LSTMModel=`Disabled; show "LSTM training disabled"]
 yPred:.p.py2q .p.pyget`yPred
 
 / h (`clearyPredTable;0) / clear yPredTable on Server
-{h (`insertyPredTable;x)} each yPred / insert new predictions to yPredTable on Server
+/ Do not insert predictions back to server during live deployment!
+/ {h (`insertyPredTable;x)} each yPred / insert new predictions to yPredTable on Server
+/ neg[h] (`showyPredTable;0) / show updated yPredTable on Server 
 / To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
-neg[h][]
+/ neg[h][]
 / To ensure an async message has been processed by the remote, follow with a sync chaser
-h"";
+/ h"";
 
 "Completed Updating Models"
