@@ -5,7 +5,7 @@ import math
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
-from sklearn.preprocessing import StandardScaler
+# from sklearn.preprocessing import StandardScaler
 from joblib import load
 
 pd.set_option('display.max_rows', None)
@@ -20,9 +20,8 @@ def mse(pred, actual):
 def strFloat(floatVal):
 	return "{0:.2f}".format(round(floatVal,2))
 
-modelSave = load('MemoryLSTMModel.joblib')
+modelSave = load('RegressionWindowLSTMModel.joblib')
 model = modelSave["model"]
-yStandardScalar = modelSave["yStandardScalar"]
 batchSize = modelSave["batchSize"]
 lookbackSteps = modelSave["lookbackSteps"]
 
@@ -40,8 +39,9 @@ if kdbSource:
 X = inputPDF.drop(inputPDF.columns[-1], axis=1, inplace = False)
 y = inputPDF.iloc[:,-1].to_frame() # 
 #####APPLYING NORMALISATION TO DATASET#####
-XStandardScalar = StandardScaler()
-X = XStandardScalar.fit_transform(X)
+#Normalisation already done in kdb processed data!!!
+#if not using standard scaler, must cast to numpy array
+X = X.to_numpy()
 
 # train the LSTM models
 lookbackStepsCheck = inputPDF.shape[1]-1 # calculate lookbacksteps from features in training dataframe 
@@ -53,6 +53,6 @@ assert (lookbackSteps==lookbackStepsCheck), "Mismatch of lookback steps between 
 X = np.reshape(X, (X.shape[0], 1, X.shape[1]))
 
 yPred = model.predict(X, batch_size=batchSize)
-yPred = yStandardScalar.inverse_transform(yPred)
-
+# transform back to throttle range [1000,2000]
+yPred = ((yPred*1000)+1000).astype('int')
 print("yPred Throttle predictions set!")

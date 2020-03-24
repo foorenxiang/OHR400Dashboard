@@ -16,7 +16,8 @@ pd.set_option('display.max_rows', None)
 #mysql update setup variables
 #cannot use __file__ when running in KDB+
 fileName = 'updateRegressionWindowLSTM.p'
-trainingSetName = 'synthesizedThrottleLSTMTrainingData.csv'
+# trainingSetName = 'synthesizedThrottleLSTMTrainingData.csv'
+realThrottleLSTMTrainingDataMatrix.joblib
 comments = 'Using Regression (Window) LSTM'
 
 def mse(pred, actual):
@@ -30,7 +31,7 @@ kdbSource = True
 
 if 'trainingDataPDF' not in globals():
 	kdbSource = False
-	trainingDataPDF = load('synthesizedThrottleLSTMTrainingDataMatrix.joblib')
+	trainingDataPDF = load('realThrottleLSTMTrainingDataMatrix.joblib')
 	print("Training using LSTM training data on disk!")
 
 #using else or try catch causes bugs with embedpy
@@ -53,16 +54,18 @@ testX = trainingDataTest.drop(trainingDataTest.columns[-1], axis=1, inplace = Fa
 testy = trainingDataTest.iloc[:,-1].to_frame() # get expected throttle column
 
 #####APPLYING NORMALISATION TO DATASET#####
-trainXStandardScalar = StandardScaler()
-yStandardScalar = StandardScaler()
-trainX = trainXStandardScalar.fit_transform(trainX)
-trainy = yStandardScalar.fit_transform(trainy)
-testXStandardScalar = StandardScaler()
-testX = testXStandardScalar.fit_transform(testX)
+#Normalisation already done in kdb processed data!!!
+#if not using standard scaler, must cast to numpy array
+trainX = trainX.to_numpy()
+trainy = trainy.to_numpy()
+testX = testX.to_numpy()
+testy = testy.to_numpy()
 
 # train the LSTM models
 lookbackSteps = trainingDataPDF.shape[1]-1 # calculate lookbacksteps from features in training dataframe 
 print("Look back steps detected: " + str(lookbackSteps))
+
+
 
 #reshape trainX for LSTM input
 trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
@@ -79,23 +82,23 @@ model.fit(trainX, trainy, epochs=trainingEpochs, batch_size=batchSize, verbose=2
 # save trained model to disk
 modelSave = {}
 modelSave["model"] = model
-modelSave["yStandardScalar"] = yStandardScalar
 modelSave["batchSize"] = batchSize
 modelSave["lookbackSteps"] = lookbackSteps
-dump(modelSave, 'MemoryLSTMModel.joblib')
+dump(modelSave, 'RegressionWindowLSTMModel.joblib')
 
 # load trained model from disk for verification
-modelSave = load('MemoryLSTMModel.joblib')
+modelSave = load('RegressionWindowLSTMModel.joblib')
 model = modelSave["model"]
-yStandardScalar = modelSave["yStandardScalar"]
 batchSize = modelSave["batchSize"]
 lookbackSteps = modelSave["lookbackSteps"]
 
 trainyPred = model.predict(trainX, batch_size=batchSize)
-trainyPred = yStandardScalar.inverse_transform(trainyPred)
+# transform back to throttle range [1000,2000]
+trainyPred = ((trainyPred*1000)+1000).astype('int')
 
 yPred = model.predict(testX, batch_size=batchSize)
-yPred = yStandardScalar.inverse_transform(yPred)
+# transform back to throttle range [1000,2000]
+yPred = ((yPred*1000)+1000).astype('int')
 
 MSE = mse(yPred,np.asarray(testy))
 RMSE = MSE**0.5
@@ -104,7 +107,7 @@ RMSE = MSE**0.5
 if kdbSource == False:
 	# plot and save training result to disk
 	from pandas import read_csv
-	dataframe = read_csv("synthesizedThrottleLSTMTrainingData.csv", usecols=[1], engine='python')
+	dataframe = read_csv("realThrottleLSTMTrainingData.csv", usecols=[1], engine='python')
 	dataset = dataframe.values
 	dataset = dataset.astype('float32')
 	trainyPredPlot = np.empty_like(dataset)

@@ -167,10 +167,17 @@ bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable
 
 /////Encode throttle sequences into format usable by LSTM models/////
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
-fillValue:0
+fillValue:1000
 encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
+
+/////cap throttle value to [1000, 2000] and normalise to [0,1]////
+encodedOptimalThrottles: {min[2000,x]} each encodedOptimalThrottles
+encodedOptimalThrottles: {max[1000,x]} each encodedOptimalThrottles
+encodedOptimalThrottles-:1000
+encodedOptimalThrottles%:1000
+
 / Encoding format A: Create sliding window for samples and labels 
 /
 / Calculating sliding window using step by step method (method a)
@@ -216,6 +223,13 @@ p)dump(synthesizedThrottleLSTMTrainingDataMatrix, 'synthesizedThrottleLSTMTraini
 
 /////Select throttle time series sequence from real flight logs for LSTM Training/////
 realThrottles:trainingData[`rcCommand3]
+
+/////cap throttle value to [1000, 2000] and normalise to [0,1]////
+realThrottles: {min[2000,x]} each realThrottles
+realThrottles: {max[1000,x]} each realThrottles
+realThrottles-:1000
+realThrottles%:1000
+
 /
 / Encoding format A: Create sliding window for samples and labels 
 / calculate using step by step method (method a)
