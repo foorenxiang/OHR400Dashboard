@@ -22,7 +22,8 @@
 / open IPC connection to server
 h:hopen 5001
 flatDir:h"flatDir"
-/ system"l FASUpdateModels.q"
+"Automatic ML model retraining enabled!"
+"Rolling Launch Control Model Trainer Up and Ready"
 .z.ts:{system"l FASUpdateModels.q";}
 
 reTrainTimer: 6 / in mins

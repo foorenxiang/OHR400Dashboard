@@ -110,9 +110,10 @@ if[not saveCSVs; show "Not saving tables to CSVs"]
 yPredTable:2_([]yPred:(1000 1000 100;1000))
 insertyPredTable:{`yPredTable insert (x)} 
 clearyPredTable:{delete from `yPredTable} / delete all rows from table
-showyPredTable:{show (neg lookbackSteps)#yPredTable}
+showyPredTable:{show (neg lookbackSteps)#yPredTable; show (string count yPredTable)," samples"}
+receiveUpdatedModels:{show "Received updated RLC models!"}
 
-"System Up and Ready"
+"KDB Server System Up and Ready"
 
 show yPredTable
 

@@ -27,5 +27,8 @@ h:hopen 5001
 flatDir:h"flatDir"
 system"l FASUseModels.q"
 .z.ts:{FASUseModels[]}
+
+"Rolling Launch Control Generator Up and Ready"
+
 predictionFrequency:1 /in Hz
 system"t ",string 1000*1%1
