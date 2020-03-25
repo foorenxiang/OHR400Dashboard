@@ -1,9 +1,15 @@
+/ get directories
+qDirectory: get `:qDirectory
+dashboardDirectory: get `:dashboardDirectory
+logsDirectory: get `:logsDirectory
+
 ///////////////////////
 / Filter parameters
 minSpeed: 60 /in kph
 ///////////////////////
 
-\cd /Users/foorx/logs
+system"cd ",logsDirectory
+
 / read CSV containing files just uploaded to logs folder
 logsListTable: ("I*";enlist csv) 0: `:logsManifest.csv
 / remove non-valid rows
@@ -146,4 +152,4 @@ varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList
 ![`.;();0b;varsToDelete];
 
 / return back to working directory!
-\cd /Users/foorx/Sites/OHR400Dashboard
+system"cd ",dashboardDirectory

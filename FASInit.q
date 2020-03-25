@@ -12,7 +12,13 @@ useModels.p
 / upgrade HTTP protocol to websocket protocol
 .z.ws:{neg[.z.w] -8! @[value;x;{`$ "'",x}]}
 
-\cd /Users/foorx/anaconda3/q
+/ get directories
+qDirectory: get `:qDirectory
+dashboardDirectory: get `:dashboardDirectory
+developerDirectory: get `:developerDirectory
+
+system"cd ",qDirectory
+
 / load embedpy
 \l p.q
 
@@ -23,7 +29,7 @@ useModels.p
 "Q Process running on port 5001 [websocket mode]"
 
 / switch back to q working folder
-\cd /Users/foorx/Sites/OHR400Dashboard
+system"cd ",dashboardDirectory
 
 //define gps and PID csv enlisting functions
 enlistGPSCSV:{trimTable (x#"f";enlist csv) 0:y}
@@ -52,22 +58,18 @@ listFromTableColumn:{[t;c]raze each t[(cols t) c]}
 /load master data
 /attempt to load splayed master records table from disk if it exists
 "Loading stored GPS Dataset"
-/ GPSData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/GPSData);0N]
-flatDir:"/Users/foorx/Sites/OHR400Dashboard/flat/"
+flatDir:dashboardDirectory,"/flat/"
 GPSData: @[get;hsym `$flatDir,"GPSData";0N]
 / GPSData will store 0N if flat table is not found
 if[(type GPSData)<90;delete GPSData from `.;0N!"Failed to load GPSData"]
 "Loading stored PID Dataset"
-/ PIDData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/PIDData);0N]
 PIDData: @[get;hsym `$flatDir,"PIDData";0N] 
 / PIDData will store 0N if flat table is not found
 if[(type PIDData)<90;delete PIDData from `.;0N!"Failed to load PIDData"]
 "Loading stored Joined Dataset"
-/ fullLog: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/fullLog);0N]
 fullLog: @[get;hsym `$flatDir,"fullLog";0N]
 if[(type fullLog)<90;delete fullLog from `.;0N!"Failed to load fullLog"]
 "Loading stored Training Dataset"
-/ trainingData: @[get;(`:/Users/foorx/Sites/OHR400Dashboard/trainingData);0N]
 trainingData: @[get;hsym `$flatDir,"trainingData";0N]
 if[(type trainingData)<90;delete trainingData from `.;0N!"Failed to load trainingData"]
 "Loading Predictions Table"
@@ -102,9 +104,9 @@ if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
 
 "Loading KX Developer"
-\cd /Users/foorx/developer/
+system"cd ",developerDirectory
 \l launcher.q_
-\cd /Users/foorx/Sites/OHR400Dashboard
+system"cd ",dashboardDirectory
 
 "System Up and Ready"
 

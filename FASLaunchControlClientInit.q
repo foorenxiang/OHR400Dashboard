@@ -1,9 +1,17 @@
+/ get directories
+qDirectory: get `:qDirectory
+dashboardDirectory: get `:dashboardDirectory
+
+/ select IPC host
+hostPort: hsym `renxiang.cloud:5001 / cloud server
+/ hostPort: hsym `localhost:5001 / local server
+
 / start IPC TCP/IP broadcast on port 6002 if not already enabled
 \p 6002
 / upgrade HTTP protocol to websocket protocol
 .z.ws:{neg[.z.w] -8! @[value;x;{`$ "'",x}]}
 
-\cd /Users/foorx/anaconda3/q
+system"cd ",qDirectory
 / load embedpy
 \l p.q
 
@@ -14,7 +22,7 @@
 "Q ML Training Client Process running on port 6001 [websocket mode]"
 
 / switch back to q working folder
-\cd /Users/foorx/Sites/OHR400Dashboard
+system"cd ",dashboardDirectory
 
 / "Pre-importing Python ML libraries"
 \l FASPythonLibraries.q
@@ -23,7 +31,9 @@
 show lookbackSteps: get `:lookbackSteps.dat 
 
 / open IPC connection to server
-h:hopen 5001
+h:hopen hostPort
+if[(h>0) and hostPort = hsym `renxiang.cloud:5001; show "Connected to kdb master in cloud!"]
+if[(h>0) and hostPort = hsym `localhost:5001; show "Connected to kdb master on localhost!"]
 flatDir:h"flatDir"
 system"l FASUseModels.q"
 .z.ts:{FASUseModels[]}
