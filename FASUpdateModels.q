@@ -303,6 +303,9 @@ if [LSTMModel=`Disabled; show "LSTM training disabled"]
 \l useRegressionWindowLSTM.p
 yPred:.p.py2q .p.pyget`yPred
 
+/ if using cloud kdb server, transfer updated LSTM model to using ssh
+if[(h>0) and hostPort = hsym `renxiang.cloud:5001; system"l trainedLSTMModelTransfer.p"; show "Transferring newly trained LSTM model to cloud!"]
+
 / h (`clearyPredTable;0) / clear yPredTable on Server
 / Do not insert predictions back to server during live deployment!
 / {h (`insertyPredTable;x)} each yPred / insert new predictions to yPredTable on Server

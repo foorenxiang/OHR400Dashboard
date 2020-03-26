@@ -1,0 +1,569 @@
+Last login: Thu Mar 26 22:47:07 on ttys000
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ ssh foorx@renxiang.cloud
+foorx@renxiang.cloud's password: 
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-91-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Mar 26 14:51:47 UTC 2020
+
+  System load:  2.17               Processes:              237
+  Usage of /:   31.3% of 77.36GB   Users logged in:        1
+  Memory usage: 3%                 IP address for eth0:    104.248.151.94
+  Swap usage:   0%                 IP address for docker0: 172.17.0.1
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+73 packages can be updated.
+0 updates are security updates.
+
+
+********************************************************************************
+
+Welcome to DigitalOcean's One-Click MySQL/phpMyAdmin Droplet.
+To keep this Droplet secure, the UFW firewall is enabled. 
+All ports are BLOCKED except 22 (SSH), 80 (HTTP), 443 (HTTPS), and 3306 (MySQL).
+
+In a web browser, you can view:
+ * The MySQL/phpMyAdmin One-Click Quickstart guide: http://do.co/mysql1804#start
+ * phpMyAdmin: http://104.248.151.94/phpmyadmin
+    Username: admin 
+    Password: 291454c7d3bf2979b6cd4fa5b4bd22ed00512c45eb9308e2
+
+On the server:
+ * The MySQL root password is saved in /root/.digitalocean_password
+ * Certbot is preinstalled. Run it to configure HTTPS.
+ * A default HTML page is located at /var/www/html/index.html and can be removed or replaced.
+
+For help and more information, visit http://do.co/mysql1804
+
+********************************************************************************
+To delete this message of the day: rm -rf /etc/update-motd.d/99-one-click
+Last login: Thu Mar 26 14:47:04 2020 from 42.61.163.140
+cd(base) foorx@ProjectDemo:~$ cd Sites/OHR400Dashboard
+(base) foorx@ProjectDemo:~/Sites/OHR400Dashboard$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+l64/ 16()core 32166MB foorx projectdemo 127.0.1.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+Using TensorFlow backend.
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+"Connected to kdb master in cloud!"
+"Automatic ML model retraining enabled!"
+"Rolling Launch Control Model Trainer Up and Ready"
+q)"Not using train test split!"
+"Training GPS speed prediction model"
+Training multiple GPR kernel
+Training using KDB+ input!
+Not using PCA!
+number of convolutedKernels: 0
+MSE:
+3880.97
+RMSE:
+62.30
+
+Optimal kernel found!: RationalQuadratic
+bestMSE
+3880.9659422892955
+bestRMSE:
+62.29739916151633
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+GPR Kernel used:
+RationalQuadratic(alpha=1, length_scale=1)
+Model params:
+{'length_scale': 100000.00000000001, 'alpha': 0.009712241504900746, 'length_scale_bounds': (1e-05, 100000.0), 'alpha_bounds': (1e-05, 100000.0)}
+Mean Square Error:
+0.97
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+101 4241648
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+96 4241216
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and t..
+"calling FASSynthesizeSample.q"
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Generating timestep sample 2"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+360 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+918 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+"Generating timestep sample 3"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+923 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+1640 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+"Generating timestep sample 4"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+1653 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+2596 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+"Generating timestep sample 5"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+2612 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+3792 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+"Generating timestep sample 6"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+3768 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+5087 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+"Generating timestep sample 7"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+5113 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+6744 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+"Generating timestep sample 8"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+6746 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+8625 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+"Generating timestep sample 9"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+8610 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+10709 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+"Generating timestep sample 10"
+Using GPR GPS model
+Predicting using KDB+ input!
+gpsSpeedPrediction
+[130.32235394 130.32235394 130.32235394 ... 130.32235394 130.32235394
+ 130.32235394]
+gpsPredictionPDF set
+prediction complete!
+10760 4236224
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using GPR LiPo model
+Predicting using KDB+ input!
+LiPoPredictionPDF set
+prediction complete!
+13115 4235280
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      110                             110                        
+1      220                             220                        
+2      330                             330                        
+3      440                             440                        
+4      550                             550                        
+5      660                             660                        
+6      770                             770                        
+7      880                             880                        
+8      990                             990                        
+9      1100                            1100                       
+`:lookbackSteps.dat
+"Saving synthesizedThrottleLSTMTrainingDataMatrix to disk"
+"Saving realThrottleLSTMTrainingDataMatrix to disk"
+"Training LSTM (Regression Window) using synthesized data!"
+Training using KDB+ input!
+Look back steps detected: 10
+WARNING:tensorflow:From /home/foorx/anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+Epoch 1/100
+ - 1s - loss: 0.1318
+Epoch 2/100
+ - 1s - loss: 0.0314
+Epoch 3/100
+ - 1s - loss: 0.0168
+Epoch 4/100
+ - 1s - loss: 0.0109
+Epoch 5/100
+ - 1s - loss: 0.0083
+Epoch 6/100
+ - 1s - loss: 0.0067
+Epoch 7/100
+ - 1s - loss: 0.0057
+Epoch 8/100
+ - 1s - loss: 0.0047
+Epoch 9/100
+ - 1s - loss: 0.0041
+Epoch 10/100
+ - 1s - loss: 0.0035
+Epoch 11/100
+ - 1s - loss: 0.0031
+Epoch 12/100
+ - 1s - loss: 0.0028
+Epoch 13/100
+ - 1s - loss: 0.0026
+Epoch 14/100
+ - 1s - loss: 0.0025
+Epoch 15/100
+ - 1s - loss: 0.0023
+Epoch 16/100
+ - 1s - loss: 0.0022
+Epoch 17/100
+ - 1s - loss: 0.0021
+Epoch 18/100
+ - 1s - loss: 0.0020
+Epoch 19/100
+ - 1s - loss: 0.0020
+Epoch 20/100
+ - 1s - loss: 0.0018
+Epoch 21/100
+ - 1s - loss: 0.0019
+Epoch 22/100
+ - 1s - loss: 0.0018
+Epoch 23/100
+ - 1s - loss: 0.0017
+Epoch 24/100
+ - 1s - loss: 0.0017
+Epoch 25/100
+ - 1s - loss: 0.0017
+Epoch 26/100
+ - 1s - loss: 0.0016
+Epoch 27/100
+ - 1s - loss: 0.0017
+Epoch 28/100
+ - 1s - loss: 0.0015
+Epoch 29/100
+ - 1s - loss: 0.0015
+Epoch 30/100
+ - 1s - loss: 0.0015
+Epoch 31/100
+ - 1s - loss: 0.0014
+Epoch 32/100
+ - 1s - loss: 0.0014
+Epoch 33/100
+ - 1s - loss: 0.0014
+Epoch 34/100
+ - 1s - loss: 0.0014
+Epoch 35/100
+ - 1s - loss: 0.0013
+Epoch 36/100
+ - 1s - loss: 0.0012
+Epoch 37/100
+ - 1s - loss: 0.0013
+Epoch 38/100
+ - 1s - loss: 0.0012
+Epoch 39/100
+ - 1s - loss: 0.0012
+Epoch 40/100
+ - 1s - loss: 0.0012
+Epoch 41/100
+ - 1s - loss: 0.0011
+Epoch 42/100
+ - 1s - loss: 0.0011
+Epoch 43/100
+ - 1s - loss: 0.0011
+Epoch 44/100
+ - 1s - loss: 0.0011
+Epoch 45/100
+ - 1s - loss: 0.0011
+Epoch 46/100
+ - 1s - loss: 0.0010
+Epoch 47/100
+ - 1s - loss: 0.0011
+Epoch 48/100
+ - 1s - loss: 0.0010
+Epoch 49/100
+ - 1s - loss: 0.0010
+Epoch 50/100
+ - 1s - loss: 9.3781e-04
+Epoch 51/100
+ - 1s - loss: 9.6497e-04
+Epoch 52/100
+ - 1s - loss: 9.6652e-04
+Epoch 53/100
+ - 1s - loss: 9.7301e-04
+Epoch 54/100
+ - 1s - loss: 9.4523e-04
+Epoch 55/100
+ - 1s - loss: 9.3583e-04
+Epoch 56/100
+ - 1s - loss: 9.3432e-04
+Epoch 57/100
+ - 1s - loss: 8.9712e-04
+Epoch 58/100
+ - 1s - loss: 8.8885e-04
+Epoch 59/100
+ - 1s - loss: 8.7818e-04
+Epoch 60/100
+ - 1s - loss: 8.6647e-04
+Epoch 61/100
+ - 1s - loss: 8.5131e-04
+Epoch 62/100
+ - 1s - loss: 8.4217e-04
+Epoch 63/100
+ - 1s - loss: 8.3518e-04
+Epoch 64/100
+ - 1s - loss: 8.1688e-04
+Epoch 65/100
+ - 1s - loss: 8.6825e-04
+Epoch 66/100
+ - 1s - loss: 7.4546e-04
+Epoch 67/100
+ - 1s - loss: 8.1105e-04
+Epoch 68/100
+ - 1s - loss: 7.8775e-04
+Epoch 69/100
+ - 1s - loss: 7.9025e-04
+Epoch 70/100
+ - 1s - loss: 8.0031e-04
+Epoch 71/100
+ - 1s - loss: 7.7936e-04
+Epoch 72/100
+ - 1s - loss: 8.2546e-04
+Epoch 73/100
+ - 1s - loss: 7.8638e-04
+Epoch 74/100
+ - 1s - loss: 7.6777e-04
+Epoch 75/100
+ - 1s - loss: 7.8706e-04
+Epoch 76/100
+ - 1s - loss: 7.4925e-04
+Epoch 77/100
+ - 1s - loss: 7.6184e-04
+Epoch 78/100
+ - 1s - loss: 7.7398e-04
+Epoch 79/100
+ - 1s - loss: 7.2039e-04
+Epoch 80/100
+ - 1s - loss: 8.0040e-04
+Epoch 81/100
+ - 1s - loss: 7.6868e-04
+Epoch 82/100
+ - 1s - loss: 7.3247e-04
+Epoch 83/100
+ - 1s - loss: 7.5785e-04
+Epoch 84/100
+ - 1s - loss: 7.2598e-04
+Epoch 85/100
+ - 1s - loss: 7.4865e-04
+Epoch 86/100
+ - 1s - loss: 7.2767e-04
+Epoch 87/100
+ - 1s - loss: 7.0041e-04
+Epoch 88/100
+ - 1s - loss: 7.1700e-04
+Epoch 89/100
+ - 1s - loss: 7.2644e-04
+Epoch 90/100
+ - 1s - loss: 7.3533e-04
+Epoch 91/100
+ - 1s - loss: 7.2450e-04
+Epoch 92/100
+ - 1s - loss: 6.8977e-04
+Epoch 93/100
+ - 1s - loss: 6.9713e-04
+Epoch 94/100
+ - 1s - loss: 6.8513e-04
+Epoch 95/100
+ - 1s - loss: 7.1444e-04
+Epoch 96/100
+ - 1s - loss: 7.2389e-04
+Epoch 97/100
+ - 1s - loss: 6.7465e-04
+Epoch 98/100
+ - 1s - loss: 6.3685e-04
+Epoch 99/100
+ - 1s - loss: 7.3309e-04
+Epoch 100/100
+ - 1s - loss: 6.6233e-04
+Finished training Regression (Normal) LSTM!
+Using Regression (Normal) LSTM
+Generating Rolling Launch Control Throttle sequence using KDB+ input!
+Look back steps detected: 10
+Rolling Launch Control Throttle generated!
+"Completed Updating Models"
+235442 6589840
+q)

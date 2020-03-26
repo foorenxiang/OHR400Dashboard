@@ -106,7 +106,7 @@ if[saveCSVs;save `:fullLog.csv;show "fullLog.csv saved to disk"]
 trainingData: select timens,GPSspeedms,rcCommand0,rcCommand1,rcCommand2,rcCommand3,vbatLatestV,gyroADC0,gyroADC1,gyroADC2,accSmooth0,accSmooth1,accSmooth2,motor0,motor1,motor2,motor3 from fullLog where GPSspeedms>(minSpeed%3.6)
 
 / copy trainingData table with renamed features
-trainingData1:(`rcCommand0`rcCommand1`rcCommand2`rcCommand3!`rcRoll`rcPitch`rcYaw`rcThrottle)xcol trainingData
+/ trainingData1:(`rcCommand0`rcCommand1`rcCommand2`rcCommand3!`rcRoll`rcPitch`rcYaw`rcThrottle)xcol trainingData
 
 / in trainingData table, convert timestamps from ns to us
 update timens:`int$timens%1000 from `trainingData;
