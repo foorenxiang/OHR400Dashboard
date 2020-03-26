@@ -112,6 +112,7 @@ yPredTable:2_([]yPred:(1000 1000 100;1000))
 insertyPredTable:{`yPredTable insert (x)} 
 clearyPredTable:{delete from `yPredTable} / delete all rows from table
 showyPredTable:{show (neg lookbackSteps)#yPredTable; show (string count yPredTable)," samples"}
+/ receiveUpdatedModels:{system"wget -N http://renxiang.cloud/OHR400Dashboard/RegressionWindowLSTMModel.joblib";show "Received updated RLC models!"}
 receiveUpdatedModels:{show "Received updated RLC models!"}
 
 "KDB Server System Up and Ready"

@@ -5,6 +5,7 @@ hostPort: hsym `renxiang.cloud:5001 / cloud server
 / get directories
 qDirectory: get `:qDirectory
 dashboardDirectory: get `:dashboardDirectory
+flatDir: get `:flatDir
 
 / start IPC TCP/IP broadcast on port 6001 if not already enabled
 \p 6001
@@ -32,7 +33,6 @@ h:hopen hostPort
 if[(h>0) and hostPort = hsym `renxiang.cloud:5001; show "Connected to kdb master in cloud!"]
 if[(h>0) and hostPort = hsym `localhost:5001; show "Connected to kdb master on localhost!"]
 
-flatDir:h"flatDir"
 "Automatic ML model retraining enabled!"
 "Rolling Launch Control Model Trainer Up and Ready"
 .z.ts:{system"l FASUpdateModels.q";}
