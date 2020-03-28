@@ -5,7 +5,7 @@ logsDirectory: get `:logsDirectory
 
 ///////////////////////
 / Filter parameters
-minSpeed: 60 /in kph
+minSpeed: 170 /in kph /must not be too high or it might delete data from valid throttle sequences
 ///////////////////////
 
 system"cd ",logsDirectory
@@ -52,14 +52,7 @@ numPIDFiles:count pidLogsFiles
 PIDDataInput: enlistPIDCSV[first pidLogsNumFeatures; first pidLogsFiles];pidLogsNumFeatures: 1_pidLogsNumFeatures; pidLogsFiles: 1_pidLogsFiles
 if[numPIDFiles>1;{`PIDDataInput set PIDDataInput,enlistPIDCSV[(pidLogsNumFeatures@x);(pidLogsFiles@x)]} each til count pidLogsNumFeatures]
 
-/ adjust time data such that first entry starts at 0us
-/ if PID start time is earlier than GPS start time 
-if[res:(PIDDataInput[`timeus] 0)<(GPSDataInput[`timeus] 0); startTime:PIDDataInput[`timeus] 0] 
-if[not res; startTime:GPSDataInput[`timeus] 0]
-delete res from `. ;
-
-update timeus:timeus-startTime from `GPSDataInput;
-delete startTime from `. ;
+system"cd ",dashboardDirectory
 
 / convert us to ns
 update timeus:1000*timeus from `GPSDataInput; /multiply us by 1000 /updates in place
@@ -95,7 +88,13 @@ if[not `PIDData in key`.; PIDData:PIDDataInput]
 if[saveCSVs;save `:PIDData.csv;show "PIDData.csv saved to disk"]
 
 / as of join the PID log and GPS log
-fullLog:aj0[`timens;GPSData;PIDData];
+fullLogNew:aj0[`timens;GPSData;PIDData];
+update acceleration_G:GPSspeedms%9.81%(deltas "f"$timens*10 xexp -9) from `fullLogNew;
+/ if fullLog already exists, append to it
+if[`fullLog in key `.; fullLog: fullLog,fullLogNew; show "Adding new records to fullLog!"]
+/ otherwise create fullLog
+if[not `fullLog in key `.; fullLog: fullLogNew; show "Creating fullLog table and adding new records!"]
+
 /save updated trainingData table
 (hsym `$flatDir,"fullLog") set fullLog; / use hsym t cast directory string to file symbol
 if[saveCSVs;save `:fullLog.csv;show "fullLog.csv saved to disk"]
@@ -104,9 +103,6 @@ if[saveCSVs;save `:fullLog.csv;show "fullLog.csv saved to disk"]
 
 / feature selection for trainingData
 trainingData: select timens,GPSspeedms,rcCommand0,rcCommand1,rcCommand2,rcCommand3,vbatLatestV,gyroADC0,gyroADC1,gyroADC2,accSmooth0,accSmooth1,accSmooth2,motor0,motor1,motor2,motor3 from fullLog where GPSspeedms>(minSpeed%3.6)
-
-/ copy trainingData table with renamed features
-/ trainingData1:(`rcCommand0`rcCommand1`rcCommand2`rcCommand3!`rcRoll`rcPitch`rcYaw`rcThrottle)xcol trainingData
 
 / in trainingData table, convert timestamps from ns to us
 update timens:`int$timens%1000 from `trainingData;
@@ -122,13 +118,17 @@ delete GPSspeedms from `trainingData;
 / create new column of sample time deltas
 update timeDeltaus:`float$timeus[i+1]-timeus[i] from `trainingData; /must be float to allow conversion from table to matrix
 
+/ delete timestamp and rely on time delta instead
+delete timens from `trainingData;
+
 / removes samples with missing features in dataset
 delete from `trainingData where rcCommand0 = 0n ; /delete rows where there are no rcCommands0
 delete from `trainingData where timeDeltaus = 0n; /delete rows where there are no timeDeltaus
-delete from `trainingData where timeDeltaus <1; /delete rows where there are skips in time delta due to log transition
-
+delete from `trainingData where timeDeltaus <0; /delete rows where there are skips in time delta due to log transition
 / create new column that show sample rate
 update currentSampleHz:1%timeDeltaus%1000000 from `trainingData; 
+delete from `trainingData where currentSampleHz>30;
+delete from `trainingData where currentSampleHz<2;
 / reorder columns
 trainingData:`currentSampleHz xcols trainingData;
 trainingData:`GPSspeedkph xcols trainingData;
@@ -148,7 +148,7 @@ if[saveCSVs;save `:trainingData.csv;show "trainingData.csv saved to disk"]
 / averageSampleFrequency:(string reciprocal[averageFreq:first averageFreq:(first averageFreq:flip select avg timeDeltaus from trainingData where timeDeltaus>0)%1000000]),"Hz"
 
 / clean up unused variables using functional sql
-varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable`GPSDataInput`PIDDataInput`minSpeed`numGPSFiles`numPIDFiles`varsToDelete
+varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable`GPSDataInput`PIDDataInput`numGPSFiles`numPIDFiles`fullLogNew`varsToDelete
 ![`.;();0b;varsToDelete];
 
 / return back to working directory!
