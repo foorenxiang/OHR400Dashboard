@@ -14,8 +14,8 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 
 //////TRAIN GPS PREDICTION MODEL//////
 "Training GPS speed prediction model"
-/ \l updateELMGPSModel.p / train Extreme Learning Machine model
-\l updateGPRGPSModel.p / train gaussian process regression model
+\l updateELMGPSModel.p / train Extreme Learning Machine model
+/ \l updateGPRGPSModel.p / train gaussian process regression model
 / \l updateLinearGPSModel.p / train linear regression model
 / \l updateSVRGPSModel.p / train support vector regression model
 / \l updateAdaboostGPSModel.p / train adaboost model
@@ -27,8 +27,8 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 //////TRAIN LIPO PREDICTION MODEL//////
 "Training LiPo Voltage prediction model"
 .p.set[`trainingDataPDF; .ml.tab2df[trainingData]]
-/ \l updateELMLiPoModel.p / train ELM model
-\l updateGPRLiPoModel.p / train gaussian process regression model
+\l updateELMLiPoModel.p / train ELM model
+/ \l updateGPRLiPoModel.p / train gaussian process regression model
 / \l updateSVRLiPoModel.p / train support vector regression model (To be implemented)
 / \l updateAdaboostLiPoModel.p / train adaboost model (To be implemented)
 / \l updateGradboostLiPoModel.p / train Gradient Boost model (To be implemented)
