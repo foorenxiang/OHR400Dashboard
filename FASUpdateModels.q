@@ -36,8 +36,8 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 / \l updateRFLiPoModel.p / train adaboost model (To be implemented)
 / \l updateStackGeneralizerLiPoModel.p / train Stack Generalizer model (To be implemented)
 
-/ number of look ahead samples for training LSTM
-.p.set[`numSamplesToUse; numSamplesToUse:10]
+/ select size of training data for training LSTM
+.p.set[`numSamplesToUse; numSamplesToUse:count trainingData]
 .p.set[`synthesizedSampleIndex; synthesizedSampleIndex:0]
 //////DEPLOY GPS MODEL//////
 "Deploying GPS speed prediction model"
@@ -114,7 +114,6 @@ numTimeSteps:10
 .p.set[`syntheticSampleTimeDelta; syntheticSampleTimeDelta: 0.2] / in seconds
 getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
 synthesizedDataCount: getSynthesizedDataCount[]
-"calling FASSynthesizeSample.q"
 
 / create throttleInputHistory feature in current prediction tables for usage in feature synthesis
 update throttleInputHistory:rcCommand3 from `LiPoPredictionTable
