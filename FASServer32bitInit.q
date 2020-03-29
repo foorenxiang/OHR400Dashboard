@@ -65,12 +65,11 @@ if[not saveCSVs; show "Not saving tables to CSVs"]
 
 
 / IPC definitions
-yPredTable:2_([]yPred:(1000 1000 100;1000))
+yPredTable:([]yPred:())
 insertyPredTable:{`yPredTable insert (x)} 
-clearyPredTable:{delete from `yPredTable} / delete all rows from table
+clearyPredTable:{delete from `yPredTable;; show"Clearing yPredTable!"} / delete all rows from table
 lookbackSteps: get `:lookbackSteps.dat 
 showyPredTable:{show (neg lookbackSteps)#yPredTable; show (string count yPredTable)," samples"}
-
 receiveUpdatedModels:{show "Received updated RLC models!"; show "Using 32bit kdb+ version, cannot run ML models!"}
 
 "KDB Server System Up and Ready"
