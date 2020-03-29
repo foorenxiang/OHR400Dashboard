@@ -7,7 +7,7 @@ FAQUpdate.q
 / get directories
 qDirectory: get `:qDirectory
 dashboardDirectory: get `:dashboardDirectory
-developerDirectory: get `:developerDirectory
+/ developerDirectory: get `:developerDirectory
 
 / start IPC TCP/IP broadcast on port 5001 if not already enabled
 \p 5001
