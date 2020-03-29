@@ -43,7 +43,7 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 / give python access to testing data panda dataframe
 / always call .p.set to ensure model receives fresh panda dataframe
 / .p.set[`inputPDF; .ml.tab2df[trainTestSplitTrainingData[`xtest]]] / use this input to test the model
-.p.set[`inputPDF; .ml.tab2df[(neg numSamplesToUse)#trainingData]] / take samples from end of table
+.p.set[`inputPDF; .ml.tab2df[trainingData]] / take samples from end of table
 / \ts \l useGPRGPSModel.p / deploy gaussian process regression model
 \ts \l useELMGPSModel.p / deploy ELM model
 / \ts \l useLinearGPSModel.p / deploy linear model
@@ -62,7 +62,7 @@ gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
 / always call .p.set to ensure model receives fresh panda dataframe
 synthesizedSampleIndex:1
 .p.set[`synthesizedSampleIndex; synthesizedSampleIndex]
-.p.set[`inputPDF; .ml.tab2df[(neg numSamplesToUse)#trainingData]] / take samples from end of table / take samples from end of table
+.p.set[`inputPDF; .ml.tab2df[trainingData]] / take samples from end of table / take samples from end of table
 / \ts \l useGPRLiPoModel.p / deploy gaussian process regression model
 \ts \l useELMLiPoModel.p / deploy ELM model
 / \l useSVRLiPoModel.p / use support vector regression model (To be implemented)
@@ -87,7 +87,7 @@ gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
 /
 / always call .p.set to ensure model receives fresh panda dataframe
 .p.set[`inputPDF; .ml.tab2df[trainTestSplitTrainingData[`xtest]]] / use this input to test the model
-.p.set[`inputPDF; .ml.tab2df[(neg numSamplesToUse)#trainingData]] / take samples from end of table
+.p.set[`inputPDF; .ml.tab2df[trainingData]] / take samples from end of table
 \ts \l useGPRLiPoModel.p / deploy gaussian process regression model
 / convert prediction result from python object back to q list
 LiPoPredictionTable:.ml.df2tab .p.wrap .p.pyget`LiPoPredictionPDF
