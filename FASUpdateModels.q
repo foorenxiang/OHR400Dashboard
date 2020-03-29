@@ -11,7 +11,6 @@ trainTestSplitAssignmentTable:`testingSamples`trainingSamples!(testingSamples;tr
 if[useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainTestSplitTrainingData[`xtrain]]];show "Using train test split!"]
 if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Not using train test split!"]
 
-
 //////TRAIN GPS PREDICTION MODEL//////
 "Training GPS speed prediction model"
 \l updateELMGPSModel.p / train Extreme Learning Machine model
