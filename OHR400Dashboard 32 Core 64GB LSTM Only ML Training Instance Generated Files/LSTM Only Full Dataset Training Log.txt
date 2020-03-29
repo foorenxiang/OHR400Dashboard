@@ -1,0 +1,668 @@
+Last login: Sun Mar 29 21:20:10 on ttys001
+(base) Ren-Xiangs-MBP-2017:~ foorx$ ssh foorx@134.122.77.251
+foorx@134.122.77.251's password: 
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-91-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun Mar 29 13:20:49 UTC 2020
+
+  System load:  0.63               Processes:              345
+  Usage of /:   6.4% of 387.50GB   Users logged in:        0
+  Memory usage: 1%                 IP address for eth0:    134.122.77.251
+  Swap usage:   0%                 IP address for docker0: 172.17.0.1
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+70 packages can be updated.
+0 updates are security updates.
+
+
+********************************************************************************
+
+Welcome to DigitalOcean's One-Click MySQL/phpMyAdmin Droplet.
+To keep this Droplet secure, the UFW firewall is enabled. 
+All ports are BLOCKED except 22 (SSH), 80 (HTTP), 443 (HTTPS), and 3306 (MySQL).
+
+In a web browser, you can view:
+ * The MySQL/phpMyAdmin One-Click Quickstart guide: http://do.co/mysql1804#start
+ * phpMyAdmin: http://134.122.77.251/phpmyadmin
+    Username: admin 
+    Password: 291454c7d3bf2979b6cd4fa5b4bd22ed00512c45eb9308e2
+
+On the server:
+ * The MySQL root password is saved in /root/.digitalocean_password
+ * Certbot is preinstalled. Run it to configure HTTPS.
+ * A default HTML page is located at /var/www/html/index.html and can be removed or replaced.
+
+For help and more information, visit http://do.co/mysql1804
+
+********************************************************************************
+To delete this message of the day: rm -rf /etc/update-motd.d/99-one-click
+Last login: Sun Mar 29 13:20:19 2020 from 42.61.163.140
+QHOME=/home/foorx/anaconda3/q
+OLD_QHOME=
+WARNING: you should run this program as super-user.
+     *-cpu:0
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@0
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:1
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@1
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:2
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@2
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:3
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@3
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:4
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@4
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:5
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@5
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:6
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@6
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:7
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@7
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:8
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@8
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:9
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@9
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:10
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@10
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:11
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@11
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:12
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@12
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:13
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@13
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:14
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@14
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:15
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@15
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:16
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@16
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:17
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@17
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:18
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@18
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:19
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@19
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:20
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@20
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:21
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@21
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:22
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@22
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:23
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@23
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:24
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@24
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:25
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@25
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:26
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@26
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+WARNING: output may be incomplete or inaccurate, you should run this program as super-user.
+     *-cpu:27
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@27
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:28
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@28
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:29
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@29
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:30
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@30
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+     *-cpu:31
+          product: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+          bus info: cpu@31
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 pku ospke md_clear
+foorx     3985  3946  0 13:20 pts/0    00:00:00 grep --color=auto FAS
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ rm nohupML.out; nohup q FASMLTrainingClientInit.q > nohupML.out & tail -f nohupML.out
+[1] 3988
+nohup: ignoring input and redirecting stderr to stdout
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+Using TensorFlow backend.
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+"Connected to kdb master in cloud!"
+"Automatic ML model retraining enabled!"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Saving realThrottleLSTMTrainingDataMatrix to disk"
+"Training LSTM (Regression Window) using real flight data!"
+Training using KDB+ input!
+Look back steps detected: 10
+WARNING:tensorflow:From /home/foorx/anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+Epoch 1/100
+ - 1s - loss: 0.0821
+Epoch 2/100
+ - 1s - loss: 0.0390
+Epoch 3/100
+ - 1s - loss: 0.0284
+Epoch 4/100
+ - 1s - loss: 0.0252
+Epoch 5/100
+ - 1s - loss: 0.0235
+Epoch 6/100
+ - 1s - loss: 0.0220
+Epoch 7/100
+ - 1s - loss: 0.0213
+Epoch 8/100
+ - 1s - loss: 0.0208
+Epoch 9/100
+ - 1s - loss: 0.0202
+Epoch 10/100
+ - 1s - loss: 0.0198
+Epoch 11/100
+ - 1s - loss: 0.0196
+Epoch 12/100
+ - 1s - loss: 0.0199
+Epoch 13/100
+ - 1s - loss: 0.0192
+Epoch 14/100
+ - 1s - loss: 0.0192
+Epoch 15/100
+ - 1s - loss: 0.0189
+Epoch 16/100
+ - 1s - loss: 0.0189
+Epoch 17/100
+ - 1s - loss: 0.0190
+Epoch 18/100
+ - 1s - loss: 0.0187
+Epoch 19/100
+ - 1s - loss: 0.0188
+Epoch 20/100
+ - 1s - loss: 0.0187
+Epoch 21/100
+ - 1s - loss: 0.0185
+Epoch 22/100
+ - 1s - loss: 0.0184
+Epoch 23/100
+ - 1s - loss: 0.0187
+Epoch 24/100
+ - 1s - loss: 0.0184
+Epoch 25/100
+ - 1s - loss: 0.0184
+Epoch 26/100
+ - 1s - loss: 0.0187
+Epoch 27/100
+ - 1s - loss: 0.0184
+Epoch 28/100
+ - 1s - loss: 0.0184
+Epoch 29/100
+ - 1s - loss: 0.0183
+Epoch 30/100
+ - 1s - loss: 0.0181
+Epoch 31/100
+ - 1s - loss: 0.0184
+Epoch 32/100
+ - 1s - loss: 0.0183
+Epoch 33/100
+ - 1s - loss: 0.0181
+Epoch 34/100
+ - 1s - loss: 0.0180
+Epoch 35/100
+ - 1s - loss: 0.0180
+Epoch 36/100
+ - 1s - loss: 0.0181
+Epoch 37/100
+ - 1s - loss: 0.0183
+Epoch 38/100
+ - 1s - loss: 0.0182
+Epoch 39/100
+ - 1s - loss: 0.0183
+Epoch 40/100
+ - 1s - loss: 0.0182
+Epoch 41/100
+ - 1s - loss: 0.0182
+Epoch 42/100
+ - 1s - loss: 0.0181
+Epoch 43/100
+ - 1s - loss: 0.0182
+Epoch 44/100
+ - 1s - loss: 0.0178
+Epoch 45/100
+ - 1s - loss: 0.0181
+Epoch 46/100
+ - 1s - loss: 0.0177
+Epoch 47/100
+ - 1s - loss: 0.0178
+Epoch 48/100
+ - 1s - loss: 0.0181
+Epoch 49/100
+ - 1s - loss: 0.0183
+Epoch 50/100
+ - 1s - loss: 0.0181
+Epoch 51/100
+ - 1s - loss: 0.0181
+Epoch 52/100
+ - 1s - loss: 0.0182
+Epoch 53/100
+ - 1s - loss: 0.0180
+Epoch 54/100
+ - 1s - loss: 0.0180
+Epoch 55/100
+ - 1s - loss: 0.0180
+Epoch 56/100
+ - 1s - loss: 0.0177
+Epoch 57/100
+ - 1s - loss: 0.0178
+Epoch 58/100
+ - 1s - loss: 0.0180
+Epoch 59/100
+ - 1s - loss: 0.0177
+Epoch 60/100
+ - 1s - loss: 0.0179
+Epoch 61/100
+ - 1s - loss: 0.0176
+Epoch 62/100
+ - 1s - loss: 0.0177
+Epoch 63/100
+ - 1s - loss: 0.0179
+Epoch 64/100
+ - 1s - loss: 0.0178
+Epoch 65/100
+ - 1s - loss: 0.0180
+Epoch 66/100
+ - 1s - loss: 0.0180
+Epoch 67/100
+ - 1s - loss: 0.0180
+Epoch 68/100
+ - 1s - loss: 0.0178
+Epoch 69/100
+ - 1s - loss: 0.0179
+Epoch 70/100
+ - 1s - loss: 0.0177
+Epoch 71/100
+ - 1s - loss: 0.0178
+Epoch 72/100
+ - 1s - loss: 0.0177
+Epoch 73/100
+ - 1s - loss: 0.0177
+Epoch 74/100
+ - 1s - loss: 0.0178
+Epoch 75/100
+ - 1s - loss: 0.0179
+Epoch 76/100
+ - 1s - loss: 0.0178
+Epoch 77/100
+ - 1s - loss: 0.0175
+Epoch 78/100
+ - 1s - loss: 0.0177
+Epoch 79/100
+ - 1s - loss: 0.0181
+Epoch 80/100
+ - 1s - loss: 0.0177
+Epoch 81/100
+ - 1s - loss: 0.0175
+Epoch 82/100
+ - 1s - loss: 0.0177
+Epoch 83/100
+ - 1s - loss: 0.0177
+Epoch 84/100
+ - 1s - loss: 0.0175
+Epoch 85/100
+ - 1s - loss: 0.0176
+Epoch 86/100
+ - 1s - loss: 0.0177
+Epoch 87/100
+ - 1s - loss: 0.0176
+Epoch 88/100
+ - 1s - loss: 0.0176
+Epoch 89/100
+ - 1s - loss: 0.0179
+Epoch 90/100
+ - 1s - loss: 0.0178
+Epoch 91/100
+ - 1s - loss: 0.0179
+Epoch 92/100
+ - 1s - loss: 0.0177
+Epoch 93/100
+ - 1s - loss: 0.0176
+Epoch 94/100
+ - 1s - loss: 0.0176
+Epoch 95/100
+ - 1s - loss: 0.0175
+Epoch 96/100
+ - 1s - loss: 0.0175
+Epoch 97/100
+ - 1s - loss: 0.0179
+Epoch 98/100
+ - 1s - loss: 0.0176
+Epoch 99/100
+ - 1s - loss: 0.0175
+Epoch 100/100
+ - 1s - loss: 0.0177
+Finished training Regression (Normal) LSTM!
+Using Regression (Normal) LSTM
+Generating Rolling Launch Control Throttle sequence using KDB+ input!
+Look back steps detected: 10
+Rolling Launch Control Throttle generated!
+"Transferring newly trained LSTM model to cloud!"
+"Completed Updating Models"
+97468 5278560
+^C
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ rm nohupML.out; nohup q FASMLTrainingClientInit.q > nohupML.out & tail -f nohupML.out
+[2] 4259
+nohup: ignoring input and redirecting stderr to stdout
+'2020.03.29T13:24:04.218 6001. OS reports: Address already in use
+^C[2]+  Exit 1                  nohup q FASMLTrainingClientInit.q > nohupML.out
+
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ ps -ef | grep kill
+foorx     4267  3946  0 13:24 pts/0    00:00:00 grep --color=auto kill
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ ps -ef | grep FAS
+foorx     3988  3946 92 13:20 pts/0    00:03:05 q FASMLTrainingClientInit.q
+foorx     4269  3946  0 13:24 pts/0    00:00:00 grep --color=auto FAS
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ kill 3988
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ ps -ef | grep FAS
+foorx     4271  3946  0 13:24 pts/0    00:00:00 grep --color=auto FAS
+[1]+  Done                    nohup q FASMLTrainingClientInit.q > nohupML.out
+(base) foorx@projectdemo-ml-64bitkdb-deployimage:~/Sites/OHR400Dashboard$ rm nohupML.out; nohup q FASMLTrainingClientInit.q > nohupML.out & tail -f nohupML.out
+[1] 4277
+nohup: ignoring input and redirecting stderr to stdout
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+Using TensorFlow backend.
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/foorx/anaconda3/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+"Connected to kdb master in cloud!"
+"Automatic ML model retraining enabled!"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Saving realThrottleLSTMTrainingDataMatrix to disk"
+"Training LSTM (Regression Window) using real flight data!"
+Training using KDB+ input!
+Look back steps detected: 10
+WARNING:tensorflow:From /home/foorx/anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+Epoch 1/100
+ - 1s - loss: 0.1129
+Epoch 2/100
+ - 1s - loss: 0.0358
+Epoch 3/100
+ - 1s - loss: 0.0285
+Epoch 4/100
+ - 1s - loss: 0.0245
+Epoch 5/100
+ - 1s - loss: 0.0226
+Epoch 6/100
+ - 1s - loss: 0.0213
+Epoch 7/100
+ - 1s - loss: 0.0208
+Epoch 8/100
+ - 1s - loss: 0.0201
+Epoch 9/100
+ - 1s - loss: 0.0200
+Epoch 10/100
+ - 1s - loss: 0.0200
+Epoch 11/100
+ - 1s - loss: 0.0194
+Epoch 12/100
+ - 1s - loss: 0.0195
+Epoch 13/100
+ - 1s - loss: 0.0194
+Epoch 14/100
+ - 1s - loss: 0.0193
+Epoch 15/100
+ - 1s - loss: 0.0191
+Epoch 16/100
+ - 1s - loss: 0.0189
+Epoch 17/100
+ - 1s - loss: 0.0186
+Epoch 18/100
+ - 1s - loss: 0.0187
+Epoch 19/100
+ - 1s - loss: 0.0189
+Epoch 20/100
+ - 1s - loss: 0.0184
+Epoch 21/100
+ - 1s - loss: 0.0186
+Epoch 22/100
+ - 1s - loss: 0.0186
+Epoch 23/100
+ - 1s - loss: 0.0188
+Epoch 24/100
+ - 1s - loss: 0.0188
+Epoch 25/100
+ - 1s - loss: 0.0185
+Epoch 26/100
+ - 1s - loss: 0.0186
+Epoch 27/100
+ - 1s - loss: 0.0182
+Epoch 28/100
+ - 1s - loss: 0.0185
+Epoch 29/100
+ - 1s - loss: 0.0184
+Epoch 30/100
+ - 1s - loss: 0.0183
+Epoch 31/100
+ - 1s - loss: 0.0187
+Epoch 32/100
+ - 1s - loss: 0.0186
+Epoch 33/100
+ - 1s - loss: 0.0184
+Epoch 34/100
+ - 1s - loss: 0.0181
+Epoch 35/100
+ - 1s - loss: 0.0182
+Epoch 36/100
+ - 1s - loss: 0.0181
+Epoch 37/100
+ - 1s - loss: 0.0182
+Epoch 38/100
+ - 1s - loss: 0.0182
+Epoch 39/100
+ - 1s - loss: 0.0180
+Epoch 40/100
+ - 1s - loss: 0.0183
+Epoch 41/100
+ - 1s - loss: 0.0178
+Epoch 42/100
+ - 1s - loss: 0.0183
+Epoch 43/100
+ - 1s - loss: 0.0184
+Epoch 44/100
+ - 1s - loss: 0.0183
+Epoch 45/100
+ - 1s - loss: 0.0180
+Epoch 46/100
+ - 1s - loss: 0.0181
+Epoch 47/100
+ - 1s - loss: 0.0182
+Epoch 48/100
+ - 1s - loss: 0.0181
+Epoch 49/100
+ - 1s - loss: 0.0180
+Epoch 50/100
+ - 1s - loss: 0.0182
+Epoch 51/100
+ - 1s - loss: 0.0180
+Epoch 52/100
+ - 1s - loss: 0.0178
+Epoch 53/100
+ - 1s - loss: 0.0182
+Epoch 54/100
+ - 1s - loss: 0.0183
+Epoch 55/100
+ - 1s - loss: 0.0180
+Epoch 56/100
+ - 1s - loss: 0.0180
+Epoch 57/100
+ - 1s - loss: 0.0181
+Epoch 58/100
+ - 1s - loss: 0.0179
+Epoch 59/100
+ - 1s - loss: 0.0179
+Epoch 60/100
+ - 1s - loss: 0.0180
+Epoch 61/100
+ - 1s - loss: 0.0182
+Epoch 62/100
+ - 1s - loss: 0.0181
+Epoch 63/100
+ - 1s - loss: 0.0180
+Epoch 64/100
+ - 1s - loss: 0.0178
+Epoch 65/100
+ - 1s - loss: 0.0177
+Epoch 66/100
+ - 1s - loss: 0.0178
+Epoch 67/100
+ - 1s - loss: 0.0179
+Epoch 68/100
+ - 1s - loss: 0.0179
+Epoch 69/100
+ - 1s - loss: 0.0177
+Epoch 70/100
+ - 1s - loss: 0.0178
+Epoch 71/100
+ - 1s - loss: 0.0181
+Epoch 72/100
+ - 1s - loss: 0.0181
+Epoch 73/100
+ - 1s - loss: 0.0177
+Epoch 74/100
+ - 1s - loss: 0.0179
+Epoch 75/100
+ - 1s - loss: 0.0179
+Epoch 76/100
+ - 1s - loss: 0.0177
+Epoch 77/100
+ - 1s - loss: 0.0177
+Epoch 78/100
+ - 1s - loss: 0.0178
+Epoch 79/100
+ - 1s - loss: 0.0180
+Epoch 80/100
+ - 1s - loss: 0.0179
+Epoch 81/100
+ - 1s - loss: 0.0178
+Epoch 82/100
+ - 1s - loss: 0.0177
+Epoch 83/100
+ - 1s - loss: 0.0179
+Epoch 84/100
+ - 1s - loss: 0.0178
+Epoch 85/100
+ - 1s - loss: 0.0179
+Epoch 86/100
+ - 1s - loss: 0.0179
+Epoch 87/100
+ - 1s - loss: 0.0177
+Epoch 88/100
+ - 1s - loss: 0.0178
+Epoch 89/100
+ - 1s - loss: 0.0177
+Epoch 90/100
+ - 1s - loss: 0.0180
+Epoch 91/100
+ - 1s - loss: 0.0180
+Epoch 92/100
+ - 1s - loss: 0.0177
+Epoch 93/100
+ - 1s - loss: 0.0177
+Epoch 94/100
+ - 1s - loss: 0.0178
+Epoch 95/100
+ - 1s - loss: 0.0173
+Epoch 96/100
+ - 1s - loss: 0.0176
+Epoch 97/100
+ - 1s - loss: 0.0179
+Epoch 98/100
+ - 1s - loss: 0.0175
+Epoch 99/100
+ - 1s - loss: 0.0177
+Epoch 100/100
+ - 1s - loss: 0.0177
+Finished training Regression (Normal) LSTM!
+Using Regression (Normal) LSTM
+Generating Rolling Launch Control Throttle sequence using KDB+ input!
+Look back steps detected: 10
+Rolling Launch Control Throttle generated!
+"Transferring newly trained LSTM model to cloud!"
+"Completed Updating Models"
+96608 5278560
+
