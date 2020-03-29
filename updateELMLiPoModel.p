@@ -207,9 +207,6 @@ print("\nTesting all kernels...")
 
 bestHiddenLayerCount, bestModel, bestModelName, bestMSE, bestPrediction = None, None, None, None, None
 
-print("testX")
-print(testX)
-
 savedLiPoVoltageModel = None
 RMSElist = []
 hiddenLayerAndKernelRMSEs = dict()
