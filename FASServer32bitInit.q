@@ -50,6 +50,9 @@ if[(type trainingData)<90;delete trainingData from `.;0N!"Failed to load trainin
 "Loading Predictions Table"
 fullPredictionTable: @[get;hsym `$flatDir,"fullPredictionTable";0N]
 if[(type fullPredictionTable)<90;delete fullPredictionTable from `.;0N!"Failed to load fullPredictionTable"]
+"Loading Throttle Predictions Table"
+yPredTable: @[get;hsym `$flatDir,"yPredTable";0N]
+if[(type yPredTable)<90;delete yPredTable from `.;0N!"Failed to load yPredTable"]
 
 / check all tables are loaded correctly by checking for their presence in . namespace
 allTablesLoaded:min {x in key `.} each `GPSData`PIDData`fullLog`trainingData
@@ -59,22 +62,26 @@ if[allTablesLoaded;0N!"All tables loaded!"]
 / print error if could not load historical data on disk
 if[not allTablesLoaded;0N!"Failure to load data from disk!"] 
 
+"Retrieving LSTM lookbackSteps from disk:"
+show lookbackSteps: get `:lookbackSteps.dat 
+
 saveCSVs:1b
 if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
 
-
 / IPC definitions
-yPredTable:([]yPred:())
-insertyPredTable:{`yPredTable insert (x)} 
+yPredTable:([]timeStamp:();sequence:();throttlePrediction:())
+insertyPredTable:{`yPredTable insert x}
 clearyPredTable:{delete from `yPredTable;; show"Clearing yPredTable!"} / delete all rows from table
-lookbackSteps: get `:lookbackSteps.dat 
-showyPredTable:{show (neg lookbackSteps)#yPredTable; show (string count yPredTable)," samples"}
+showyPredTable:{show (neg 3*lookbackSteps)#yPredTable}
 receiveUpdatedModels:{show "Received updated RLC models!"; show "Using 32bit kdb+ version, cannot run ML models!"}
 
-"KDB Server System Up and Ready"
+/ save throttle predictions to disk periodically
+savehours: 1 / save yPredTable to disk after x hours
+.z.ts:{(hsym `$flatDir,"yPredTable") set yPredTable; show "Throttle Predictions Table saved"; if[saveCSVs;save `:yPredTable.csv;show "yPredTable.csv saved to disk"]}
+system"t ",string savehours*60*60*1000
 
-show yPredTable
+"KDB Server System Up and Ready"
 
 / function definition to delete unneeded variables using functional sql
 purgeTables: {system "rm GPSData PIDData fullLog trainingData"; varsToDelete:`GPSData`PIDData`fullLog`trainingData`varsToDelete;![`.;();0b;varsToDelete]};

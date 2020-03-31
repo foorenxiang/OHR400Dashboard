@@ -74,6 +74,9 @@ if[(type trainingData)<90;delete trainingData from `.;0N!"Failed to load trainin
 "Loading Predictions Table"
 fullPredictionTable: @[get;hsym `$flatDir,"fullPredictionTable";0N]
 if[(type fullPredictionTable)<90;delete fullPredictionTable from `.;0N!"Failed to load fullPredictionTable"]
+"Loading Throttle Predictions Table"
+yPredTable: @[get;hsym `$flatDir,"yPredTable";0N]
+if[(type yPredTable)<90;delete yPredTable from `.;0N!"Failed to load yPredTable"]
 
 / check all tables are loaded correctly by checking for their presence in . namespace
 allTablesLoaded:min {x in key `.} each `GPSData`PIDData`fullLog`trainingData
@@ -108,12 +111,16 @@ system"cd ",developerDirectory
 system"cd ",dashboardDirectory
 
 / IPC definitions
-yPredTable:([]yPred:())
-insertyPredTable:{`yPredTable insert (x)} 
+yPredTable:([]timeStamp:();sequence:();throttlePrediction:())
+insertyPredTable:{`yPredTable insert x}
 clearyPredTable:{delete from `yPredTable;; show"Clearing yPredTable!"} / delete all rows from table
-showyPredTable:{show (neg lookbackSteps)#yPredTable; show (string count yPredTable)," samples"}
-/ receiveUpdatedModels:{system"wget -N http://renxiang.cloud/OHR400Dashboard/RegressionWindowLSTMModel.joblib";show "Received updated RLC models!"}
-receiveUpdatedModels:{show "Received updated RLC models!"}
+showyPredTable:{show (neg 3*lookbackSteps)#yPredTable}
+receiveUpdatedModels:{show "Received updated RLC models!"; show "Using 32bit kdb+ version, cannot run ML models!"}
+
+/ save throttle predictions to disk periodically
+savehours: 1 / save yPredTable to disk after x hours
+.z.ts:{(hsym `$flatDir,"yPredTable") set yPredTable; show "Throttle Predictions Table saved"; if[saveCSVs;save `:yPredTable.csv;show "yPredTable.csv saved to disk"]}
+system"t ",string savehours*60*60*1000
 
 "KDB Server System Up and Ready"
 

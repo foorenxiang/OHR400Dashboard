@@ -21,15 +21,17 @@ FASUseModels:{
 	/////Test Deploy trained LSTM model/////
 	.p.set[`inputPDF; .ml.tab2df[(neg lookbackSteps)#realThrottleLSTMTrainingDataMatrix]];
 	system"l useRegressionWindowLSTM.p";
-	yPred:.p.py2q .p.pyget`yPred;
-	h (`clearyPredTable;0); / clear yPredTable on Server
-	{neg[h] (`insertyPredTable;x)} each yPred; / insert new predictions to yPredTable on Server
+	yPred:raze .p.py2q .p.pyget`yPred;
+	/ create table with GMT timestamp of prediction and y predictions
+	/ yPredtimeStamp:{.z.t + 200* til lookbackSteps}
+	yPredtimeStamp:{.z.t};
+	yPredTable:flip `timeStamp`sequence`throttlePrediction!(yPredtimeStamp[];til lookbackSteps;yPred);
+	/ h (`clearyPredTable;0); / clear yPredTable on Server
+	neg[h] (`insertyPredTable;yPredTable); / insert new predictions to yPredTable on Server
 	/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
 	neg[h][];
 	/ To ensure an async message has been processed by the remote, follow with a sync chaser
 	h"";
 	neg[h] (`showyPredTable;0); / show updated yPredTable on Server 
 	/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
-	neg[h][];
-	/ To ensure an async message has been processed by the remote, follow with a sync chaser
-	h"";}
+	neg[h][];}
