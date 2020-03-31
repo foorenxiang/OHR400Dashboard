@@ -75,10 +75,14 @@ insertyPredTable:{`yPredTable insert x}
 clearyPredTable:{delete from `yPredTable;; show"Clearing yPredTable!"} / delete all rows from table
 showyPredTable:{show (neg 3*lookbackSteps)#yPredTable}
 receiveUpdatedModels:{show "Received updated RLC models!"; show "Using 32bit kdb+ version, cannot run ML models!"}
+"Loading telemetry stream processing module"
+\l FASProcessTelemetryStream.q
 
-/ save throttle predictions to disk periodically
+/ save throttle predictions and trainingData to disk periodically
 savehours: 1 / save yPredTable to disk after x hours
-.z.ts:{(hsym `$flatDir,"yPredTable") set yPredTable; show "Throttle Predictions Table saved"; if[saveCSVs;save `:yPredTable.csv;show "yPredTable.csv saved to disk"]}
+saveyPredTable:{(hsym `$flatDir,"yPredTable") set yPredTable; show "Throttle Predictions Table saved"}
+saveTrainingData:{(hsym `$flatDir,"trainingData") set trainingData; show "Throttle Predictions Table saved"}
+.z.ts:{saveyPredTable[]; saveTrainingData[]}
 system"t ",string savehours*60*60*1000
 
 "KDB Server System Up and Ready"
