@@ -306,13 +306,3 @@ if not kdbSource:
 		print(strFloat(sample[0]) + "kph || " + strFloat(sample[1]) + "kph || " + strFloat(sample[2]) + "kph")
 
 #########test all ELM kernels#########
-
-#save model setup to mysql db
-# conn = mysql.connector.connect(host="localhost", user="foorx", passwd="Mav3r1ck!", database="ml_logs")
-# mysqlCursor = conn.cursor(buffered=True)
-# file = open(fileName, 'r')
-# fileData = file.read()
-# sql = "INSERT INTO trainingLogs(fileName, mse, trainingSetName, trainTestRatio, fileData, comments) VALUES (%s, %s, %s, %s, %s,%s)"
-# values = (fileName, strFloat(MSE), trainingSetName, strFloat(trainPercentage), fileData, comments)
-# mysqlCursor.execute(sql, values)
-# conn.commit()

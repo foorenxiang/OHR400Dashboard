@@ -304,15 +304,3 @@ if not kdbSource:
 	comparisons.sort(key=lambda x: abs(x[2]))
 	for sample in comparisons:
 		print(strFloat(sample[0]) + "V || " + strFloat(sample[1]) + "V || " + strFloat(sample[2]) + "V")
-
-#########test all ELM kernels#########
-
-#save model setup to mysql db
-# conn = mysql.connector.connect(host="localhost", user="foorx", passwd="Mav3r1ck!", database="ml_logs")
-# mysqlCursor = conn.cursor(buffered=True)
-# file = open(fileName, 'r')
-# fileData = file.read()
-# sql = "INSERT INTO trainingLogs(fileName, mse, trainingSetName, trainTestRatio, fileData, comments) VALUES (%s, %s, %s, %s, %s,%s)"
-# values = (fileName, strFloat(MSE), trainingSetName, strFloat(trainPercentage), fileData, comments)
-# mysqlCursor.execute(sql, values)
-# conn.commit()
