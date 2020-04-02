@@ -3,3 +3,5 @@ flat/
 featureMatrix.csv
 PIDData.csv
 PIDData
+flat_copy/
+credentials.txt
