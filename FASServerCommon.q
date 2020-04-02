@@ -1,42 +1,17 @@
-/
-use with PHP upload interface
-dependencies:
-FAQUpdate.q
-FAQUpdateModels.q
-updateModels.p
-useModels.p
-\
-
 / get directories
 qDirectory: get `:qDirectory
 dashboardDirectory: get `:dashboardDirectory
-developerDirectory: get `:developerDirectory
 
 / start IPC TCP/IP broadcast on port 5001 if not already enabled
 \p 5001
 / upgrade HTTP protocol to websocket protocol
 .z.ws:{neg[.z.w] -8! @[value;x;{`$ "'",x}]}
 
-system"cd ",qDirectory
-/ load embedpy
-\l p.q
-
-/ / load ml toolkit
-/ \l ml/ml.q
-/ .ml.loadfile`:init.q;
-/ "Machine Learning toolkit loaded"
 "Q Server Process running on port 5001 [websocket mode]"
-
-/ switch back to q working folder
-system"cd ",dashboardDirectory
 
 //define gps and PID csv enlisting functions
 enlistGPSCSV:{trimTable (x#"f";enlist csv) 0:y}
 enlistPIDCSV:{trimTable (x#"f";enlist csv) 0:y}
-
-/ shorter trimTable function
-/trimColumn:{ssr[;" ";""];}
-/ trimTable:{[inputTable] inputTable:(`$ssr[;" ";""] each trim each string cols inputTable)xcol inputTable;}
 
 / define table trim function
 trimTable:{[inputTable] inputTable:(`$ssr[;" ";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"/";""] each trim each string cols inputTable)xcol inputTable;  inputTable:(`$ssr[;"_";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"(";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;")";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[; "[[]" ;""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[]]";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[+]";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[-]";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[*]";""] each trim each string cols inputTable)xcol inputTable;inputTable:(`$ssr[;"[/]";""] each trim each string cols inputTable)xcol inputTable; :inputTable}
@@ -48,11 +23,8 @@ trimTable:{[inputTable] inputTable:(`$ssr[;" ";""] each trim each string cols in
 / needed as we want to still keep strings for conversion to symbols
 listFromTableColumn:{[t;c]raze each t[(cols t) c]}
 
-/ "Pre-importing Python ML libraries"
-/ \l FASPythonLibraries.q
-
-"Loading FASUseModels function"
-\l FASUseModels.q
+/ function definition to delete unneeded variables using functional sql
+purgeTables: {varsToDelete::`GPSData`PIDData`fullLog`trainingData`varsToDelete;![`.;();0b;varsToDelete];system "cd flat; rm GPSData PIDData fullLog trainingData; cd .."; };
 
 /load master data
 /attempt to load splayed master records table from disk if it exists
@@ -81,20 +53,8 @@ if[(type yPredTable)<90;delete yPredTable from `.;0N!"Failed to load yPredTable"
 / check all tables are loaded correctly by checking for their presence in . namespace
 allTablesLoaded:min {x in key `.} each `GPSData`PIDData`fullLog`trainingData
 
-/prepare ticker function for ML batch training
-tickerIterations:0
-tickFreqMins:1%60
-enableTimer:0b / enable timer(ticker function)
 / print success message if historical data on disk is successfully loaded
 if[allTablesLoaded;0N!"All tables loaded!"]
-/ define timer(ticker) callback function
-/ .z.ts:{0N!"Automatic ML retraining triggered by timer!";system "l FASUpdateModels.q"}
-.z.ts:{0N!"Continuous prediction triggered by timer!"; FASUseModels[]}
-/ if training data is already loaded, enable timer (ticker)
-/ if[allTablesLoaded & enableTimer;0N!"Automatic ML retraining enabled!";system "t ",string tickFreqMins*60*1000]
-if[allTablesLoaded & enableTimer;0N!"Continuous prediction enabled!";system "t ",string tickFreqMins*60*1000]
-/ if[not allTablesLoaded & enableTimer;0N!"Automatic ML retraining disabled!"]
-if[not allTablesLoaded & enableTimer;0N!"Continuous prediction disabled!"]
 / print error if could not load historical data on disk
 if[not allTablesLoaded;0N!"Failure to load data from disk!"] 
 
@@ -105,35 +65,11 @@ saveCSVs:1b
 if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
 
-/ "Loading KX Developer"
-system"cd ",developerDirectory
-\l launcher.q_
-system"cd ",dashboardDirectory
+\l FASServerIPCDef.q
 
-/ IPC definitions
-yPredTable:([]timeStamp:();sequence:();throttlePrediction:())
-insertyPredTable:{`yPredTable insert x}
-clearyPredTable:{delete from `yPredTable;; show"Clearing yPredTable!"} / delete all rows from table
-showyPredTable:{show (neg 3*lookbackSteps)#yPredTable}
-receiveUpdatedModels:{show "Received updated RLC models!"; show "Using 32bit kdb+ version, cannot run ML models!"}
-"Loading telemetry stream processing module"
-\l FASProcessTelemetryStream.q
-
-/ save throttle predictions to disk periodically
+/ save throttle predictions and trainingData to disk periodically
 savehours: 1 / save yPredTable to disk after x hours
 saveyPredTable:{(hsym `$flatDir,"yPredTable") set yPredTable; show "Throttle Predictions Table saved"}
 saveTrainingData:{(hsym `$flatDir,"trainingData") set trainingData; show "Throttle Predictions Table saved"}
 .z.ts:{saveyPredTable[]; saveTrainingData[]}
 system"t ",string savehours*60*60*1000
-
-"KDB Server System Up and Ready"
-
-show yPredTable
-
-/ function definition to delete unneeded variables using functional sql
-purgeTables: {system "rm GPSData PIDData fullLog trainingData"; varsToDelete:`GPSData`PIDData`fullLog`trainingData`varsToDelete;![`.;();0b;varsToDelete]};
-
-/ ML functions
-fac:{prd 1+til x} /define factorial function
-pn:{[n;k] fac[n]%fac[n-k]} /define permutation function
-/ if[((`trainingData in `.);(`trainingData in `.);(`trainingData in `.))]
