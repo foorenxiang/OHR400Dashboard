@@ -5,8 +5,8 @@
 
 "Q Process running on port 6003 [websocket mode]"
 
-hostPort: hsym `renxiang.cloud:5001 / cloud server
-/ hostPort: hsym `localhost:5001 / local server
+hostPort: hsym `renxiang.cloud:5001:foorx:foorxaccess / cloud server
+/ hostPort: hsym `localhost:5001:foorx:foorxaccess / local server
 / open IPC connection to server
 h:hopen hostPort
 flatDir: get `:flatDir

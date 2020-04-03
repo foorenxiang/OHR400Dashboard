@@ -4,8 +4,8 @@ dashboardDirectory: get `:dashboardDirectory
 flatDir: get `:flatDir
 
 / select IPC host
-hostPort: hsym `renxiang.cloud:5001 / cloud server
-/ hostPort: hsym `localhost:5001 / local server
+hostPort: hsym `renxiang.cloud:5001:foorx:foorxaccess / cloud server
+/ hostPort: hsym `localhost:5001:foorx:foorxaccess / local server
 
 / start IPC TCP/IP broadcast on port 6002 if not already enabled
 \p 6002
