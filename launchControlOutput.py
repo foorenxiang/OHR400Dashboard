@@ -46,7 +46,7 @@ class ListenerThread(threading.Thread):
 
 if __name__ == '__main__':
     # create connection object
-    q = qconnection.QConnection(host = 'renxiang.cloud', port = 5001)
+    q = qconnection.QConnection(host = 'renxiang.cloud', port = 5001, username = 'foorx', password = 'foorxaccess')
     # initialize connection
     q.open()
 
