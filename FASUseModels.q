@@ -26,7 +26,6 @@ FASUseModels:{
 	/ yPredtimeStamp:{.z.t + 200* til lookbackSteps}
 	yPredtimeStamp:{.z.t};
 	yPredTable:flip `timeStamp`sequence`throttlePrediction!(yPredtimeStamp[];til lookbackSteps;yPred);
-	/ h (`clearyPredTable;0); / clear yPredTable on Server
 	neg[h] (`insertyPredTable;yPredTable); / insert new predictions to yPredTable on Server
 	/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
 	neg[h][];
