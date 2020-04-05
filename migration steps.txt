@@ -6,3 +6,5 @@ l64
 
 localhost
 renxiang.cloud
+
+export QHOME=...
