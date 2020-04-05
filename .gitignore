@@ -7,3 +7,4 @@ flat_copy/
 credentials.txt
 pyMultiWii/
 __pycache__/
+sftpCredentials.py

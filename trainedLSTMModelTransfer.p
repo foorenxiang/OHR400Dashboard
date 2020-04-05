@@ -1,5 +1,5 @@
 import pysftp
-from sftpCredentials import sftpCreds #note that this is a compiled bytecode module!
+from sftpCredentials import sftpCreds
 
 Creds = sftpCreds()
 
