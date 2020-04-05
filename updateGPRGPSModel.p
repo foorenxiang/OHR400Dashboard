@@ -161,5 +161,5 @@ if kdbSource == False:
 	else:
 		figureName += " no PCA"
 	fileExt = ".png"
-	plt.savefig(figureName + fileExt)
+	plt.savefig("./results/" + figureName + fileExt)
 	plt.show()

@@ -279,7 +279,7 @@ if not kdbSource:
 		else:
 			figureName += " no PCA"
 		fileExt = ".png"
-		plt.savefig(figureName + fileExt)
+		plt.savefig("./results/" + figureName + fileExt)
 		if showPlots:
 			plt.show()
 #####Plot RMSE performance for kernels and hidden layers#####
