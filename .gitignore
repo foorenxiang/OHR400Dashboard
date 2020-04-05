@@ -8,3 +8,6 @@ credentials.txt
 pyMultiWii/
 __pycache__/
 sftpCredentials.py
+blackbox-tools/
+elm/
+stackedgeneralizer/
