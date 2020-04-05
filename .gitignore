@@ -6,3 +6,4 @@ PIDData
 flat_copy/
 credentials.txt
 pyMultiWii/
+__pycache__/
