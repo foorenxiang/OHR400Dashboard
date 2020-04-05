@@ -11,3 +11,4 @@ sftpCredentials.py
 blackbox-tools/
 elm/
 stackedgeneralizer/
+__pycache__/
