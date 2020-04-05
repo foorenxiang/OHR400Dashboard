@@ -108,7 +108,7 @@ for kernel, kernelName in zip(kernels+convolutedKernels, kernelNames + convolute
 
 	model.fit(trainX, trainy)
 
-	savedGPSSpeedModelGPR = dump(model, 'gprGPSSpeedModel.joblib')
+	savedGPSSpeedModelGPR = dump(model, './models/gprGPSSpeedModel.model')
 
 	#test model
 	y_pred= model.predict(testX)

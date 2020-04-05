@@ -53,7 +53,7 @@ gpsSpeedLReg = lm.LinearRegression()
 gpsSpeedLReg.fit(gpsSpeedTrainX,gpsSpeedy)
 
 #persist model
-savedGPSSpeedModelLReg = dump(gpsSpeedLReg, 'gpsSpeedLReg.model') 
+savedGPSSpeedModelLReg = dump(gpsSpeedLReg, './models/gpsSpeedLReg.model') 
 print("Saved model:")
 print(savedGPSSpeedModelLReg)
 

@@ -84,7 +84,7 @@ modelSave = {}
 modelSave["model"] = model
 modelSave["batchSize"] = batchSize
 modelSave["lookbackSteps"] = lookbackSteps
-dump(modelSave, 'RegressionWindowLSTMModel.joblib')
+dump(modelSave, './models/RegressionWindowLSTMModel.model')
 
 # load trained model from disk for verification
 modelSave = load('RegressionWindowLSTMModel.joblib')

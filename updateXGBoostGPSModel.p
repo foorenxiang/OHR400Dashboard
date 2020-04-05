@@ -103,7 +103,7 @@ for booster in boosters:
 			models.append(model)
 			modelNames.append(boosterVariation)
 
-			savedGPSSpeedModelSVR = dump(model, 'XGBoostGPSSpeedModel.joblib')
+			savedGPSSpeedModelSVR = dump(model, './models/XGBoostGPSSpeedModel.model')
 			y_pred= model.predict(testX)
 			y_pred = yStandardScalar.inverse_transform(y_pred)
 

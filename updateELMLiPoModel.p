@@ -252,7 +252,7 @@ for numHiddenLayers in range(1, 1 + maxHiddenLayers):
 modelSave = {"model":bestModel, "usePCA": usePCA, "yStandardScalar": yStandardScalar}
 if usePCA:
 	modelSave["pcaModel"] = pcaModel
-savedLiPoVoltageModel = dump(modelSave, 'elmLiPoVoltageModel.model')
+savedLiPoVoltageModel = dump(modelSave, './models/elmLiPoVoltageModel.model')
 
 #####Plot RMSE performance for kernels and hidden layers#####
 showPlots = True

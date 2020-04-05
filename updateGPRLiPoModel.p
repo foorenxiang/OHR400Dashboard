@@ -64,7 +64,7 @@ modelParams = model.kernel_.get_params() #call this to retrieve tuned hyperparam
 print("Model params:")
 print(modelParams)
 
-savedLiPoModelGPR = dump(model, 'gprLiPoModel.joblib')
+savedLiPoModelGPR = dump(model, './models/gprLiPoModel.model')
 
 model = 0 
 

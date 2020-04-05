@@ -112,7 +112,7 @@ for x in range(len(throttleInputRange)):
 inputPDFStandardScalar = StandardScaler()
 tempInputPDF = inputPDFStandardScalar.fit_transform(inputPDF)
 
-modelSave = load('elmGPSSpeedModel.model')
+modelSave = load('./models/elmGPSSpeedModel.model')
 model = modelSave["model"]
 usePCA = modelSave["usePCA"]
 yStandardScalar = modelSave["yStandardScalar"]

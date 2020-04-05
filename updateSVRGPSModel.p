@@ -104,7 +104,7 @@ for kernel in kernels:
 		models.append(model)
 		modelNames.append(kernelVariation)
 
-		savedGPSSpeedModelSVR = dump(model, 'SVRGPSSpeedModel.joblib')
+		savedGPSSpeedModelSVR = dump(model, './models/SVRGPSSpeedModel.model')
 		y_pred= model.predict(testX)
 		y_pred = yStandardScalar.inverse_transform(y_pred)
 

@@ -20,7 +20,7 @@ def mse(pred, actual):
 def strFloat(floatVal):
 	return "{0:.2f}".format(round(floatVal,2))
 
-modelSave = load('RegressionWindowLSTMModel.joblib')
+modelSave = load('./models/RegressionWindowLSTMModel.model')
 model = modelSave["model"]
 batchSize = modelSave["batchSize"]
 lookbackSteps = modelSave["lookbackSteps"]

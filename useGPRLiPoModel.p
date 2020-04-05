@@ -44,7 +44,7 @@ if 'synthesizedSampleIndex' not in globals():
 trainPercentage = 0.7 # not in use
 trainingDataTrain = trainingDataPDF[:int(trainPercentage*len(trainingDataPDF))] # not in use
 
-model = load('gprLiPoModel.joblib')
+model = load('./models/gprLiPoModel.model')
 
 pd.set_option('display.max_rows', None)
 
