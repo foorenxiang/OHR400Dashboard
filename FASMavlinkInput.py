@@ -10,12 +10,10 @@ import socket
 import json
 
 if __name__ == '__main__':
-	# print('qPython %s Cython extensions enabled: %s' % (qpython.__version__, qpython.__is_cython_enabled__))
-
 	HOST = "0.0.0.0"
 	PORT = 14550
 	
-	with qconnection.QConnection(host = 'renxiang.cloud', port = 5001, username = 'foorx', password = 'foorxaccess ') as q, socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+	with qconnection.QConnection(host = 'renxiang.cloud', port = 5001, username = 'foorx', password = 'foorxaccess') as q, socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
 		s.bind((HOST, PORT))
 		print('kdb+ server:')
 		print(q)

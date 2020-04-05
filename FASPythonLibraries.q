@@ -1,3 +1,4 @@
+/ this script preloads slow loading python dependencies during main loading of kdb script so they are immediately available on call
 p)import numpy as np
 p)import pandas as pd
 p)import math

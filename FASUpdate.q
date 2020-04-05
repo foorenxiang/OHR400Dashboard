@@ -35,10 +35,6 @@ pidLogsNumFeatures: raze listFromTableColumn[pidLogsTable;0]
 gpsLogsFiles: raze listFromTableColumn[gpsLogsTable;1]
 pidLogsFiles: raze listFromTableColumn[pidLogsTable;1]
 
-/ create new master table if splayed table didn't load
-// add function to label each new log appended!
-/ if[not `GPSData in key`.; GPSData: enlistGPSCSV[first gpsLogsNumFeatures; first gpsLogsFiles];gpsLogsNumFeatures: 1_gpsLogsNumFeatures; gpsLogsFiles: 1_gpsLogsFiles] /use first log to initialise master table /drop first log already loaded
-
 / build input from gps log files
 numGPSFiles:count gpsLogsFiles
 / read first gps log file
@@ -138,14 +134,6 @@ update timeus:`float$timeus from `trainingData;
 / `timeus xkey `trainingData; 
 (hsym `$flatDir,"trainingData") set trainingData; /save updated trainingData table
 if[saveCSVs;save `:trainingData.csv;show "trainingData.csv saved to disk"]
-
-/ find out average sample rate
-/ this query returns a table of single row
-/ this single row is then flipped to dictionary (list) with single item
-/ the 1st 'first' argument gets list from dictionary (read from right)
-/ the 2nd 'first argument' (read from right) gets the first element/atom in the list
-/ returns type of -9h to indicate it is a float atom
-/ averageSampleFrequency:(string reciprocal[averageFreq:first averageFreq:(first averageFreq:flip select avg timeDeltaus from trainingData where timeDeltaus>0)%1000000]),"Hz"
 
 / clean up unused variables using functional sql
 varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable`GPSDataInput`PIDDataInput`numGPSFiles`numPIDFiles`fullLogNew`varsToDelete

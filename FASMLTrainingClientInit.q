@@ -35,8 +35,4 @@ if[(h>0) and hostPort = hsym `localhost:5001; show "Connected to kdb master on l
 
 "Automatic ML model retraining enabled!"
 "Rolling Launch Control Model Trainer Up and Ready"
-/ .z.ts:{system"l FASUpdateModels.q";}
 \ts system"l FASUpdateModels.q"
-
-/ reTrainTimer: 6 / in mins
-/ system"t ", string 1000*60*reTrainTimer
