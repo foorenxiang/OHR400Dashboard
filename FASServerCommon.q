@@ -14,7 +14,19 @@ enlistGPSCSV:{trimTable (x#"f";enlist csv) 0:y}
 enlistPIDCSV:{trimTable (x#"f";enlist csv) 0:y}
 
 / define table trim function
-trimTable:{[inputTable] inputTable:(`$ssr[;" ";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"/";""] each trim each string cols inputTable)xcol inputTable;  inputTable:(`$ssr[;"_";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"(";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;")";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[; "[[]" ;""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[]]";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[+]";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[-]";""] each trim each string cols inputTable)xcol inputTable; inputTable:(`$ssr[;"[*]";""] each trim each string cols inputTable)xcol inputTable;inputTable:(`$ssr[;"[/]";""] each trim each string cols inputTable)xcol inputTable; :inputTable}
+trimTable:{[inputTable]
+	inputTable:(`$ssr[;" ";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"/";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"_";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"(";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;")";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[; "[[]" ;""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"[]]";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"[+]";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"[-]";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"[*]";""] each trim each string cols inputTable)xcol inputTable;
+	inputTable:(`$ssr[;"[/]";""] each trim each string cols inputTable)xcol inputTable;
+	:inputTable;}
 
 / convert table column to list
 / t: table
@@ -24,7 +36,13 @@ trimTable:{[inputTable] inputTable:(`$ssr[;" ";""] each trim each string cols in
 listFromTableColumn:{[t;c]raze each t[(cols t) c]}
 
 / function definition to delete unneeded variables using functional sql
-purgeTables: {varsToDelete::`GPSData`PIDData`fullLog`trainingData`varsToDelete;![`.;();0b;varsToDelete];system "cd flat; rm GPSData PIDData fullLog trainingData; cd .."; };
+purgeTables:{
+	delete from `GPSData;
+	delete from `PIDData;
+	delete from `fullLog;
+	delete from `trainingData;
+	delete from `yPredTable;
+	delete from `fullPredictionTable;}
 
 /load master data
 /attempt to load splayed master records table from disk if it exists
