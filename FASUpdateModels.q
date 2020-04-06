@@ -115,7 +115,7 @@ update synthesizedSampleIndex:first each synthesizedSampleIndex from `gpsSpeedPr
 delete vbatLatestV from `gpsSpeedPredictionTable;
 
 / key each table in preparation for inner join
-keyTableFeatures: `synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus / possible columns: `vbatLatestV`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`GPSspeedkph`throttleInputSequence`synthesizedSampleIndex
+keyTableFeatures: `synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus 
 keyTableFeatures xkey `gpsSpeedPredictionTable;
 keyTableFeatures xkey `LiPoPredictionTable;
 fullPredictionTable:LiPoPredictionTable ij gpsSpeedPredictionTable;
@@ -144,12 +144,13 @@ bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV,
 `GPSspeedkph xdesc `bestPredictionsTable;
 / remove non-optimal throttle sequences
 bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
-/ available features in fullPredictionTable: `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory
 
 /////Encode throttle sequences into format usable by LSTM models/////
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
 fillValue:1000
-encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable / vertical join each
+/ vertical join each 
+/ can consider using " ,': " join each parallel
+encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
 
@@ -254,7 +255,6 @@ p)dump(realThrottleLSTMTrainingDataMatrix, 'realThrottleLSTMTrainingDataMatrix.j
 trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
 LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
-/ Real Data Input, LSTM Regression / Using encoding format C
 / Real Data Input, LSTM Regression using Window / Using encoding format C
 if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
 / Real Data Input, LSTM Regression with Time Step / Using encoding format C
@@ -262,7 +262,6 @@ if[trainUsingRealData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPD
 / Real Data Input, LSTM with Memory Between Batches / Using encoding format C
 if[trainUsingRealData and LSTMModel = `batch;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Memory Between Batches) using real flight data!"; system "l updateMemoryLSTM.p"]
 
-/ Synthesized Data Input, LSTM Regression / Using encoding format C
 / Synthesized Data Input, LSTM Regression using Window / Using encoding format C (To be implemented)
 if[trainUsingSynthesizedData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[synthesizedThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using synthesized data!"; system "l updateRegressionWindowLSTM.p"]
 / Synthesized Data Input, LSTM Regression with Time Step / Using encoding format C (To be implemented)
