@@ -42,17 +42,16 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 "Deploying GPS speed prediction model"
 / give python access to testing data panda dataframe
 / always call .p.set to ensure model receives fresh panda dataframe
-/ .p.set[`inputPDF; .ml.tab2df[trainTestSplitTrainingData[`xtest]]] / use this input to test the model
 .p.set[`inputPDF; .ml.tab2df[trainingData]] / take samples from end of table
 / \ts \l useGPRGPSModel.p / deploy gaussian process regression model
 \ts \l useELMGPSModel.p / deploy ELM model
 / \ts \l useLinearGPSModel.p / deploy linear model
-/ \l useSVRGPSModel.p / train support vector regression model (To be implemented)
-/ \l useAdaboostGPSModel.p / train adaboost model (To be implemented)
-/ \l useGradboostGPSModel.p / train Gradient Boost model (To be implemented)
-/ \l useXGBoostGPSModel.p / train XGBoost model (To be implemented)
-/ \l useRFGPSModel.p / train adaboost model (To be implemented)
-/ \l useStackGeneralizerGPSModel.p / train Stack Generalizer model (To be implemented)
+/ \ts \l useSVRGPSModel.p / train support vector regression model (To be implemented)
+/ \ts \l useAdaboostGPSModel.p / train adaboost model (To be implemented)
+/ \ts \l useGradboostGPSModel.p / train Gradient Boost model (To be implemented)
+/ \ts \l useXGBoostGPSModel.p / train XGBoost model (To be implemented)
+/ \ts \l useRFGPSModel.p / train adaboost model (To be implemented)
+/ \ts \l useStackGeneralizerGPSModel.p / train Stack Generalizer model (To be implemented)
 / convert prediction result from python object back to q list
 gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
 
@@ -65,33 +64,14 @@ synthesizedSampleIndex:1
 .p.set[`inputPDF; .ml.tab2df[trainingData]] / take samples from end of table / take samples from end of table
 / \ts \l useGPRLiPoModel.p / deploy gaussian process regression model
 \ts \l useELMLiPoModel.p / deploy ELM model
-/ \l useSVRLiPoModel.p / use support vector regression model (To be implemented)
-/ \l useAdaboostLiPoModel.p / use adaboost model (To be implemented)
-/ \l useGradboostLiPoModel.p / train Gradient Boost model (To be implemented)
-/ \l useXGBoostLiPoModel.p / train XGBoost model (To be implemented)
-/ \l useRFLiPoModel.p / train adaboost model (To be implemented)
-/ \l useStackGeneralizerLiPoModel.p / train Stack Generalizer model (To be implemented)
+/ \ts \l useSVRLiPoModel.p / use support vector regression model (To be implemented)
+/ \ts \l useAdaboostLiPoModel.p / use adaboost model (To be implemented)
+/ \ts \l useGradboostLiPoModel.p / train Gradient Boost model (To be implemented)
+/ \ts \l useXGBoostLiPoModel.p / train XGBoost model (To be implemented)
+/ \ts \l useRFLiPoModel.p / train adaboost model (To be implemented)
+/ \ts \l useStackGeneralizerLiPoModel.p / train Stack Generalizer model (To be implemented)
 / convert prediction result from python object back to q list
 LiPoPredictionTable:.ml.df2tab .p.wrap .p.pyget`LiPoPredictionPDF
-
-//////VERIFY GPS MODEL//////
-/
-.p.set[`inputPDF; .ml.tab2df[trainTestSplitTrainingData[`xtest]]] / use this input to test the model
-\ts \l useLinearGPSModel.p / deploy linear model
-\ts \l useGPRGPSModel.p / deploy gaussian process regression model
-/ / convert prediction result from python object back to q list
-gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
-\
-
-//////VERIFY LIPO MODEL//////
-/
-/ always call .p.set to ensure model receives fresh panda dataframe
-.p.set[`inputPDF; .ml.tab2df[trainTestSplitTrainingData[`xtest]]] / use this input to test the model
-.p.set[`inputPDF; .ml.tab2df[trainingData]] / take samples from end of table
-\ts \l useGPRLiPoModel.p / deploy gaussian process regression model
-/ convert prediction result from python object back to q list
-LiPoPredictionTable:.ml.df2tab .p.wrap .p.pyget`LiPoPredictionPDF
-\
 
 //////Synthesize time series data from traing LSTM network//////
 lowThrottle:1000
@@ -150,10 +130,8 @@ fullPredictionTable: `GPSspeedkph xcols fullPredictionTable
 lookbackSteps:numTimeSteps
 / save value to disk for future retrieval when deploying LSTM model without retraining
 `:lookbackSteps.dat set lookbackSteps
-//
-/ ASSUMING TABLE IS ORDERED WITH LATEST SAMPLE LAST
-//
-/ \ts throttleHistoryLengthOfLeaf:count (last fullPredictionTable)[`throttleInputHistory]
+
+/ REQUIRES TABLE TO BE ORDERED WITH LATEST SAMPLE LAST
 / find throttle history length of each synthesized sample
 throttleHistoryLength: count each (raze each select throttleInputHistory from fullPredictionTable)
 throttleHistoryLengthOfLeaf:last throttleHistoryLength
@@ -162,7 +140,8 @@ leafIndices:asc where throttleHistoryLength=throttleHistoryLengthOfLeaf
 optimalSequencesPercentage:0.2 / Top percentile to keep/regard as "optimal throttle sequences"
 / create LSTM training dataset from leaf samples
 bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV, previousThrottleSequence:({lookbackSteps#x} each throttleInputHistory),throttleInputHistory from fullPredictionTable where i within (first leafIndices; last leafIndices)
-`GPSspeedkph xasc `bestPredictionsTable;
+/ rearrange bestPredictionsTable in-place by gps speed in descending order
+`GPSspeedkph xdesc `bestPredictionsTable;
 / remove non-optimal throttle sequences
 bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
 / available features in fullPredictionTable: `GPSspeedkph`vbatLatestV`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus`currentSampleHz`rcCommand0`rcCommand1`rcCommand2`gyroADC0`gyroADC1`gyroADC2`accSmooth0`accSmooth1`accSmooth2`motor0`motor1`motor2`motor3`throttleInputHistory
@@ -268,15 +247,12 @@ realThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a)!colu
 p)from joblib import dump
 .p.set[`realThrottleLSTMTrainingDataMatrix; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]]
 p)dump(realThrottleLSTMTrainingDataMatrix, 'realThrottleLSTMTrainingDataMatrix.joblib')
-/ https://towardsdatascience.com/time-series-forecasting-with-recurrent-neural-networks-74674e289816
 
 /////Train LSTM models/////
 /////Reference Material Used/////
 / https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
-
 trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
-/ system "l updateRegressionLSTM.p"
 LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
 / Real Data Input, LSTM Regression / Using encoding format C
 / Real Data Input, LSTM Regression using Window / Using encoding format C
@@ -304,15 +280,5 @@ yPred:.p.py2q .p.pyget`yPred
 / if using cloud kdb server, transfer updated LSTM model to using ssh
 if[(h>0) and hostPort = hsym `renxiang.cloud:5001; system"l trainedLSTMModelTransfer.p"; show "Transferring newly trained LSTM model to cloud!"]
 
-/ h (`clearyPredTable;0) / clear yPredTable on Server
-/ Do not insert predictions back to server during live deployment!
-/ {h (`insertyPredTable;x)} each yPred / insert new predictions to yPredTable on Server
-/ neg[h] (`showyPredTable;0) / show updated yPredTable on Server 
-/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
-/ neg[h][]
-/ To ensure an async message has been processed by the remote, follow with a sync chaser
-/ h"";
-
 "Completed Updating Models"
-/ if[hostPort = hsym `:renxiang.cloud:5001; ]
 neg[h] (`receiveUpdatedModels;0)

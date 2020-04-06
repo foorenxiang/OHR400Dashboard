@@ -1,0 +1,1960 @@
+Last login: Sun Apr  5 23:40:28 on ttys003
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using TensorFlow backend.
+"Automatic ML model retraining enabled!"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[ 5.27553694e-02 -1.20308989e-02 -1.00388481e-03 -6.49056537e-02
+  -3.78870709e-02  1.30318813e-01  4.17927770e-01 -2.57898103e-01
+  -6.61420894e-02 -2.78750065e-02  1.12331551e-01 -1.99629051e-01
+   3.76117189e-02 -2.50787305e-02  3.94488944e-01  4.19371652e-01
+   4.14718178e-01  4.12448922e-01]
+ [ 3.65593242e-03  4.14678247e-03  4.42154417e-02  4.67189673e-01
+  -2.29939709e-03 -3.86057784e-01  9.69767804e-02 -5.27593261e-02
+   4.64908722e-01 -7.58497046e-03 -4.13401606e-01  4.80809918e-02
+  -4.11874364e-01  1.46446048e-01  1.61666250e-01  3.95107110e-02
+   2.73869342e-02  9.78259947e-02]
+ [-4.39263086e-02  4.09163966e-03 -3.63903461e-02 -1.97235126e-02
+  -6.63063416e-01 -1.05130485e-01 -4.06855409e-02  4.71514642e-03
+  -6.02650000e-03 -6.49992884e-01 -1.07661588e-01 -2.95809042e-01
+   8.08330921e-02 -9.71501417e-02 -4.15169492e-02 -3.76732238e-02
+  -5.20363174e-02 -2.26602221e-02]
+ [-6.95889443e-01  6.96107043e-01 -1.02920972e-01  5.77600948e-03
+   1.33370910e-02  4.95770432e-02  2.12039751e-02 -2.67075946e-02
+   1.08930959e-02 -1.21889250e-02  4.12957510e-02  3.63415358e-02
+  -1.49335239e-02  1.08432417e-01  1.73764749e-02  2.71777982e-02
+   1.83286262e-02  9.88560302e-03]
+ [ 2.86259675e-02 -6.39462203e-02  2.88021767e-01 -1.05492136e-01
+  -1.18145860e-01 -1.72455096e-02 -1.06940307e-03 -3.08095354e-01
+  -9.08454872e-02 -1.98502206e-01 -3.76609304e-02  5.08942144e-01
+   1.85435851e-01  6.63782431e-01 -4.00184838e-02  4.80340320e-02
+   5.91798766e-02 -3.64075266e-02]
+ [-6.91949645e-02  1.39340591e-01  8.77575199e-01 -3.43175506e-02
+   2.05362465e-02 -1.15317512e-01 -8.63117758e-03 -8.77968111e-02
+  -3.67503611e-02  5.57553403e-02 -9.09640977e-02 -2.83782118e-02
+   8.29308423e-02 -3.97040636e-01 -1.49301090e-04 -4.74245087e-02
+  -2.01043111e-02  4.76085218e-02]
+ [ 4.86574703e-02  9.17492430e-02 -3.41692990e-01 -1.25291488e-01
+   4.75418060e-02 -4.75790643e-01 -1.11348427e-02 -3.61044576e-01
+  -1.33371438e-01  1.07363659e-01 -3.61350516e-01  2.09319517e-01
+   3.94256132e-01 -3.33872069e-01 -1.12654903e-01  4.54095771e-02
+   1.10744980e-01 -4.30399009e-03]
+ [ 1.50744864e-01  1.77660490e-01  4.15209464e-02 -1.20248967e-01
+  -3.08076770e-02 -1.94107094e-01  1.31683475e-01  8.13504246e-01
+  -1.19087648e-01 -5.76161896e-02 -1.60165600e-01  2.52771422e-01
+   1.32024546e-01  4.95403449e-02  3.65222789e-02  1.49990280e-01
+   1.96207218e-01  1.50038983e-01]
+ [ 2.37632547e-01  2.11370593e-01 -9.52643688e-02  1.30076146e-01
+  -1.77586396e-01  2.43969132e-01  2.18254967e-02 -9.55915839e-02
+   1.22919762e-01 -1.75670726e-01  2.61564155e-01  6.38515229e-01
+  -2.36041061e-01 -4.31982581e-01  6.26035129e-02  1.18210996e-03
+  -4.35023763e-02  4.42923134e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12306.327079968865
+RMSE:
+110.93
+Testing kernel: tribas
+MSE:
+12478.991666124
+RMSE:
+111.71
+Testing kernel: hardlim
+MSE:
+12413.251048288012
+RMSE:
+111.41
+Testing kernel: rbf(0.1)
+MSE:
+12410.73560909325
+RMSE:
+111.40
+
+Layer: 2
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12957.025740264162
+RMSE:
+113.83
+Testing kernel: tribas
+MSE:
+12046.130808454018
+RMSE:
+109.75
+Testing kernel: hardlim
+MSE:
+13169.499848444922
+RMSE:
+114.76
+Testing kernel: rbf(0.1)
+MSE:
+11988.32476355761
+RMSE:
+109.49
+
+Layer: 3
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12565.517400807077
+RMSE:
+112.10
+Testing kernel: tribas
+MSE:
+12398.289841372818
+RMSE:
+111.35
+Testing kernel: hardlim
+MSE:
+12707.007842275123
+RMSE:
+112.73
+Testing kernel: rbf(0.1)
+MSE:
+11638.34825917304
+RMSE:
+107.88
+
+Layer: 4
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12876.719062562845
+RMSE:
+113.48
+Testing kernel: tribas
+MSE:
+11325.034027249541
+RMSE:
+106.42
+Testing kernel: hardlim
+MSE:
+12341.926320464008
+RMSE:
+111.09
+Testing kernel: rbf(0.1)
+MSE:
+11302.555062161642
+RMSE:
+106.31
+
+Layer: 5
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11975.228446390274
+RMSE:
+109.43
+Testing kernel: tribas
+MSE:
+12169.150804889681
+RMSE:
+110.31
+Testing kernel: hardlim
+MSE:
+12018.146442449108
+RMSE:
+109.63
+Testing kernel: rbf(0.1)
+MSE:
+11231.195318060336
+RMSE:
+105.98
+
+Layer: 6
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12349.343727057292
+RMSE:
+111.13
+Testing kernel: tribas
+MSE:
+12626.628567981592
+RMSE:
+112.37
+Testing kernel: hardlim
+MSE:
+12201.367035883504
+RMSE:
+110.46
+Testing kernel: rbf(0.1)
+MSE:
+11156.404042957549
+RMSE:
+105.62
+
+Layer: 7
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10857.534578869232
+RMSE:
+104.20
+Testing kernel: tribas
+MSE:
+12761.895584916634
+RMSE:
+112.97
+Testing kernel: hardlim
+MSE:
+11262.843737513713
+RMSE:
+106.13
+Testing kernel: rbf(0.1)
+MSE:
+11151.987400496928
+RMSE:
+105.60
+
+Layer: 8
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12074.9785625844
+RMSE:
+109.89
+Testing kernel: tribas
+MSE:
+12106.071363586672
+RMSE:
+110.03
+Testing kernel: hardlim
+MSE:
+11929.764198656265
+RMSE:
+109.22
+Testing kernel: rbf(0.1)
+MSE:
+10990.547201282554
+RMSE:
+104.84
+
+Layer: 9
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11839.250670698722
+RMSE:
+108.81
+Testing kernel: tribas
+MSE:
+12673.908922010067
+RMSE:
+112.58
+Testing kernel: hardlim
+MSE:
+11793.278364887761
+RMSE:
+108.60
+Testing kernel: rbf(0.1)
+MSE:
+11024.567283278584
+RMSE:
+105.00
+
+Layer: 10
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12117.471329886805
+RMSE:
+110.08
+Testing kernel: tribas
+MSE:
+12358.232910491484
+RMSE:
+111.17
+Testing kernel: hardlim
+MSE:
+12337.369500834575
+RMSE:
+111.07
+Testing kernel: rbf(0.1)
+MSE:
+11014.234043026068
+RMSE:
+104.95
+
+Layer: 11
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11535.815434876038
+RMSE:
+107.40
+Testing kernel: tribas
+MSE:
+12628.41006192045
+RMSE:
+112.38
+Testing kernel: hardlim
+MSE:
+12304.973387586931
+RMSE:
+110.93
+Testing kernel: rbf(0.1)
+MSE:
+10979.80924372907
+RMSE:
+104.78
+
+Layer: 12
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11209.69453025852
+RMSE:
+105.88
+Testing kernel: tribas
+MSE:
+12632.347637711731
+RMSE:
+112.39
+Testing kernel: hardlim
+MSE:
+11558.524099475026
+RMSE:
+107.51
+Testing kernel: rbf(0.1)
+MSE:
+11290.280015248794
+RMSE:
+106.26
+
+Layer: 13
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11729.969623630597
+RMSE:
+108.30
+Testing kernel: tribas
+MSE:
+12532.780986660951
+RMSE:
+111.95
+Testing kernel: hardlim
+MSE:
+12024.413196747973
+RMSE:
+109.66
+Testing kernel: rbf(0.1)
+MSE:
+11305.96677333515
+RMSE:
+106.33
+
+Layer: 14
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11726.407742474092
+RMSE:
+108.29
+Testing kernel: tribas
+MSE:
+12294.729523436876
+RMSE:
+110.88
+Testing kernel: hardlim
+MSE:
+11687.37876155944
+RMSE:
+108.11
+Testing kernel: rbf(0.1)
+MSE:
+11343.104240436722
+RMSE:
+106.50
+
+Layer: 15
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11692.121233393153
+RMSE:
+108.13
+Testing kernel: tribas
+MSE:
+12484.841677579061
+RMSE:
+111.74
+Testing kernel: hardlim
+MSE:
+11621.48619869399
+RMSE:
+107.80
+Testing kernel: rbf(0.1)
+MSE:
+11484.677124155807
+RMSE:
+107.17
+
+Layer: 16
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11861.987088422455
+RMSE:
+108.91
+Testing kernel: tribas
+MSE:
+11726.634188762953
+RMSE:
+108.29
+Testing kernel: hardlim
+MSE:
+12142.813476187106
+RMSE:
+110.19
+Testing kernel: rbf(0.1)
+MSE:
+11468.89228526169
+RMSE:
+107.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10686.85073835635
+RMSE:
+103.38
+Testing kernel: tribas
+MSE:
+11692.706326407379
+RMSE:
+108.13
+Testing kernel: hardlim
+MSE:
+10858.58762730591
+RMSE:
+104.20
+Testing kernel: rbf(0.1)
+MSE:
+11449.801536370936
+RMSE:
+107.00
+
+Layer: 18
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11967.671353408416
+RMSE:
+109.40
+Testing kernel: tribas
+MSE:
+12151.944597515754
+RMSE:
+110.24
+Testing kernel: hardlim
+MSE:
+11878.52917944354
+RMSE:
+108.99
+Testing kernel: rbf(0.1)
+MSE:
+11619.310548502099
+RMSE:
+107.79
+
+Layer: 19
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11581.887568546483
+RMSE:
+107.62
+Testing kernel: tribas
+MSE:
+11778.4523538828
+RMSE:
+108.53
+Testing kernel: hardlim
+MSE:
+11933.372913418136
+RMSE:
+109.24
+Testing kernel: rbf(0.1)
+MSE:
+11608.987118498591
+RMSE:
+107.75
+
+Layer: 20
+Testing kernel: default
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11196.081015250353
+RMSE:
+105.81
+Testing kernel: tribas
+MSE:
+12450.765363826305
+RMSE:
+111.58
+Testing kernel: hardlim
+MSE:
+11357.863046211109
+RMSE:
+106.57
+Testing kernel: rbf(0.1)
+MSE:
+11396.20405048844
+RMSE:
+106.75
+Optimal model:
+ELMRegressor(hidden_layer=SimpleRandomHiddenLayer(activation_args=None,
+                                                  activation_func='tanh',
+                                                  n_hidden=20, random_state=0),
+             regressor=None)
+bestHiddenLayerCount:
+1
+MSE: 11196.08
+RMSE: 105.81
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+Using PCA!
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008340212421815455
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010054436227264393
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008789757304862957
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00671679752213052
+RMSE:
+0.08
+
+Layer: 2
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008719535858123136
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.011235096347215527
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.0070827679238039
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.005107889312059155
+RMSE:
+0.07
+
+Layer: 3
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.009092485567374266
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010050191934232011
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.007273675750388983
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.006624158999081287
+RMSE:
+0.08
+
+Layer: 4
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.007711780120180021
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.01089679303186612
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008181713522765175
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00736370868013376
+RMSE:
+0.09
+
+Layer: 5
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.010484790491321772
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010015861702230115
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.01071682378555756
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007461189891988558
+RMSE:
+0.09
+
+Layer: 6
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008142524718495848
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010295892576871784
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.006852348529127346
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.007263827809926951
+RMSE:
+0.09
+
+Layer: 7
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006559020138309902
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.010511450539379364
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008639227829379098
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00842922296545711
+RMSE:
+0.09
+
+Layer: 8
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.009700074844818432
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010791360211509782
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008716159504315533
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008658482068894595
+RMSE:
+0.09
+
+Layer: 9
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008794006518654585
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.01223197383084716
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009219113735219605
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.00849742745489153
+RMSE:
+0.09
+
+Layer: 10
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.00988048799043135
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010084256011078282
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009608917409580328
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008582573868489762
+RMSE:
+0.09
+
+Layer: 11
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.011687072027931083
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.01254811215864993
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.010914234575073407
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008053521995034573
+RMSE:
+0.09
+
+Layer: 12
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.010246203488978388
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.00927938056501956
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009956907457686128
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.01005885524951381
+RMSE:
+0.10
+
+Layer: 13
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008081504968540935
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.01149653287001477
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.007906806756372758
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.009857989643128784
+RMSE:
+0.10
+
+Layer: 14
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.009528594484157764
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.012718477348411346
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.010301943169661983
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009476281606977558
+RMSE:
+0.10
+
+Layer: 15
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006786380903775707
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.011695330151543965
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.007047702964007255
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.00978083859673744
+RMSE:
+0.10
+
+Layer: 16
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006739061530622359
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.011218109090944776
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008096185285640666
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.009839881385316374
+RMSE:
+0.10
+
+Layer: 17
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.011293934775806426
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.012307152011267858
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.00939041242915859
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009757220593204182
+RMSE:
+0.10
+
+Layer: 18
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.0065800768736319366
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.013444228855435421
+RMSE:
+0.12
+Testing kernel: hardlim
+MSE:
+0.007752898680324907
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.010366436811605475
+RMSE:
+0.10
+
+Layer: 19
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008362648707786767
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010435881564459544
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.007006268453487033
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.01025773413238764
+RMSE:
+0.10
+
+Layer: 20
+Testing kernel: default
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.007935523515748003
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.01222948760252687
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008587694210201164
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.010559095230887864
+RMSE:
+0.10
+Optimal model:
+ELMRegressor(hidden_layer=RBFRandomHiddenLayer(activation_args=None,
+                                               activation_func='gaussian',
+                                               centers=None, gamma=0.1,
+                                               n_hidden=4, radii=None,
+                                               random_state=0,
+                                               use_exemplars=False),
+             regressor=None)
+bestHiddenLayerCount:
+2
+MSE: 0.01
+RMSE: 0.07
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+19524 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+19070 4241344
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and t..
+`LiPoPredictionTable
+`gpsSpeedPredictionTable
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+149305 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+311442 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+"Generating timestep sample 3"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+301552 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+473156 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+"Generating timestep sample 4"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+484000 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+665131 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+"Generating timestep sample 5"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+657547 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+844104 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+4      87835                           87835                      
+"Generating timestep sample 6"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+842722 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+1397514 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+4      87835                           87835                      
+5      105402                          105402                     
+"Generating timestep sample 7"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+1062595 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+1354911 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+4      87835                           87835                      
+5      105402                          105402                     
+6      122969                          122969                     
+"Generating timestep sample 8"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+1501486 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+1466403 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+4      87835                           87835                      
+5      105402                          105402                     
+6      122969                          122969                     
+7      140536                          140536                     
+"Generating timestep sample 9"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+1610301 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+2144157 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+4      87835                           87835                      
+5      105402                          105402                     
+6      122969                          122969                     
+7      140536                          140536                     
+8      158103                          158103                     
+"Generating timestep sample 10"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+1931106 4241776
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2010, 1909, 1808, 1707, 1606, 1505, 1404, 1303, 1202, 1101, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+1764574 4241472
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+4      87835                           87835                      
+5      105402                          105402                     
+6      122969                          122969                     
+7      140536                          140536                     
+8      158103                          158103                     
+9      175670                          175670                     
+`:lookbackSteps.dat
+"Saving synthesizedThrottleLSTMTrainingDataMatrix to disk"
+"Saving realThrottleLSTMTrainingDataMatrix to disk"
+"Training LSTM (Regression Window) using synthesized data!"
+Training using KDB+ input!
+Look back steps detected: 10
+WARNING:tensorflow:From /Users/foorx/anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+Epoch 1/100
+ - 60s - loss: 0.0072
+Epoch 2/100
+ - 61s - loss: 0.0036
+Epoch 3/100
+ - 61s - loss: 0.0034
+Epoch 4/100
+ - 61s - loss: 0.0034
+Epoch 5/100
+ - 62s - loss: 0.0034
+Epoch 6/100
+ - 61s - loss: 0.0034
+Epoch 7/100
+ - 61s - loss: 0.0034
+Epoch 8/100
+ - 61s - loss: 0.0033
+Epoch 9/100
+ - 61s - loss: 0.0033
+Epoch 10/100
+ - 61s - loss: 0.0033
+Epoch 11/100
+ - 61s - loss: 0.0033
+Epoch 12/100
+ - 61s - loss: 0.0033
+Epoch 13/100
+ - 61s - loss: 0.0033
+Epoch 14/100
+ - 61s - loss: 0.0033
+Epoch 15/100
+ - 61s - loss: 0.0033
+Epoch 16/100
+ - 62s - loss: 0.0033
+Epoch 17/100
+ - 61s - loss: 0.0033
+Epoch 18/100
+ - 61s - loss: 0.0033
+Epoch 19/100
+ - 61s - loss: 0.0033
+Epoch 20/100
+ - 61s - loss: 0.0033
+Epoch 21/100
+ - 61s - loss: 0.0033
+Epoch 22/100
+ - 61s - loss: 0.0033
+Epoch 23/100
+ - 61s - loss: 0.0033
+Epoch 24/100
+ - 61s - loss: 0.0033
+Epoch 25/100
+ - 61s - loss: 0.0033
+Epoch 26/100
+ - 61s - loss: 0.0033
+Epoch 27/100
+ - 61s - loss: 0.0033
+Epoch 28/100
+ - 61s - loss: 0.0033
+Epoch 29/100
+ - 61s - loss: 0.0033
+Epoch 30/100
+ - 61s - loss: 0.0033
+Epoch 31/100
+ - 61s - loss: 0.0033
+Epoch 32/100
+ - 61s - loss: 0.0033
+Epoch 33/100
+ - 61s - loss: 0.0033
+Epoch 34/100
+ - 61s - loss: 0.0033
+Epoch 35/100
+ - 61s - loss: 0.0033
+Epoch 36/100
+ - 62s - loss: 0.0033
+Epoch 37/100
+ - 61s - loss: 0.0033
+Epoch 38/100
+ - 61s - loss: 0.0033
+Epoch 39/100
+ - 61s - loss: 0.0033
+Epoch 40/100
+ - 61s - loss: 0.0033
+Epoch 41/100
+ - 61s - loss: 0.0033
+Epoch 42/100
+ - 61s - loss: 0.0033
+Epoch 43/100
+ - 61s - loss: 0.0033
+Epoch 44/100
+ - 61s - loss: 0.0033
+Epoch 45/100
+ - 61s - loss: 0.0033
+Epoch 46/100
+ - 61s - loss: 0.0033
+Epoch 47/100
+ - 61s - loss: 0.0033
+Epoch 48/100
+ - 61s - loss: 0.0033
+Epoch 49/100
+ - 61s - loss: 0.0033
+Epoch 50/100
+ - 61s - loss: 0.0033
+Epoch 51/100
+ - 61s - loss: 0.0033
+Epoch 52/100
+ - 61s - loss: 0.0033
+Epoch 53/100
+ - 61s - loss: 0.0033
+Epoch 54/100
+ - 61s - loss: 0.0033
+Epoch 55/100
+ - 62s - loss: 0.0033
+Epoch 56/100
+ - 61s - loss: 0.0033
+Epoch 57/100
+ - 61s - loss: 0.0033
+Epoch 58/100
+ - 61s - loss: 0.0033
+Epoch 59/100
+ - 61s - loss: 0.0033
+Epoch 60/100
+ - 62s - loss: 0.0033
+Epoch 61/100
+ - 61s - loss: 0.0033
+Epoch 62/100
+ - 61s - loss: 0.0033
+Epoch 63/100
+ - 61s - loss: 0.0033
+Epoch 64/100
+ - 62s - loss: 0.0033
+Epoch 65/100
+ - 61s - loss: 0.0033
+Epoch 66/100
+ - 61s - loss: 0.0033
+Epoch 67/100
+ - 61s - loss: 0.0033
+Epoch 68/100
+ - 61s - loss: 0.0033
+Epoch 69/100
+ - 61s - loss: 0.0033
+Epoch 70/100
+ - 61s - loss: 0.0033
+Epoch 71/100
+ - 61s - loss: 0.0033
+Epoch 72/100
+ - 61s - loss: 0.0033
+Epoch 73/100
+ - 61s - loss: 0.0033
+Epoch 74/100
+ - 61s - loss: 0.0033
+Epoch 75/100
+ - 61s - loss: 0.0033
+Epoch 76/100
+ - 61s - loss: 0.0033
+Epoch 77/100
+ - 61s - loss: 0.0033
+Epoch 78/100
+ - 61s - loss: 0.0033
+Epoch 79/100
+ - 61s - loss: 0.0033
+Epoch 80/100
+ - 61s - loss: 0.0033
+Epoch 81/100
+ - 61s - loss: 0.0033
+Epoch 82/100
+ - 61s - loss: 0.0033
+Epoch 83/100
+ - 61s - loss: 0.0033
+Epoch 84/100
+ - 61s - loss: 0.0033
+Epoch 85/100
+ - 61s - loss: 0.0033
+Epoch 86/100
+ - 61s - loss: 0.0033
+Epoch 87/100
+ - 61s - loss: 0.0033
+Epoch 88/100
+ - 61s - loss: 0.0033
+Epoch 89/100
+ - 61s - loss: 0.0033
+Epoch 90/100
+ - 61s - loss: 0.0033
+Epoch 91/100
+ - 61s - loss: 0.0033
+Epoch 92/100
+ - 61s - loss: 0.0033
+Epoch 93/100
+ - 61s - loss: 0.0033
+Epoch 94/100
+ - 62s - loss: 0.0033
+Epoch 95/100
+ - 61s - loss: 0.0033
+Epoch 96/100
+ - 61s - loss: 0.0033
+Epoch 97/100
+ - 61s - loss: 0.0033
+Epoch 98/100
+ - 61s - loss: 0.0033
+Epoch 99/100
+ - 61s - loss: 0.0033
+Epoch 100/100
+ - 61s - loss: 0.0033
+'e: [Errno 2] No such file or directory: 'RegressionWindowLSTMModel.joblib'
+  [8]  /Users/foorx/anaconda3/q/p.q:13: .p.e:{$["def"~3#x;$[x[3]in"<*>";ei 3;eo];"class"~5#x;$[x[5]in"*>";ei 5;eo];eo]x}
+                                              ^
+q.p))\
+q)\p
+0i
+q)\p 6001
+q)Using Regression (Normal) LSTM
+Generating Rolling Launch Control Throttle sequence using KDB+ input!
+Look back steps detected: 10
+Rolling Launch Control Throttle generated!
+
