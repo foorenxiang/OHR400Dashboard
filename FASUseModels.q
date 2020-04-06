@@ -7,7 +7,7 @@ FASUseModels:{
 	realThrottles:(neg 3+lookbackSteps)#trainingData[`rcCommand3];
 	realThrottlesOriginal:realThrottles;
 	/ skip prediction if throttle values are missing in data stream
-	if[0n in realThrottles; `p];
+	if[0n in realThrottles;:0n];
 	/////normalise to [0,1]////
 	/disable capping of throttle range to [1000,2000] using below q function unless required as it adds 3ms of delay
 	/ \ts realThrottles: {min[2000,x]} each realThrottles 
