@@ -17,10 +17,10 @@ Tableau (live data refresh) and TIBCO Spotfire Analyst (manual data refresh) hav
 See screenshots in Git Repository for useful dashboard views.\
 
 - To run:\
-`#32 bit version
-rm nohupServer.out; nohup ~/q/l32/q FASServer32bitInit.q > nohupServer.out & tail -f nohupServer.out
-#64 bit version
-rm nohupServer.out; nohup q FASServerInit.q > nohupServer.out & tail -f nohupServer.out`
+`#32 bit version`\
+`rm nohupServer.out; nohup ~/q/l32/q FASServer32bitInit.q > nohupServer.out & tail -f nohupServer.out`\
+`#64 bit version`\
+`rm nohupServer.out; nohup q FASServerInit.q > nohupServer.out & tail -f nohupServer.out`
 
 ### Launch Control ML Model Trainer (FASMLTrainingClientInit.q)
 q client process that reads flight data from the kdb server to train ML pipeline implemented in it.\
