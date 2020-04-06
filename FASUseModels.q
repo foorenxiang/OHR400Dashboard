@@ -1,9 +1,13 @@
 FASUseModels:{
 	/ retrieve latest training data
+	sampleCaptureTime:.z.z;
 	trainingData:h"trainingData";
 	/ `lookbackSteps defined in FASInit.q's load value or updated during model retraining
 	/////Select throttle time series sequence from real flight logs for LSTM Training/////
 	realThrottles:(neg 3+lookbackSteps)#trainingData[`rcCommand3];
+	realThrottlesOriginal:realThrottles;
+	/ skip prediction if throttle values are missing in data stream
+	if[0n in realThrottles; `p];
 	/////normalise to [0,1]////
 	/disable capping of throttle range to [1000,2000] using below q function unless required as it adds 3ms of delay
 	/ \ts realThrottles: {min[2000,x]} each realThrottles 
@@ -24,8 +28,8 @@ FASUseModels:{
 	yPred:raze .p.py2q .p.pyget`yPred;
 	/ create table with GMT timestamp of prediction and y predictions
 	/ yPredtimeStamp:{.z.t + 200* til lookbackSteps}
-	yPredtimeStamp:{.z.t};
-	yPredTable:flip `timeStamp`sequence`throttlePrediction!(yPredtimeStamp[];til lookbackSteps;yPred);
+	yPredtimeStamp:.z.z;
+	yPredTable:flip `serverTimeAtPrediction`sequence`throttlePrediction`serverTimeAtCapture`refThrottlesSequence`refThrottles!(yPredtimeStamp;til lookbackSteps;yPred;sampleCaptureTime;til lookbackSteps;(neg lookbackSteps)#realThrottlesOriginal);
 	neg[h] (`insertyPredTable;yPredTable); / insert new predictions to yPredTable on Server
 	/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
 	neg[h][];
