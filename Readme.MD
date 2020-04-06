@@ -1,4 +1,4 @@
-`Main modules of the Old Holland Road 400 Rolling Launch Control and Flight Analysis System (FAS):
+Main modules of the Old Holland Road 400 Rolling Launch Control and Flight Analysis System (FAS):
 
 kdb+ database/server (FASServer32bitInit.q or FASServer64bitInit.q)
 q server process that acts as the database (RDB and HDB). Historical and real-time flight telemetry and Rolling Launch Control data is streamed and retrievable from this process. Hosted at renxiang.cloud.
@@ -58,4 +58,4 @@ IPC functions are defined on kdb server side.
 Requires 32 or 64 bit kdb.
 
 - To run:
-rlwrap q FASLogPlayback.q`
+rlwrap q FASLogPlayback.q
