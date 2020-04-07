@@ -1,7 +1,7 @@
 / IPC definitions
 
 / creates empty prediction table
-yPredTable:([]timeStamp:();sequence:();throttlePrediction:())
+/ yPredTable:([]serverTimeAtPrediction:();sequence:();throttlePrediction:();serverTimeAtCapture:();refThrottlesSequence:();refThrottles:())
 
 / inserts new throttle predictions into yPredTable
 insertyPredTable:{`yPredTable insert x}
