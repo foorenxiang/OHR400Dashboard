@@ -29,7 +29,7 @@ FASUseModels:{
 	/ create table with GMT timestamp of prediction and y predictions
 	/ yPredtimeStamp:{.z.t + 200* til lookbackSteps}
 	yPredtimeStamp:.z.z;
-	yPredTable:flip `serverTimeAtPrediction`sequence`throttlePrediction`serverTimeAtCapture`refThrottlesSequence`refThrottles!(yPredtimeStamp;til lookbackSteps;yPred;sampleCaptureTime;til lookbackSteps;(neg lookbackSteps)#realThrottlesOriginal);
+	yPredTable:flip `serverTimeAtPrediction`sequence`throttlePrediction`serverTimeAtCapture`refThrottlesSequence`refThrottles!(yPredtimeStamp;til lookbackSteps;yPred;sampleCaptureTime;(til lookbackSteps)-lookbackSteps;(neg lookbackSteps)#realThrottlesOriginal);
 	neg[h] (`insertyPredTable;yPredTable); / insert new predictions to yPredTable on Server
 	/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
 	neg[h][];
