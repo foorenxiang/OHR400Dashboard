@@ -88,6 +88,6 @@ if[not saveCSVs; show "Not saving tables to CSVs"]
 / save throttle predictions and trainingData to disk periodically
 savehours: 1 / save yPredTable to disk after x hours
 saveyPredTable:{(hsym `$flatDir,"yPredTable") set yPredTable; show "Throttle Predictions Table saved"}
-saveTrainingData:{(hsym `$flatDir,"trainingData") set trainingData; show "Throttle Predictions Table saved"}
+saveTrainingData:{(hsym `$flatDir,"trainingData") set trainingData; show "Training Data Table saved"}
 .z.ts:{saveyPredTable[]; saveTrainingData[]}
 system"t ",string savehours*60*60*1000
