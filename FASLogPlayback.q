@@ -12,6 +12,9 @@ h:hopen hostPort
 flatDir: get `:flatDir
 fullLog: get hsym `$flatDir,"fullLog"
 
+"Enabling immediate mode for Garbage Collection"
+\g 1
+
 / convert to json string to simulate mavlink input format
 mavlinkInputFormat:.j.j each 0! fullLog
 

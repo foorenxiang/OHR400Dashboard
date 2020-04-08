@@ -83,7 +83,11 @@ saveCSVs:1b
 if[saveCSVs; show "CSVs of tables will be saved"]
 if[not saveCSVs; show "Not saving tables to CSVs"]
 
+"Loading IPC definitions"
 \l FASServerIPCDef.q
+
+"Enabling immediate mode for Garbage Collection"
+\g 1
 
 / save throttle predictions and trainingData to disk periodically
 savehours: 1 / save yPredTable to disk after x hours

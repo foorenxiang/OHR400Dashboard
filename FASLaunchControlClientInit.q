@@ -38,6 +38,9 @@ if[(h>0) and hostPort = hsym `localhost:5001; show "Connected to kdb master on l
 system"l FASUseModels.q"
 .z.ts:{FASUseModels[]}
 
+"Enabling immediate mode for Garbage Collection"
+\g 1
+
 "Rolling Launch Control Generator Up and Ready"
 
 predictionFrequency:1 /in Hz

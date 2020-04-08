@@ -33,6 +33,8 @@ h:hopen hostPort
 if[(h>0) and hostPort = hsym `renxiang.cloud:5001; show "Connected to kdb master in cloud!"]
 if[(h>0) and hostPort = hsym `localhost:5001; show "Connected to kdb master on localhost!"]
 
-"Automatic ML model retraining enabled!"
+"Enabling immediate mode for Garbage Collection"
+\g 1
+
 "Rolling Launch Control Model Trainer Up and Ready"
 \ts system"l FASUpdateModels.q"

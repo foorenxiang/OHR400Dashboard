@@ -37,4 +37,5 @@ FASUseModels:{
 	h"";
 	neg[h] (`showyPredTable;0); / show updated yPredTable on Server 
 	/ To ensure an async message is sent immediately, flush the pending outgoing queue for handle h
-	neg[h][];}
+	neg[h][];
+	.Q.gc[];}

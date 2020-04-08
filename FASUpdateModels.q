@@ -281,3 +281,4 @@ if[(h>0) and hostPort = hsym `renxiang.cloud:5001; system"l trainedLSTMModelTran
 
 "Completed Updating Models"
 neg[h] (`receiveUpdatedModels;0)
+.Q.gc[]
