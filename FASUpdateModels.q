@@ -1,3 +1,5 @@
+FAS.gc:{show "Current memory usage"; show .Q.w[]; show "Running garbage collection"; .Q.gc[]; show "Memory usage after garbage collection"; show .Q.w[]}
+
 / retrieve latest training data using synchronous IPC
 trainingData:h"trainingData"
 
@@ -34,6 +36,7 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 / \l updateXGBoostLiPoModel.p / train XGBoost model (To be implemented)
 / \l updateRFLiPoModel.p / train adaboost model (To be implemented)
 / \l updateStackGeneralizerLiPoModel.p / train Stack Generalizer model (To be implemented)
+FAS.gc[]
 
 / select size of training data for training LSTM
 .p.set[`numSamplesToUse; numSamplesToUse:count trainingData]
@@ -54,6 +57,7 @@ if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show
 / \ts \l useStackGeneralizerGPSModel.p / train Stack Generalizer model (To be implemented)
 / convert prediction result from python object back to q list
 gpsSpeedPredictionTable:.ml.df2tab .p.wrap .p.pyget`gpsPredictionPDF
+FAS.gc[]
 
 //////DEPLOY LIPO MODEL//////
 "Deploying LiPo Voltage prediction model"
@@ -72,6 +76,7 @@ synthesizedSampleIndex:1
 / \ts \l useStackGeneralizerLiPoModel.p / train Stack Generalizer model (To be implemented)
 / convert prediction result from python object back to q list
 LiPoPredictionTable:.ml.df2tab .p.wrap .p.pyget`LiPoPredictionPDF
+FAS.gc[]
 
 //////Synthesize time series data from traing LSTM network//////
 lowThrottle:1000
@@ -275,10 +280,10 @@ if [LSTMModel=`Disabled; show "LSTM training disabled"]
 .p.set[`inputPDF; .ml.tab2df[(neg lookbackSteps)#realThrottleLSTMTrainingDataMatrix]]
 \l useRegressionWindowLSTM.p
 yPred:.p.py2q .p.pyget`yPred
+FAS.gc[]
 
 / if using cloud kdb server, transfer updated LSTM model to using ssh
 if[(h>0) and hostPort = hsym `renxiang.cloud:5001; system"l trainedLSTMModelTransfer.p"; show "Transferring newly trained LSTM model to cloud!"]
 
 "Completed Updating Models"
 neg[h] (`receiveUpdatedModels;0)
-.Q.gc[]
