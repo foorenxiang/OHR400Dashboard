@@ -100,8 +100,8 @@ getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredic
 synthesizedDataCount: getSynthesizedDataCount[]
 
 / create throttleInputHistory feature in current prediction tables for usage in feature synthesis
-update throttleInputHistory:rcCommand3 from `LiPoPredictionTable
-update throttleInputHistory:rcCommand3 from `gpsSpeedPredictionTable
+update throttleInputHistory:rcCommand3 from `LiPoPredictionTable;
+update throttleInputHistory:rcCommand3 from `gpsSpeedPredictionTable;
 
 / synthesize timesteps by numTimeSteps
 / need to cut 1 from timestep as 1 sample is already generated during model deployment
