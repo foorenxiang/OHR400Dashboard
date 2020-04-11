@@ -16,6 +16,8 @@ system"cd ",qDirectory
 / load embedpy
 \l p.q
 
+/ using ML toolkit from commit 51b1995 
+/ was using ML toolkit from commit 9f653e8
 / load ml toolkit
 \l ml/ml.q
 .ml.loadfile`:init.q;
