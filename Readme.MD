@@ -97,6 +97,8 @@ Requires 32 or 64 bit kdb.
 - Update log upload portal to tag logs with weather conditions during flight
 - When running log playback, automatically flush RDB to HDB, purge RDB for incoming telemetry playback
 - Create additional bash scripts to launch customised q processes based on operating system and kdb version
+- Further refine Rolling Launch Control ML training methodology
+- Improve ML model deployment pipeline
 - Implement Convolutional Neural Network to recognise scenario occurrences on dimensionality reduced flight data
 - Integrate vanilla kdb ticker plant
 - Improve feature engineering and selection capabilities with usage of more FRESH utilities
