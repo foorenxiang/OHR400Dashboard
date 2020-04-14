@@ -1,0 +1,6080 @@
+Last login: Tue Apr 14 13:18:42 on ttys002
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ ls
+Automatic Retraining Sample Run 30s Frequency (ELM).txt
+DO different CPU set on different droplet size
+ELM700layersPCA.txt
+FASLaunchControlClientInit.q
+FASLaunchControlOutput.py
+FASLogPlayback.q
+FASMLTrainingClientInit.q
+FASMavlinkInput.py
+FASProcessTelemetryStream.q
+FASPythonLibraries.q
+FASServer.sh
+FASServer32bitInit.q
+FASServer64bitInit.q
+FASServerCommon.q
+FASServerIPCDef.q
+FASSpotfireData.q
+FASSynthesizeSample.q
+FASTestData
+FASUpdate.q
+FASUpdateModels.q
+FASUpdateModelsLSTMOnly.q
+FASUseModels.q
+GPSData.csv
+LSTMTrainingData.csv
+LSTMTrainingPDF.joblib
+ML Run with Python Variables Listed.txt
+OHR400 Dashboards.dxp
+OHR400Dashboard 32 Core 64GB ELM-LSTM ML Training Instance Generated Files
+OHR400Dashboard 32 Core 64GB LSTM Only ML Training Instance Generated Files
+PIDData.csv
+Readme.MD
+Retraining Performance Evaluation between GPR and ELM models.txt
+TIBCO Spotfire Analyst Screens
+Tableau OHR400.twb
+Tableau Visualisations
+Terminal Saved Output.txt
+Thumbs.db
+__pycache__
+allELMandLSTMTrainingLog.txt
+allGPRandLSTMTrainingLog.txt
+batchMemoryLSTMDemo.py
+bestPredictionsTable.json
+blackbox-tools
+c.jar
+cookbook
+credentials.txt
+dashboardDirectory
+deepFeatureSynthesisTest.py
+delGPSDeployPythonObjects.q
+delGPSTrainPythonObjects.q
+delLiPoDeployPythonObjects.q
+delLiPoTrainPythonObjects.q
+developerDirectory
+elm
+elm.py
+featureMatrix.q
+featureMatrixKDBaccess.m
+flat
+flatDir
+flat_copy
+flat_demo_copy.tar
+full dataset ELM and GPR training (fixed GPS speed arrangement of fullLog bug).txt
+full dataset ELM and GPR training.txt
+full retraining 1100 samples.txt
+fullLog.csv
+fullPredictionTable.json
+index.php
+jdbc.jar
+kdb-tick
+logsDirectory
+lookbackSteps.dat
+macbook (optimised tf) 16 vcpu 32gb ram model training performance test.txt
+migration steps.txt
+models
+p.k
+p.q
+p.so
+pyMultiWii
+qDirectory
+random_hidden_layer.py
+realThrottleLSTMTrainingData.csv
+realThrottleLSTMTrainingDataMatrix.joblib
+results
+sftpCredentials.py
+showPythonUsage.q
+source files manifest.txt
+ssh model transfer demo.txt
+stackedgeneralizer
+synthesizedThrottleLSTMTrainingData.csv
+synthesizedThrottleLSTMTrainingDataMatrix.joblib
+telemetryJSONSample.json
+trainedLSTMModelTransfer.p
+trainingData.csv
+trainingDataAbove100kph.csv
+updateAdaboostGPSModel.p
+updateELMGPSModel.p
+updateELMLiPoModel.p
+updateGPRGPSModel.p
+updateGPRLiPoModel.p
+updateGradBoostGPSModel.p
+updateLinearGPSModel.p
+updateRegressionWindowLSTM.p
+updateSVRGPSModel.p
+updateXGBoostGPSModel.p
+useELMGPSModel.p
+useELMLiPoModel.p
+useGPRGPSModel.p
+useGPRLiPoModel.p
+useLinearGPSModel.p
+useRegressionWindowLSTM.p
+verifyLinearGPSModel.p
+xgboostGPSPerformance.txt
+yPredTable.csv
+yStandardScalarLSTM.joblib
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ cat Terminal\ Saved\ Output.txt 
+Last login: Tue Apr 14 13:15:39 on ttys003
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+'stop
+  [15] /Users/foorx/anaconda3/q/p.q:38: .p.wfunc:{[f;x]r:wrap f x 0;$[count x:1_x;.[;x];]r}
+                                                              ^
+q.p))\\
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using TensorFlow backend.
+"Enabling immediate mode for Garbage Collection"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[ 5.27553694e-02 -1.20308989e-02 -1.00388481e-03 -6.49056537e-02
+  -3.78870709e-02  1.30318813e-01  4.17927770e-01 -2.57898103e-01
+  -6.61420894e-02 -2.78750065e-02  1.12331551e-01 -1.99629051e-01
+   3.76117189e-02 -2.50787305e-02  3.94488944e-01  4.19371652e-01
+   4.14718178e-01  4.12448922e-01]
+ [ 3.65593242e-03  4.14678247e-03  4.42154417e-02  4.67189673e-01
+  -2.29939709e-03 -3.86057784e-01  9.69767804e-02 -5.27593261e-02
+   4.64908722e-01 -7.58497046e-03 -4.13401606e-01  4.80809918e-02
+  -4.11874364e-01  1.46446048e-01  1.61666250e-01  3.95107110e-02
+   2.73869342e-02  9.78259947e-02]
+ [-4.39263086e-02  4.09163966e-03 -3.63903461e-02 -1.97235126e-02
+  -6.63063416e-01 -1.05130485e-01 -4.06855409e-02  4.71514642e-03
+  -6.02650000e-03 -6.49992884e-01 -1.07661588e-01 -2.95809042e-01
+   8.08330921e-02 -9.71501417e-02 -4.15169492e-02 -3.76732238e-02
+  -5.20363174e-02 -2.26602221e-02]
+ [-6.95889443e-01  6.96107043e-01 -1.02920972e-01  5.77600948e-03
+   1.33370910e-02  4.95770432e-02  2.12039751e-02 -2.67075946e-02
+   1.08930959e-02 -1.21889250e-02  4.12957510e-02  3.63415358e-02
+  -1.49335239e-02  1.08432417e-01  1.73764749e-02  2.71777982e-02
+   1.83286262e-02  9.88560302e-03]
+ [ 2.86259675e-02 -6.39462203e-02  2.88021767e-01 -1.05492136e-01
+  -1.18145860e-01 -1.72455096e-02 -1.06940307e-03 -3.08095354e-01
+  -9.08454872e-02 -1.98502206e-01 -3.76609304e-02  5.08942144e-01
+   1.85435851e-01  6.63782431e-01 -4.00184838e-02  4.80340320e-02
+   5.91798766e-02 -3.64075266e-02]
+ [-6.91949645e-02  1.39340591e-01  8.77575199e-01 -3.43175506e-02
+   2.05362465e-02 -1.15317512e-01 -8.63117758e-03 -8.77968111e-02
+  -3.67503611e-02  5.57553403e-02 -9.09640977e-02 -2.83782118e-02
+   8.29308423e-02 -3.97040636e-01 -1.49301090e-04 -4.74245087e-02
+  -2.01043111e-02  4.76085218e-02]
+ [ 4.86574703e-02  9.17492430e-02 -3.41692990e-01 -1.25291488e-01
+   4.75418060e-02 -4.75790643e-01 -1.11348427e-02 -3.61044576e-01
+  -1.33371438e-01  1.07363659e-01 -3.61350516e-01  2.09319517e-01
+   3.94256132e-01 -3.33872069e-01 -1.12654903e-01  4.54095771e-02
+   1.10744980e-01 -4.30399009e-03]
+ [ 1.50744864e-01  1.77660490e-01  4.15209464e-02 -1.20248967e-01
+  -3.08076770e-02 -1.94107094e-01  1.31683475e-01  8.13504246e-01
+  -1.19087648e-01 -5.76161896e-02 -1.60165600e-01  2.52771422e-01
+   1.32024546e-01  4.95403449e-02  3.65222789e-02  1.49990280e-01
+   1.96207218e-01  1.50038983e-01]
+ [ 2.37632547e-01  2.11370593e-01 -9.52643688e-02  1.30076146e-01
+  -1.77586396e-01  2.43969132e-01  2.18254967e-02 -9.55915839e-02
+   1.22919762e-01 -1.75670726e-01  2.61564155e-01  6.38515229e-01
+  -2.36041061e-01 -4.31982581e-01  6.26035129e-02  1.18210996e-03
+  -4.35023763e-02  4.42923134e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12306.327079968865
+RMSE:
+110.93
+Testing kernel: tribas
+MSE:
+12478.991666124
+RMSE:
+111.71
+Testing kernel: hardlim
+MSE:
+12413.251048288012
+RMSE:
+111.41
+Testing kernel: rbf(0.1)
+MSE:
+12410.735609093254
+RMSE:
+111.40
+
+Layer: 2
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12957.025740264162
+RMSE:
+113.83
+Testing kernel: tribas
+MSE:
+12046.130808454018
+RMSE:
+109.75
+Testing kernel: hardlim
+MSE:
+13169.499848444922
+RMSE:
+114.76
+Testing kernel: rbf(0.1)
+MSE:
+11988.324763557608
+RMSE:
+109.49
+
+Layer: 3
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12565.517400807084
+RMSE:
+112.10
+Testing kernel: tribas
+MSE:
+12398.289841372814
+RMSE:
+111.35
+Testing kernel: hardlim
+MSE:
+12707.007842275123
+RMSE:
+112.73
+Testing kernel: rbf(0.1)
+MSE:
+11638.348259173023
+RMSE:
+107.88
+
+Layer: 4
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12876.719062562837
+RMSE:
+113.48
+Testing kernel: tribas
+MSE:
+11325.034027249541
+RMSE:
+106.42
+Testing kernel: hardlim
+MSE:
+12341.926320464008
+RMSE:
+111.09
+Testing kernel: rbf(0.1)
+MSE:
+11302.55506216164
+RMSE:
+106.31
+
+Layer: 5
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11975.228446390278
+RMSE:
+109.43
+Testing kernel: tribas
+MSE:
+12169.150804889674
+RMSE:
+110.31
+Testing kernel: hardlim
+MSE:
+12018.146442449108
+RMSE:
+109.63
+Testing kernel: rbf(0.1)
+MSE:
+11231.195318060338
+RMSE:
+105.98
+
+Layer: 6
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12349.343727057292
+RMSE:
+111.13
+Testing kernel: tribas
+MSE:
+12626.62856798159
+RMSE:
+112.37
+Testing kernel: hardlim
+MSE:
+12201.367035883504
+RMSE:
+110.46
+Testing kernel: rbf(0.1)
+MSE:
+11156.404042957602
+RMSE:
+105.62
+
+Layer: 7
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10857.534578869228
+RMSE:
+104.20
+Testing kernel: tribas
+MSE:
+12761.895584916634
+RMSE:
+112.97
+Testing kernel: hardlim
+MSE:
+11262.843737513713
+RMSE:
+106.13
+Testing kernel: rbf(0.1)
+MSE:
+11151.987400496933
+RMSE:
+105.60
+
+Layer: 8
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12074.978562584396
+RMSE:
+109.89
+Testing kernel: tribas
+MSE:
+12106.07136358668
+RMSE:
+110.03
+Testing kernel: hardlim
+MSE:
+11929.764198656265
+RMSE:
+109.22
+Testing kernel: rbf(0.1)
+MSE:
+10990.547201282558
+RMSE:
+104.84
+
+Layer: 9
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11839.250670698724
+RMSE:
+108.81
+Testing kernel: tribas
+MSE:
+12673.908922010069
+RMSE:
+112.58
+Testing kernel: hardlim
+MSE:
+11793.278364887761
+RMSE:
+108.60
+Testing kernel: rbf(0.1)
+MSE:
+11024.567283278657
+RMSE:
+105.00
+
+Layer: 10
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12117.471329886805
+RMSE:
+110.08
+Testing kernel: tribas
+MSE:
+12358.23291049149
+RMSE:
+111.17
+Testing kernel: hardlim
+MSE:
+12337.369500834575
+RMSE:
+111.07
+Testing kernel: rbf(0.1)
+MSE:
+11014.234043026041
+RMSE:
+104.95
+
+Layer: 11
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11535.815434876038
+RMSE:
+107.40
+Testing kernel: tribas
+MSE:
+12628.410061920444
+RMSE:
+112.38
+Testing kernel: hardlim
+MSE:
+12304.973387586931
+RMSE:
+110.93
+Testing kernel: rbf(0.1)
+MSE:
+10979.809243729214
+RMSE:
+104.78
+
+Layer: 12
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11209.69453025852
+RMSE:
+105.88
+Testing kernel: tribas
+MSE:
+12632.347637711726
+RMSE:
+112.39
+Testing kernel: hardlim
+MSE:
+11558.524099475026
+RMSE:
+107.51
+Testing kernel: rbf(0.1)
+MSE:
+11290.280015248736
+RMSE:
+106.26
+
+Layer: 13
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11729.9696236306
+RMSE:
+108.30
+Testing kernel: tribas
+MSE:
+12532.78098666094
+RMSE:
+111.95
+Testing kernel: hardlim
+MSE:
+12024.413196747973
+RMSE:
+109.66
+Testing kernel: rbf(0.1)
+MSE:
+11305.966773335194
+RMSE:
+106.33
+
+Layer: 14
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11726.407742474095
+RMSE:
+108.29
+Testing kernel: tribas
+MSE:
+12294.729523436885
+RMSE:
+110.88
+Testing kernel: hardlim
+MSE:
+11687.37876155944
+RMSE:
+108.11
+Testing kernel: rbf(0.1)
+MSE:
+11343.104240436747
+RMSE:
+106.50
+
+Layer: 15
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11692.121233393154
+RMSE:
+108.13
+Testing kernel: tribas
+MSE:
+12484.84167757906
+RMSE:
+111.74
+Testing kernel: hardlim
+MSE:
+11621.48619869399
+RMSE:
+107.80
+Testing kernel: rbf(0.1)
+MSE:
+11484.677124155864
+RMSE:
+107.17
+
+Layer: 16
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11861.987088422462
+RMSE:
+108.91
+Testing kernel: tribas
+MSE:
+11726.634188762955
+RMSE:
+108.29
+Testing kernel: hardlim
+MSE:
+12142.813476187106
+RMSE:
+110.19
+Testing kernel: rbf(0.1)
+MSE:
+11468.892285261554
+RMSE:
+107.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10686.850738356357
+RMSE:
+103.38
+Testing kernel: tribas
+MSE:
+11692.706326407379
+RMSE:
+108.13
+Testing kernel: hardlim
+MSE:
+10858.58762730591
+RMSE:
+104.20
+Testing kernel: rbf(0.1)
+MSE:
+11449.801536370955
+RMSE:
+107.00
+
+Layer: 18
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11967.67135340842
+RMSE:
+109.40
+Testing kernel: tribas
+MSE:
+12151.94459751575
+RMSE:
+110.24
+Testing kernel: hardlim
+MSE:
+11878.52917944354
+RMSE:
+108.99
+Testing kernel: rbf(0.1)
+MSE:
+11619.31054850193
+RMSE:
+107.79
+
+Layer: 19
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11581.887568546479
+RMSE:
+107.62
+Testing kernel: tribas
+MSE:
+11778.452353882794
+RMSE:
+108.53
+Testing kernel: hardlim
+MSE:
+11933.372913418136
+RMSE:
+109.24
+Testing kernel: rbf(0.1)
+MSE:
+11608.987118498724
+RMSE:
+107.75
+
+Layer: 20
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tribas
+MSE:
+12450.765363826295
+RMSE:
+111.58
+Testing kernel: hardlim
+MSE:
+11357.863046211109
+RMSE:
+106.57
+Testing kernel: rbf(0.1)
+MSE:
+11396.204050488448
+RMSE:
+106.75
+Optimal model:
+ELMRegressor(hidden_layer=SimpleRandomHiddenLayer(activation_args=None,
+                                                  activation_func='tanh',
+                                                  n_hidden=20, random_state=0),
+             regressor=None)
+bestHiddenLayerCount:
+1
+MSE: 11196.08
+RMSE: 105.81
+"GPS Speed Training"
+'delGPSPython.q. OS reports: No such file or directory
+  [2]  system"l FASUpdateModels.q"
+       ^
+q))\\
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using TensorFlow backend.
+"Enabling immediate mode for Garbage Collection"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[ 5.27553694e-02 -1.20308989e-02 -1.00388481e-03 -6.49056537e-02
+  -3.78870709e-02  1.30318813e-01  4.17927770e-01 -2.57898103e-01
+  -6.61420894e-02 -2.78750065e-02  1.12331551e-01 -1.99629051e-01
+   3.76117189e-02 -2.50787305e-02  3.94488944e-01  4.19371652e-01
+   4.14718178e-01  4.12448922e-01]
+ [ 3.65593242e-03  4.14678247e-03  4.42154417e-02  4.67189673e-01
+  -2.29939709e-03 -3.86057784e-01  9.69767804e-02 -5.27593261e-02
+   4.64908722e-01 -7.58497046e-03 -4.13401606e-01  4.80809918e-02
+  -4.11874364e-01  1.46446048e-01  1.61666250e-01  3.95107110e-02
+   2.73869342e-02  9.78259947e-02]
+ [-4.39263086e-02  4.09163966e-03 -3.63903461e-02 -1.97235126e-02
+  -6.63063416e-01 -1.05130485e-01 -4.06855409e-02  4.71514642e-03
+  -6.02650000e-03 -6.49992884e-01 -1.07661588e-01 -2.95809042e-01
+   8.08330921e-02 -9.71501417e-02 -4.15169492e-02 -3.76732238e-02
+  -5.20363174e-02 -2.26602221e-02]
+ [-6.95889443e-01  6.96107043e-01 -1.02920972e-01  5.77600948e-03
+   1.33370910e-02  4.95770432e-02  2.12039751e-02 -2.67075946e-02
+   1.08930959e-02 -1.21889250e-02  4.12957510e-02  3.63415358e-02
+  -1.49335239e-02  1.08432417e-01  1.73764749e-02  2.71777982e-02
+   1.83286262e-02  9.88560302e-03]
+ [ 2.86259675e-02 -6.39462203e-02  2.88021767e-01 -1.05492136e-01
+  -1.18145860e-01 -1.72455096e-02 -1.06940307e-03 -3.08095354e-01
+  -9.08454872e-02 -1.98502206e-01 -3.76609304e-02  5.08942144e-01
+   1.85435851e-01  6.63782431e-01 -4.00184838e-02  4.80340320e-02
+   5.91798766e-02 -3.64075266e-02]
+ [-6.91949645e-02  1.39340591e-01  8.77575199e-01 -3.43175506e-02
+   2.05362465e-02 -1.15317512e-01 -8.63117758e-03 -8.77968111e-02
+  -3.67503611e-02  5.57553403e-02 -9.09640977e-02 -2.83782118e-02
+   8.29308423e-02 -3.97040636e-01 -1.49301090e-04 -4.74245087e-02
+  -2.01043111e-02  4.76085218e-02]
+ [ 4.86574703e-02  9.17492430e-02 -3.41692990e-01 -1.25291488e-01
+   4.75418060e-02 -4.75790643e-01 -1.11348427e-02 -3.61044576e-01
+  -1.33371438e-01  1.07363659e-01 -3.61350516e-01  2.09319517e-01
+   3.94256132e-01 -3.33872069e-01 -1.12654903e-01  4.54095771e-02
+   1.10744980e-01 -4.30399009e-03]
+ [ 1.50744864e-01  1.77660490e-01  4.15209464e-02 -1.20248967e-01
+  -3.08076770e-02 -1.94107094e-01  1.31683475e-01  8.13504246e-01
+  -1.19087648e-01 -5.76161896e-02 -1.60165600e-01  2.52771422e-01
+   1.32024546e-01  4.95403449e-02  3.65222789e-02  1.49990280e-01
+   1.96207218e-01  1.50038983e-01]
+ [ 2.37632547e-01  2.11370593e-01 -9.52643688e-02  1.30076146e-01
+  -1.77586396e-01  2.43969132e-01  2.18254967e-02 -9.55915839e-02
+   1.22919762e-01 -1.75670726e-01  2.61564155e-01  6.38515229e-01
+  -2.36041061e-01 -4.31982581e-01  6.26035129e-02  1.18210996e-03
+  -4.35023763e-02  4.42923134e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12306.327079968865
+RMSE:
+110.93
+Testing kernel: tribas
+MSE:
+12478.991666124
+RMSE:
+111.71
+Testing kernel: hardlim
+MSE:
+12413.251048288012
+RMSE:
+111.41
+Testing kernel: rbf(0.1)
+MSE:
+12410.735609093254
+RMSE:
+111.40
+
+Layer: 2
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12957.025740264162
+RMSE:
+113.83
+Testing kernel: tribas
+MSE:
+12046.130808454018
+RMSE:
+109.75
+Testing kernel: hardlim
+MSE:
+13169.499848444922
+RMSE:
+114.76
+Testing kernel: rbf(0.1)
+MSE:
+11988.324763557608
+RMSE:
+109.49
+
+Layer: 3
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12565.517400807084
+RMSE:
+112.10
+Testing kernel: tribas
+MSE:
+12398.289841372814
+RMSE:
+111.35
+Testing kernel: hardlim
+MSE:
+12707.007842275123
+RMSE:
+112.73
+Testing kernel: rbf(0.1)
+MSE:
+11638.348259173023
+RMSE:
+107.88
+
+Layer: 4
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12876.719062562837
+RMSE:
+113.48
+Testing kernel: tribas
+MSE:
+11325.034027249541
+RMSE:
+106.42
+Testing kernel: hardlim
+MSE:
+12341.926320464008
+RMSE:
+111.09
+Testing kernel: rbf(0.1)
+MSE:
+11302.55506216164
+RMSE:
+106.31
+
+Layer: 5
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11975.228446390278
+RMSE:
+109.43
+Testing kernel: tribas
+MSE:
+12169.150804889674
+RMSE:
+110.31
+Testing kernel: hardlim
+MSE:
+12018.146442449108
+RMSE:
+109.63
+Testing kernel: rbf(0.1)
+MSE:
+11231.195318060338
+RMSE:
+105.98
+
+Layer: 6
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12349.343727057292
+RMSE:
+111.13
+Testing kernel: tribas
+MSE:
+12626.62856798159
+RMSE:
+112.37
+Testing kernel: hardlim
+MSE:
+12201.367035883504
+RMSE:
+110.46
+Testing kernel: rbf(0.1)
+MSE:
+11156.404042957602
+RMSE:
+105.62
+
+Layer: 7
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10857.534578869228
+RMSE:
+104.20
+Testing kernel: tribas
+MSE:
+12761.895584916634
+RMSE:
+112.97
+Testing kernel: hardlim
+MSE:
+11262.843737513713
+RMSE:
+106.13
+Testing kernel: rbf(0.1)
+MSE:
+11151.987400496933
+RMSE:
+105.60
+
+Layer: 8
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12074.978562584396
+RMSE:
+109.89
+Testing kernel: tribas
+MSE:
+12106.07136358668
+RMSE:
+110.03
+Testing kernel: hardlim
+MSE:
+11929.764198656265
+RMSE:
+109.22
+Testing kernel: rbf(0.1)
+MSE:
+10990.547201282558
+RMSE:
+104.84
+
+Layer: 9
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11839.250670698724
+RMSE:
+108.81
+Testing kernel: tribas
+MSE:
+12673.908922010069
+RMSE:
+112.58
+Testing kernel: hardlim
+MSE:
+11793.278364887761
+RMSE:
+108.60
+Testing kernel: rbf(0.1)
+MSE:
+11024.567283278657
+RMSE:
+105.00
+
+Layer: 10
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12117.471329886805
+RMSE:
+110.08
+Testing kernel: tribas
+MSE:
+12358.23291049149
+RMSE:
+111.17
+Testing kernel: hardlim
+MSE:
+12337.369500834575
+RMSE:
+111.07
+Testing kernel: rbf(0.1)
+MSE:
+11014.234043026041
+RMSE:
+104.95
+
+Layer: 11
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11535.815434876038
+RMSE:
+107.40
+Testing kernel: tribas
+MSE:
+12628.410061920444
+RMSE:
+112.38
+Testing kernel: hardlim
+MSE:
+12304.973387586931
+RMSE:
+110.93
+Testing kernel: rbf(0.1)
+MSE:
+10979.809243729214
+RMSE:
+104.78
+
+Layer: 12
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11209.69453025852
+RMSE:
+105.88
+Testing kernel: tribas
+MSE:
+12632.347637711726
+RMSE:
+112.39
+Testing kernel: hardlim
+MSE:
+11558.524099475026
+RMSE:
+107.51
+Testing kernel: rbf(0.1)
+MSE:
+11290.280015248736
+RMSE:
+106.26
+
+Layer: 13
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11729.9696236306
+RMSE:
+108.30
+Testing kernel: tribas
+MSE:
+12532.78098666094
+RMSE:
+111.95
+Testing kernel: hardlim
+MSE:
+12024.413196747973
+RMSE:
+109.66
+Testing kernel: rbf(0.1)
+MSE:
+11305.966773335194
+RMSE:
+106.33
+
+Layer: 14
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11726.407742474095
+RMSE:
+108.29
+Testing kernel: tribas
+MSE:
+12294.729523436885
+RMSE:
+110.88
+Testing kernel: hardlim
+MSE:
+11687.37876155944
+RMSE:
+108.11
+Testing kernel: rbf(0.1)
+MSE:
+11343.104240436747
+RMSE:
+106.50
+
+Layer: 15
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11692.121233393154
+RMSE:
+108.13
+Testing kernel: tribas
+MSE:
+12484.84167757906
+RMSE:
+111.74
+Testing kernel: hardlim
+MSE:
+11621.48619869399
+RMSE:
+107.80
+Testing kernel: rbf(0.1)
+MSE:
+11484.677124155864
+RMSE:
+107.17
+
+Layer: 16
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11861.987088422462
+RMSE:
+108.91
+Testing kernel: tribas
+MSE:
+11726.634188762955
+RMSE:
+108.29
+Testing kernel: hardlim
+MSE:
+12142.813476187106
+RMSE:
+110.19
+Testing kernel: rbf(0.1)
+MSE:
+11468.892285261554
+RMSE:
+107.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10686.850738356357
+RMSE:
+103.38
+Testing kernel: tribas
+MSE:
+11692.706326407379
+RMSE:
+108.13
+Testing kernel: hardlim
+MSE:
+10858.58762730591
+RMSE:
+104.20
+Testing kernel: rbf(0.1)
+MSE:
+11449.801536370955
+RMSE:
+107.00
+
+Layer: 18
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11967.67135340842
+RMSE:
+109.40
+Testing kernel: tribas
+MSE:
+12151.94459751575
+RMSE:
+110.24
+Testing kernel: hardlim
+MSE:
+11878.52917944354
+RMSE:
+108.99
+Testing kernel: rbf(0.1)
+MSE:
+11619.31054850193
+RMSE:
+107.79
+
+Layer: 19
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11581.887568546479
+RMSE:
+107.62
+Testing kernel: tribas
+MSE:
+11778.452353882794
+RMSE:
+108.53
+Testing kernel: hardlim
+MSE:
+11933.372913418136
+RMSE:
+109.24
+Testing kernel: rbf(0.1)
+MSE:
+11608.987118498724
+RMSE:
+107.75
+
+Layer: 20
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tribas
+MSE:
+12450.765363826295
+RMSE:
+111.58
+Testing kernel: hardlim
+MSE:
+11357.863046211109
+RMSE:
+106.57
+Testing kernel: rbf(0.1)
+MSE:
+11396.204050488448
+RMSE:
+106.75
+Optimal model:
+ELMRegressor(hidden_layer=SimpleRandomHiddenLayer(activation_args=None,
+                                                  activation_func='tanh',
+                                                  n_hidden=20, random_state=0),
+             regressor=None)
+bestHiddenLayerCount:
+1
+MSE: 11196.08
+RMSE: 105.81
+"GPS Speed Training"
+"Current memory usage"
+used| 1342000
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1413
+symw| 79949
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 1343408
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1416
+symw| 80038
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 1343408
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1416
+symw| 80038
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[-6.42752502e-02 -7.22119178e-02  1.32870405e-02  5.40988291e-03
+   7.97291942e-02  3.64754426e-02 -1.47490780e-01 -4.27460522e-01
+   8.11124394e-02  2.57889004e-02 -1.29447611e-01  2.14532637e-01
+  -4.42795920e-02  3.79870584e-02 -4.01683411e-01 -4.29270153e-01
+  -4.24760242e-01 -4.22862234e-01]
+ [ 1.91104628e-02  8.77903919e-02  2.05741164e-03  4.42375768e-02
+   4.63262581e-01 -6.67420043e-04 -3.79974107e-01  1.11990915e-01
+   4.60732596e-01 -5.28918783e-03 -4.08076267e-01  3.78103129e-02
+  -4.12352683e-01  1.40129864e-01  1.76143739e-01  5.40333708e-02
+   4.16974294e-02  1.13212712e-01]
+ [-9.75101841e-02 -9.78712559e-02  3.11273996e-02 -4.22878262e-02
+  -1.27037083e-02 -6.59205441e-01 -1.03678994e-01 -3.34504479e-02
+   1.41559564e-03 -6.48085691e-01 -1.06909521e-01 -2.88637194e-01
+   7.74068628e-02 -8.01240992e-02 -3.50719471e-02 -2.99825330e-02
+  -4.45388661e-02 -1.70821886e-02]
+ [ 6.89019564e-01  3.84314405e-01 -5.58710987e-01  9.49086219e-02
+  -3.15009501e-02 -6.78808490e-02 -5.40026636e-02 -4.93989779e-02
+  -3.60541880e-02 -4.09051009e-02 -4.53848694e-02 -7.50461803e-02
+   2.67438740e-02 -1.59722081e-01 -4.21010416e-02 -5.60523622e-02
+  -5.04333338e-02 -3.29102908e-02]
+ [-9.49721538e-02  3.25403205e-01  3.25763195e-01 -1.63095228e-01
+   5.79531602e-02  9.90173948e-02 -3.33750670e-02 -4.69355452e-02
+   4.41296111e-02  1.76704299e-01 -5.58317592e-03 -4.38581138e-01
+  -1.18080036e-01 -6.91613119e-01 -8.89443996e-03 -9.11043907e-02
+  -9.82160432e-02 -6.15998481e-03]
+ [-4.19115797e-02  3.33270736e-01  3.43852319e-01  8.25076757e-01
+  -9.75451388e-02 -4.93698297e-02 -8.24243885e-02  7.02578297e-03
+  -9.30561184e-02 -6.57660475e-02 -8.06819952e-02  1.79358106e-01
+   1.19170295e-01 -3.92942371e-02 -1.01039986e-04 -7.73954531e-03
+   1.39504082e-02  4.15781094e-02]
+ [-1.16235394e-01 -6.26603336e-01 -3.88091631e-01  4.69036607e-01
+   8.24422857e-02  6.98417500e-02 -1.28766700e-02  8.97915471e-03
+   7.79486524e-02  1.23589752e-01  6.53564256e-03 -2.01644236e-01
+  -3.30018295e-02 -3.79412586e-01  2.92485229e-02 -3.16635916e-02
+  -1.78482191e-02  4.53092038e-02]
+ [ 2.18227662e-02 -1.41698933e-01  1.67229651e-02 -2.15392689e-01
+  -1.51513740e-01  3.72885462e-02 -5.28335161e-01  5.22963619e-02
+  -1.57271105e-01  8.83071331e-02 -4.03558873e-01  2.93248191e-01
+   4.48550304e-01 -2.85505047e-01 -8.20390774e-02  1.12918157e-01
+   1.96748480e-01  6.52970340e-02]
+ [ 8.16517421e-02 -5.15067529e-02  4.36684902e-02 -8.94687117e-02
+   1.37082832e-01 -1.82820601e-01  2.18655078e-01  4.46059556e-02
+   1.31251883e-01 -1.75843997e-01  2.55557719e-01  6.99696526e-01
+  -2.01920481e-01 -4.74047795e-01  6.58698668e-02  2.74809216e-02
+  -6.68079692e-03  7.13347097e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009817359210697495
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009860376545156875
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010266821545945604
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009973568277368611
+RMSE:
+0.10
+
+Layer: 2
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010049895538667723
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010045256284363832
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.012666225994392122
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.009228661830307357
+RMSE:
+0.10
+
+Layer: 3
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010763072399006446
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010172165743415543
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010863086991893653
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008994209303193165
+RMSE:
+0.09
+
+Layer: 4
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00932462421820275
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011603666589459764
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.010371249336055701
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008678681728060657
+RMSE:
+0.09
+
+Layer: 5
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00904938631116486
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.00930768877486746
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009735441508695425
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.0074154939928867125
+RMSE:
+0.09
+
+Layer: 6
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012106795825943439
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.01064882872011434
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.013894339829224838
+RMSE:
+0.12
+Testing kernel: rbf(0.1)
+MSE:
+0.007423608251386184
+RMSE:
+0.09
+
+Layer: 7
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012044086301969681
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.010096310238997989
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.01172332204606314
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007926906619353089
+RMSE:
+0.09
+
+Layer: 8
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009142031692665364
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.01042439963602626
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009466967681367141
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007871327647557925
+RMSE:
+0.09
+
+Layer: 9
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010889145383013244
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009304229044016715
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.011379502784500081
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007747710932562004
+RMSE:
+0.09
+
+Layer: 10
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008307045546652306
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010138280845640602
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008350644859552506
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008625134911434554
+RMSE:
+0.09
+
+Layer: 11
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009707237435893879
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011219777073578966
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009417598275501652
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010535105899587227
+RMSE:
+0.10
+
+Layer: 12
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012667199838848881
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.010486737411346718
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010154644461070205
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010345462561096716
+RMSE:
+0.10
+
+Layer: 13
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009950552417123285
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.013672446065641754
+RMSE:
+0.12
+Testing kernel: hardlim
+MSE:
+0.008357632303642433
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.009450622254400931
+RMSE:
+0.10
+
+Layer: 14
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008907969871612386
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.011751723830379963
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008556888245105261
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008207982761942316
+RMSE:
+0.09
+
+Layer: 15
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010772057170337239
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010346139314028188
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.011040466165956142
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007812360570545149
+RMSE:
+0.09
+
+Layer: 16
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00922445964454071
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.012246568724937375
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009050265175334521
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007701802644945091
+RMSE:
+0.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009365750065035391
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011458988709983605
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009365555034363498
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008096524211574325
+RMSE:
+0.09
+
+Layer: 18
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008368397507294602
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.012431677172843178
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008210233182423214
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00843011619964434
+RMSE:
+0.09
+
+Layer: 19
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009788134186939577
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011477909057616047
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009735384686786357
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008840591786386024
+RMSE:
+0.09
+
+Layer: 20
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.0114675290199904
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009384716678555201
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010417693848452562
+RMSE:
+0.10
+Optimal model:
+ELMRegressor(hidden_layer=RBFRandomHiddenLayer(activation_args=None,
+                                               activation_func='gaussian',
+                                               centers=None, gamma=0.1,
+                                               n_hidden=10, radii=None,
+                                               random_state=0,
+                                               use_exemplars=False),
+             regressor=None)
+bestHiddenLayerCount:
+5
+MSE: 0.01
+RMSE: 0.09
+"LiPo Voltage Training"
+"Current memory usage"
+used| 1343360
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 1343536
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 1343536
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Testing GPS Speed using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+21087 4241776
+"First GPS speed prediction"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex', 'inputPDF', 'sys', 'fileName', 'trainingSetName', 'comments', 'mse', 'strFloat', 'csvTrainingData', 'trainingDataPDFNotFound', 'trainingDataPDF', 'trainPercentage', 'trainingDataTrain', 'lowThrottle', 'highThrottle', 'throttleSteps', 'steps', 'throttleInputRange', 'tempPDF', 'x', 'y', 'inputPDFStandardScalar', 'tempInputPDF', 'modelSave', 'model', 'usePCA', 'yStandardScalar', 'pcaModel', 'gpsSpeedPrediction', 'gpsPredictionPDF', 'throttleInputSequence', 'synthesizedSampleIndexRef'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 6843024
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80984
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 6843024
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80984
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+22551 4241344
+"First LiPo Voltage Prediction"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex', 'inputPDF', 'sys', 'fileName', 'trainingSetName', 'comments', 'mse', 'strFloat', 'csvTrainingData', 'trainingDataPDFNotFound', 'trainingDataPDF', 'trainPercentage', 'trainingDataTrain', 'lowThrottle', 'highThrottle', 'throttleSteps', 'steps', 'throttleInputRange', 'tempPDF', 'x', 'y', 'inputPDFStandardScalar', 'tempInputPDF', 'modelSave', 'model', 'usePCA', 'yStandardScalar', 'pcaModel', 'gpsSpeedPrediction', 'gpsPredictionPDF', 'throttleInputSequence', 'synthesizedSampleIndexRef', 'LiPoPrediction', 'LiPoPredictionPDF'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 12348768
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1440
+symw| 81147
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 12348768
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1440
+symw| 81147
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and t..
+"Generating timestep sample 2"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+152584 4241776
+"Synthesize GPS speed"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex', 'inputPDF', 'sys', 'fileName', 'trainingSetName', 'comments', 'mse', 'strFloat', 'csvTrainingData', 'trainingDataPDFNotFound', 'trainingDataPDF', 'trainPercentage', 'trainingDataTrain', 'lowThrottle', 'highThrottle', 'throttleSteps', 'steps', 'throttleInputRange', 'tempPDF', 'x', 'y', 'inputPDFStandardScalar', 'tempInputPDF', 'modelSave', 'model', 'usePCA', 'yStandardScalar', 'pcaModel', 'gpsSpeedPrediction', 'gpsPredictionPDF', 'throttleInputSequence', 'synthesizedSampleIndexRef', 'LiPoPrediction', 'LiPoPredictionPDF', 'syntheticSampleTimeDelta'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 25542976
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1455
+symw| 81851
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 25542976
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1455
+symw| 81851
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+'stop
+  [15] /Users/foorx/anaconda3/q/p.q:38: .p.wfunc:{[f;x]r:wrap f x 0;$[count x:1_x;.[;x];]r}
+                                                              ^
+q.p))\\
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using TensorFlow backend.
+"Enabling immediate mode for Garbage Collection"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[ 5.27553694e-02 -1.20308989e-02 -1.00388481e-03 -6.49056537e-02
+  -3.78870709e-02  1.30318813e-01  4.17927770e-01 -2.57898103e-01
+  -6.61420894e-02 -2.78750065e-02  1.12331551e-01 -1.99629051e-01
+   3.76117189e-02 -2.50787305e-02  3.94488944e-01  4.19371652e-01
+   4.14718178e-01  4.12448922e-01]
+ [ 3.65593242e-03  4.14678247e-03  4.42154417e-02  4.67189673e-01
+  -2.29939709e-03 -3.86057784e-01  9.69767804e-02 -5.27593261e-02
+   4.64908722e-01 -7.58497046e-03 -4.13401606e-01  4.80809918e-02
+  -4.11874364e-01  1.46446048e-01  1.61666250e-01  3.95107110e-02
+   2.73869342e-02  9.78259947e-02]
+ [-4.39263086e-02  4.09163966e-03 -3.63903461e-02 -1.97235126e-02
+  -6.63063416e-01 -1.05130485e-01 -4.06855409e-02  4.71514642e-03
+  -6.02650000e-03 -6.49992884e-01 -1.07661588e-01 -2.95809042e-01
+   8.08330921e-02 -9.71501417e-02 -4.15169492e-02 -3.76732238e-02
+  -5.20363174e-02 -2.26602221e-02]
+ [-6.95889443e-01  6.96107043e-01 -1.02920972e-01  5.77600948e-03
+   1.33370910e-02  4.95770432e-02  2.12039751e-02 -2.67075946e-02
+   1.08930959e-02 -1.21889250e-02  4.12957510e-02  3.63415358e-02
+  -1.49335239e-02  1.08432417e-01  1.73764749e-02  2.71777982e-02
+   1.83286262e-02  9.88560302e-03]
+ [ 2.86259675e-02 -6.39462203e-02  2.88021767e-01 -1.05492136e-01
+  -1.18145860e-01 -1.72455096e-02 -1.06940307e-03 -3.08095354e-01
+  -9.08454872e-02 -1.98502206e-01 -3.76609304e-02  5.08942144e-01
+   1.85435851e-01  6.63782431e-01 -4.00184838e-02  4.80340320e-02
+   5.91798766e-02 -3.64075266e-02]
+ [-6.91949645e-02  1.39340591e-01  8.77575199e-01 -3.43175506e-02
+   2.05362465e-02 -1.15317512e-01 -8.63117758e-03 -8.77968111e-02
+  -3.67503611e-02  5.57553403e-02 -9.09640977e-02 -2.83782118e-02
+   8.29308423e-02 -3.97040636e-01 -1.49301090e-04 -4.74245087e-02
+  -2.01043111e-02  4.76085218e-02]
+ [ 4.86574703e-02  9.17492430e-02 -3.41692990e-01 -1.25291488e-01
+   4.75418060e-02 -4.75790643e-01 -1.11348427e-02 -3.61044576e-01
+  -1.33371438e-01  1.07363659e-01 -3.61350516e-01  2.09319517e-01
+   3.94256132e-01 -3.33872069e-01 -1.12654903e-01  4.54095771e-02
+   1.10744980e-01 -4.30399009e-03]
+ [ 1.50744864e-01  1.77660490e-01  4.15209464e-02 -1.20248967e-01
+  -3.08076770e-02 -1.94107094e-01  1.31683475e-01  8.13504246e-01
+  -1.19087648e-01 -5.76161896e-02 -1.60165600e-01  2.52771422e-01
+   1.32024546e-01  4.95403449e-02  3.65222789e-02  1.49990280e-01
+   1.96207218e-01  1.50038983e-01]
+ [ 2.37632547e-01  2.11370593e-01 -9.52643688e-02  1.30076146e-01
+  -1.77586396e-01  2.43969132e-01  2.18254967e-02 -9.55915839e-02
+   1.22919762e-01 -1.75670726e-01  2.61564155e-01  6.38515229e-01
+  -2.36041061e-01 -4.31982581e-01  6.26035129e-02  1.18210996e-03
+  -4.35023763e-02  4.42923134e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12306.327079968865
+RMSE:
+110.93
+Testing kernel: tribas
+MSE:
+12478.991666124
+RMSE:
+111.71
+Testing kernel: hardlim
+MSE:
+12413.251048288012
+RMSE:
+111.41
+Testing kernel: rbf(0.1)
+MSE:
+12410.735609093254
+RMSE:
+111.40
+
+Layer: 2
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12957.025740264162
+RMSE:
+113.83
+Testing kernel: tribas
+MSE:
+12046.130808454018
+RMSE:
+109.75
+Testing kernel: hardlim
+MSE:
+13169.499848444922
+RMSE:
+114.76
+Testing kernel: rbf(0.1)
+MSE:
+11988.324763557608
+RMSE:
+109.49
+
+Layer: 3
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12565.517400807084
+RMSE:
+112.10
+Testing kernel: tribas
+MSE:
+12398.289841372814
+RMSE:
+111.35
+Testing kernel: hardlim
+MSE:
+12707.007842275123
+RMSE:
+112.73
+Testing kernel: rbf(0.1)
+MSE:
+11638.348259173023
+RMSE:
+107.88
+
+Layer: 4
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12876.719062562837
+RMSE:
+113.48
+Testing kernel: tribas
+MSE:
+11325.034027249541
+RMSE:
+106.42
+Testing kernel: hardlim
+MSE:
+12341.926320464008
+RMSE:
+111.09
+Testing kernel: rbf(0.1)
+MSE:
+11302.55506216164
+RMSE:
+106.31
+
+Layer: 5
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11975.228446390278
+RMSE:
+109.43
+Testing kernel: tribas
+MSE:
+12169.150804889674
+RMSE:
+110.31
+Testing kernel: hardlim
+MSE:
+12018.146442449108
+RMSE:
+109.63
+Testing kernel: rbf(0.1)
+MSE:
+11231.195318060338
+RMSE:
+105.98
+
+Layer: 6
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12349.343727057292
+RMSE:
+111.13
+Testing kernel: tribas
+MSE:
+12626.62856798159
+RMSE:
+112.37
+Testing kernel: hardlim
+MSE:
+12201.367035883504
+RMSE:
+110.46
+Testing kernel: rbf(0.1)
+MSE:
+11156.404042957602
+RMSE:
+105.62
+
+Layer: 7
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10857.534578869228
+RMSE:
+104.20
+Testing kernel: tribas
+MSE:
+12761.895584916634
+RMSE:
+112.97
+Testing kernel: hardlim
+MSE:
+11262.843737513713
+RMSE:
+106.13
+Testing kernel: rbf(0.1)
+MSE:
+11151.987400496933
+RMSE:
+105.60
+
+Layer: 8
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12074.978562584396
+RMSE:
+109.89
+Testing kernel: tribas
+MSE:
+12106.07136358668
+RMSE:
+110.03
+Testing kernel: hardlim
+MSE:
+11929.764198656265
+RMSE:
+109.22
+Testing kernel: rbf(0.1)
+MSE:
+10990.547201282558
+RMSE:
+104.84
+
+Layer: 9
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11839.250670698724
+RMSE:
+108.81
+Testing kernel: tribas
+MSE:
+12673.908922010069
+RMSE:
+112.58
+Testing kernel: hardlim
+MSE:
+11793.278364887761
+RMSE:
+108.60
+Testing kernel: rbf(0.1)
+MSE:
+11024.567283278657
+RMSE:
+105.00
+
+Layer: 10
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12117.471329886805
+RMSE:
+110.08
+Testing kernel: tribas
+MSE:
+12358.23291049149
+RMSE:
+111.17
+Testing kernel: hardlim
+MSE:
+12337.369500834575
+RMSE:
+111.07
+Testing kernel: rbf(0.1)
+MSE:
+11014.234043026041
+RMSE:
+104.95
+
+Layer: 11
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11535.815434876038
+RMSE:
+107.40
+Testing kernel: tribas
+MSE:
+12628.410061920444
+RMSE:
+112.38
+Testing kernel: hardlim
+MSE:
+12304.973387586931
+RMSE:
+110.93
+Testing kernel: rbf(0.1)
+MSE:
+10979.809243729214
+RMSE:
+104.78
+
+Layer: 12
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11209.69453025852
+RMSE:
+105.88
+Testing kernel: tribas
+MSE:
+12632.347637711726
+RMSE:
+112.39
+Testing kernel: hardlim
+MSE:
+11558.524099475026
+RMSE:
+107.51
+Testing kernel: rbf(0.1)
+MSE:
+11290.280015248736
+RMSE:
+106.26
+
+Layer: 13
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11729.9696236306
+RMSE:
+108.30
+Testing kernel: tribas
+MSE:
+12532.78098666094
+RMSE:
+111.95
+Testing kernel: hardlim
+MSE:
+12024.413196747973
+RMSE:
+109.66
+Testing kernel: rbf(0.1)
+MSE:
+11305.966773335194
+RMSE:
+106.33
+
+Layer: 14
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11726.407742474095
+RMSE:
+108.29
+Testing kernel: tribas
+MSE:
+12294.729523436885
+RMSE:
+110.88
+Testing kernel: hardlim
+MSE:
+11687.37876155944
+RMSE:
+108.11
+Testing kernel: rbf(0.1)
+MSE:
+11343.104240436747
+RMSE:
+106.50
+
+Layer: 15
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11692.121233393154
+RMSE:
+108.13
+Testing kernel: tribas
+MSE:
+12484.84167757906
+RMSE:
+111.74
+Testing kernel: hardlim
+MSE:
+11621.48619869399
+RMSE:
+107.80
+Testing kernel: rbf(0.1)
+MSE:
+11484.677124155864
+RMSE:
+107.17
+
+Layer: 16
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11861.987088422462
+RMSE:
+108.91
+Testing kernel: tribas
+MSE:
+11726.634188762955
+RMSE:
+108.29
+Testing kernel: hardlim
+MSE:
+12142.813476187106
+RMSE:
+110.19
+Testing kernel: rbf(0.1)
+MSE:
+11468.892285261554
+RMSE:
+107.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10686.850738356357
+RMSE:
+103.38
+Testing kernel: tribas
+MSE:
+11692.706326407379
+RMSE:
+108.13
+Testing kernel: hardlim
+MSE:
+10858.58762730591
+RMSE:
+104.20
+Testing kernel: rbf(0.1)
+MSE:
+11449.801536370955
+RMSE:
+107.00
+
+Layer: 18
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11967.67135340842
+RMSE:
+109.40
+Testing kernel: tribas
+MSE:
+12151.94459751575
+RMSE:
+110.24
+Testing kernel: hardlim
+MSE:
+11878.52917944354
+RMSE:
+108.99
+Testing kernel: rbf(0.1)
+MSE:
+11619.31054850193
+RMSE:
+107.79
+
+Layer: 19
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11581.887568546479
+RMSE:
+107.62
+Testing kernel: tribas
+MSE:
+11778.452353882794
+RMSE:
+108.53
+Testing kernel: hardlim
+MSE:
+11933.372913418136
+RMSE:
+109.24
+Testing kernel: rbf(0.1)
+MSE:
+11608.987118498724
+RMSE:
+107.75
+
+Layer: 20
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tribas
+MSE:
+12450.765363826295
+RMSE:
+111.58
+Testing kernel: hardlim
+MSE:
+11357.863046211109
+RMSE:
+106.57
+Testing kernel: rbf(0.1)
+MSE:
+11396.204050488448
+RMSE:
+106.75
+Optimal model:
+ELMRegressor(hidden_layer=SimpleRandomHiddenLayer(activation_args=None,
+                                                  activation_func='tanh',
+                                                  n_hidden=20, random_state=0),
+             regressor=None)
+bestHiddenLayerCount:
+1
+MSE: 11196.08
+RMSE: 105.81
+"GPS Speed Training"
+"Current memory usage"
+used| 1342000
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1413
+symw| 79949
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 1343408
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1416
+symw| 80038
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 1343408
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1416
+symw| 80038
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[-6.42752502e-02 -7.22119178e-02  1.32870405e-02  5.40988291e-03
+   7.97291942e-02  3.64754426e-02 -1.47490780e-01 -4.27460522e-01
+   8.11124394e-02  2.57889004e-02 -1.29447611e-01  2.14532637e-01
+  -4.42795920e-02  3.79870584e-02 -4.01683411e-01 -4.29270153e-01
+  -4.24760242e-01 -4.22862234e-01]
+ [ 1.91104628e-02  8.77903919e-02  2.05741164e-03  4.42375768e-02
+   4.63262581e-01 -6.67420043e-04 -3.79974107e-01  1.11990915e-01
+   4.60732596e-01 -5.28918783e-03 -4.08076267e-01  3.78103129e-02
+  -4.12352683e-01  1.40129864e-01  1.76143739e-01  5.40333708e-02
+   4.16974294e-02  1.13212712e-01]
+ [-9.75101841e-02 -9.78712559e-02  3.11273996e-02 -4.22878262e-02
+  -1.27037083e-02 -6.59205441e-01 -1.03678994e-01 -3.34504479e-02
+   1.41559564e-03 -6.48085691e-01 -1.06909521e-01 -2.88637194e-01
+   7.74068628e-02 -8.01240992e-02 -3.50719471e-02 -2.99825330e-02
+  -4.45388661e-02 -1.70821886e-02]
+ [ 6.89019564e-01  3.84314405e-01 -5.58710987e-01  9.49086219e-02
+  -3.15009501e-02 -6.78808490e-02 -5.40026636e-02 -4.93989779e-02
+  -3.60541880e-02 -4.09051009e-02 -4.53848694e-02 -7.50461803e-02
+   2.67438740e-02 -1.59722081e-01 -4.21010416e-02 -5.60523622e-02
+  -5.04333338e-02 -3.29102908e-02]
+ [-9.49721538e-02  3.25403205e-01  3.25763195e-01 -1.63095228e-01
+   5.79531602e-02  9.90173948e-02 -3.33750670e-02 -4.69355452e-02
+   4.41296111e-02  1.76704299e-01 -5.58317592e-03 -4.38581138e-01
+  -1.18080036e-01 -6.91613119e-01 -8.89443996e-03 -9.11043907e-02
+  -9.82160432e-02 -6.15998481e-03]
+ [-4.19115797e-02  3.33270736e-01  3.43852319e-01  8.25076757e-01
+  -9.75451388e-02 -4.93698297e-02 -8.24243885e-02  7.02578297e-03
+  -9.30561184e-02 -6.57660475e-02 -8.06819952e-02  1.79358106e-01
+   1.19170295e-01 -3.92942371e-02 -1.01039986e-04 -7.73954531e-03
+   1.39504082e-02  4.15781094e-02]
+ [-1.16235394e-01 -6.26603336e-01 -3.88091631e-01  4.69036607e-01
+   8.24422857e-02  6.98417500e-02 -1.28766700e-02  8.97915471e-03
+   7.79486524e-02  1.23589752e-01  6.53564256e-03 -2.01644236e-01
+  -3.30018295e-02 -3.79412586e-01  2.92485229e-02 -3.16635916e-02
+  -1.78482191e-02  4.53092038e-02]
+ [ 2.18227662e-02 -1.41698933e-01  1.67229651e-02 -2.15392689e-01
+  -1.51513740e-01  3.72885462e-02 -5.28335161e-01  5.22963619e-02
+  -1.57271105e-01  8.83071331e-02 -4.03558873e-01  2.93248191e-01
+   4.48550304e-01 -2.85505047e-01 -8.20390774e-02  1.12918157e-01
+   1.96748480e-01  6.52970340e-02]
+ [ 8.16517421e-02 -5.15067529e-02  4.36684902e-02 -8.94687117e-02
+   1.37082832e-01 -1.82820601e-01  2.18655078e-01  4.46059556e-02
+   1.31251883e-01 -1.75843997e-01  2.55557719e-01  6.99696526e-01
+  -2.01920481e-01 -4.74047795e-01  6.58698668e-02  2.74809216e-02
+  -6.68079692e-03  7.13347097e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009817359210697495
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009860376545156875
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010266821545945604
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009973568277368611
+RMSE:
+0.10
+
+Layer: 2
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010049895538667723
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010045256284363832
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.012666225994392122
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.009228661830307357
+RMSE:
+0.10
+
+Layer: 3
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010763072399006446
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010172165743415543
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010863086991893653
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008994209303193165
+RMSE:
+0.09
+
+Layer: 4
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00932462421820275
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011603666589459764
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.010371249336055701
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008678681728060657
+RMSE:
+0.09
+
+Layer: 5
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00904938631116486
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.00930768877486746
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009735441508695425
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.0074154939928867125
+RMSE:
+0.09
+
+Layer: 6
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012106795825943439
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.01064882872011434
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.013894339829224838
+RMSE:
+0.12
+Testing kernel: rbf(0.1)
+MSE:
+0.007423608251386184
+RMSE:
+0.09
+
+Layer: 7
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012044086301969681
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.010096310238997989
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.01172332204606314
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007926906619353089
+RMSE:
+0.09
+
+Layer: 8
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009142031692665364
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.01042439963602626
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009466967681367141
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007871327647557925
+RMSE:
+0.09
+
+Layer: 9
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010889145383013244
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009304229044016715
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.011379502784500081
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007747710932562004
+RMSE:
+0.09
+
+Layer: 10
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008307045546652306
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010138280845640602
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008350644859552506
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008625134911434554
+RMSE:
+0.09
+
+Layer: 11
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009707237435893879
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011219777073578966
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009417598275501652
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010535105899587227
+RMSE:
+0.10
+
+Layer: 12
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012667199838848881
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.010486737411346718
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010154644461070205
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010345462561096716
+RMSE:
+0.10
+
+Layer: 13
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009950552417123285
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.013672446065641754
+RMSE:
+0.12
+Testing kernel: hardlim
+MSE:
+0.008357632303642433
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.009450622254400931
+RMSE:
+0.10
+
+Layer: 14
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008907969871612386
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.011751723830379963
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008556888245105261
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008207982761942316
+RMSE:
+0.09
+
+Layer: 15
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010772057170337239
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010346139314028188
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.011040466165956142
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007812360570545149
+RMSE:
+0.09
+
+Layer: 16
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00922445964454071
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.012246568724937375
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009050265175334521
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007701802644945091
+RMSE:
+0.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009365750065035391
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011458988709983605
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009365555034363498
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008096524211574325
+RMSE:
+0.09
+
+Layer: 18
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008368397507294602
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.012431677172843178
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008210233182423214
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00843011619964434
+RMSE:
+0.09
+
+Layer: 19
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009788134186939577
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011477909057616047
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009735384686786357
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008840591786386024
+RMSE:
+0.09
+
+Layer: 20
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.0114675290199904
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009384716678555201
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010417693848452562
+RMSE:
+0.10
+Optimal model:
+ELMRegressor(hidden_layer=RBFRandomHiddenLayer(activation_args=None,
+                                               activation_func='gaussian',
+                                               centers=None, gamma=0.1,
+                                               n_hidden=10, radii=None,
+                                               random_state=0,
+                                               use_exemplars=False),
+             regressor=None)
+bestHiddenLayerCount:
+5
+MSE: 0.01
+RMSE: 0.09
+"LiPo Voltage Training"
+"Current memory usage"
+used| 1343360
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 1343536
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 1343536
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Testing GPS Speed using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+22341 4241776
+"First GPS speed prediction"
+"Current memory usage"
+used| 6848112
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80994
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 6848288
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80994
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 6848288
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80994
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Testing LiPo Voltage using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+26907 4241344
+"First LiPo Voltage Prediction"
+"Current memory usage"
+used| 12353776
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1441
+symw| 81245
+"***************Running Python Garbage Collector***************"
+'e: 'gpsSpeedPrediction'
+  [7]  /Users/foorx/anaconda3/q/p.q:13: .p.e:{$["def"~3#x;$[x[3]in"<*>";ei 3;eo];"class"~5#x;$[x[5]in"*>";ei 5;eo];eo]x}
+                                              ^
+q.p))\\
+(base) Ren-Xiangs-MBP-2017:OHR400Dashboard foorx$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+m64/ 4()core 16384MB foorx ren-xiangs-mbp-2017.local 127.0.0.1 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+'-c
+Using TensorFlow backend.
+"Enabling immediate mode for Garbage Collection"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[ 5.27553694e-02 -1.20308989e-02 -1.00388481e-03 -6.49056537e-02
+  -3.78870709e-02  1.30318813e-01  4.17927770e-01 -2.57898103e-01
+  -6.61420894e-02 -2.78750065e-02  1.12331551e-01 -1.99629051e-01
+   3.76117189e-02 -2.50787305e-02  3.94488944e-01  4.19371652e-01
+   4.14718178e-01  4.12448922e-01]
+ [ 3.65593242e-03  4.14678247e-03  4.42154417e-02  4.67189673e-01
+  -2.29939709e-03 -3.86057784e-01  9.69767804e-02 -5.27593261e-02
+   4.64908722e-01 -7.58497046e-03 -4.13401606e-01  4.80809918e-02
+  -4.11874364e-01  1.46446048e-01  1.61666250e-01  3.95107110e-02
+   2.73869342e-02  9.78259947e-02]
+ [-4.39263086e-02  4.09163966e-03 -3.63903461e-02 -1.97235126e-02
+  -6.63063416e-01 -1.05130485e-01 -4.06855409e-02  4.71514642e-03
+  -6.02650000e-03 -6.49992884e-01 -1.07661588e-01 -2.95809042e-01
+   8.08330921e-02 -9.71501417e-02 -4.15169492e-02 -3.76732238e-02
+  -5.20363174e-02 -2.26602221e-02]
+ [-6.95889443e-01  6.96107043e-01 -1.02920972e-01  5.77600948e-03
+   1.33370910e-02  4.95770432e-02  2.12039751e-02 -2.67075946e-02
+   1.08930959e-02 -1.21889250e-02  4.12957510e-02  3.63415358e-02
+  -1.49335239e-02  1.08432417e-01  1.73764749e-02  2.71777982e-02
+   1.83286262e-02  9.88560302e-03]
+ [ 2.86259675e-02 -6.39462203e-02  2.88021767e-01 -1.05492136e-01
+  -1.18145860e-01 -1.72455096e-02 -1.06940307e-03 -3.08095354e-01
+  -9.08454872e-02 -1.98502206e-01 -3.76609304e-02  5.08942144e-01
+   1.85435851e-01  6.63782431e-01 -4.00184838e-02  4.80340320e-02
+   5.91798766e-02 -3.64075266e-02]
+ [-6.91949645e-02  1.39340591e-01  8.77575199e-01 -3.43175506e-02
+   2.05362465e-02 -1.15317512e-01 -8.63117758e-03 -8.77968111e-02
+  -3.67503611e-02  5.57553403e-02 -9.09640977e-02 -2.83782118e-02
+   8.29308423e-02 -3.97040636e-01 -1.49301090e-04 -4.74245087e-02
+  -2.01043111e-02  4.76085218e-02]
+ [ 4.86574703e-02  9.17492430e-02 -3.41692990e-01 -1.25291488e-01
+   4.75418060e-02 -4.75790643e-01 -1.11348427e-02 -3.61044576e-01
+  -1.33371438e-01  1.07363659e-01 -3.61350516e-01  2.09319517e-01
+   3.94256132e-01 -3.33872069e-01 -1.12654903e-01  4.54095771e-02
+   1.10744980e-01 -4.30399009e-03]
+ [ 1.50744864e-01  1.77660490e-01  4.15209464e-02 -1.20248967e-01
+  -3.08076770e-02 -1.94107094e-01  1.31683475e-01  8.13504246e-01
+  -1.19087648e-01 -5.76161896e-02 -1.60165600e-01  2.52771422e-01
+   1.32024546e-01  4.95403449e-02  3.65222789e-02  1.49990280e-01
+   1.96207218e-01  1.50038983e-01]
+ [ 2.37632547e-01  2.11370593e-01 -9.52643688e-02  1.30076146e-01
+  -1.77586396e-01  2.43969132e-01  2.18254967e-02 -9.55915839e-02
+   1.22919762e-01 -1.75670726e-01  2.61564155e-01  6.38515229e-01
+  -2.36041061e-01 -4.31982581e-01  6.26035129e-02  1.18210996e-03
+  -4.35023763e-02  4.42923134e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12306.327079968865
+RMSE:
+110.93
+Testing kernel: tribas
+MSE:
+12478.991666124
+RMSE:
+111.71
+Testing kernel: hardlim
+MSE:
+12413.251048288012
+RMSE:
+111.41
+Testing kernel: rbf(0.1)
+MSE:
+12410.735609093254
+RMSE:
+111.40
+
+Layer: 2
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12957.025740264162
+RMSE:
+113.83
+Testing kernel: tribas
+MSE:
+12046.130808454018
+RMSE:
+109.75
+Testing kernel: hardlim
+MSE:
+13169.499848444922
+RMSE:
+114.76
+Testing kernel: rbf(0.1)
+MSE:
+11988.324763557608
+RMSE:
+109.49
+
+Layer: 3
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12565.517400807084
+RMSE:
+112.10
+Testing kernel: tribas
+MSE:
+12398.289841372814
+RMSE:
+111.35
+Testing kernel: hardlim
+MSE:
+12707.007842275123
+RMSE:
+112.73
+Testing kernel: rbf(0.1)
+MSE:
+11638.348259173023
+RMSE:
+107.88
+
+Layer: 4
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12876.719062562837
+RMSE:
+113.48
+Testing kernel: tribas
+MSE:
+11325.034027249541
+RMSE:
+106.42
+Testing kernel: hardlim
+MSE:
+12341.926320464008
+RMSE:
+111.09
+Testing kernel: rbf(0.1)
+MSE:
+11302.55506216164
+RMSE:
+106.31
+
+Layer: 5
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11975.228446390278
+RMSE:
+109.43
+Testing kernel: tribas
+MSE:
+12169.150804889674
+RMSE:
+110.31
+Testing kernel: hardlim
+MSE:
+12018.146442449108
+RMSE:
+109.63
+Testing kernel: rbf(0.1)
+MSE:
+11231.195318060338
+RMSE:
+105.98
+
+Layer: 6
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12349.343727057292
+RMSE:
+111.13
+Testing kernel: tribas
+MSE:
+12626.62856798159
+RMSE:
+112.37
+Testing kernel: hardlim
+MSE:
+12201.367035883504
+RMSE:
+110.46
+Testing kernel: rbf(0.1)
+MSE:
+11156.404042957602
+RMSE:
+105.62
+
+Layer: 7
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10857.534578869228
+RMSE:
+104.20
+Testing kernel: tribas
+MSE:
+12761.895584916634
+RMSE:
+112.97
+Testing kernel: hardlim
+MSE:
+11262.843737513713
+RMSE:
+106.13
+Testing kernel: rbf(0.1)
+MSE:
+11151.987400496933
+RMSE:
+105.60
+
+Layer: 8
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12074.978562584396
+RMSE:
+109.89
+Testing kernel: tribas
+MSE:
+12106.07136358668
+RMSE:
+110.03
+Testing kernel: hardlim
+MSE:
+11929.764198656265
+RMSE:
+109.22
+Testing kernel: rbf(0.1)
+MSE:
+10990.547201282558
+RMSE:
+104.84
+
+Layer: 9
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11839.250670698724
+RMSE:
+108.81
+Testing kernel: tribas
+MSE:
+12673.908922010069
+RMSE:
+112.58
+Testing kernel: hardlim
+MSE:
+11793.278364887761
+RMSE:
+108.60
+Testing kernel: rbf(0.1)
+MSE:
+11024.567283278657
+RMSE:
+105.00
+
+Layer: 10
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12117.471329886805
+RMSE:
+110.08
+Testing kernel: tribas
+MSE:
+12358.23291049149
+RMSE:
+111.17
+Testing kernel: hardlim
+MSE:
+12337.369500834575
+RMSE:
+111.07
+Testing kernel: rbf(0.1)
+MSE:
+11014.234043026041
+RMSE:
+104.95
+
+Layer: 11
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11535.815434876038
+RMSE:
+107.40
+Testing kernel: tribas
+MSE:
+12628.410061920444
+RMSE:
+112.38
+Testing kernel: hardlim
+MSE:
+12304.973387586931
+RMSE:
+110.93
+Testing kernel: rbf(0.1)
+MSE:
+10979.809243729214
+RMSE:
+104.78
+
+Layer: 12
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11209.69453025852
+RMSE:
+105.88
+Testing kernel: tribas
+MSE:
+12632.347637711726
+RMSE:
+112.39
+Testing kernel: hardlim
+MSE:
+11558.524099475026
+RMSE:
+107.51
+Testing kernel: rbf(0.1)
+MSE:
+11290.280015248736
+RMSE:
+106.26
+
+Layer: 13
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11729.9696236306
+RMSE:
+108.30
+Testing kernel: tribas
+MSE:
+12532.78098666094
+RMSE:
+111.95
+Testing kernel: hardlim
+MSE:
+12024.413196747973
+RMSE:
+109.66
+Testing kernel: rbf(0.1)
+MSE:
+11305.966773335194
+RMSE:
+106.33
+
+Layer: 14
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11726.407742474095
+RMSE:
+108.29
+Testing kernel: tribas
+MSE:
+12294.729523436885
+RMSE:
+110.88
+Testing kernel: hardlim
+MSE:
+11687.37876155944
+RMSE:
+108.11
+Testing kernel: rbf(0.1)
+MSE:
+11343.104240436747
+RMSE:
+106.50
+
+Layer: 15
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11692.121233393154
+RMSE:
+108.13
+Testing kernel: tribas
+MSE:
+12484.84167757906
+RMSE:
+111.74
+Testing kernel: hardlim
+MSE:
+11621.48619869399
+RMSE:
+107.80
+Testing kernel: rbf(0.1)
+MSE:
+11484.677124155864
+RMSE:
+107.17
+
+Layer: 16
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11861.987088422462
+RMSE:
+108.91
+Testing kernel: tribas
+MSE:
+11726.634188762955
+RMSE:
+108.29
+Testing kernel: hardlim
+MSE:
+12142.813476187106
+RMSE:
+110.19
+Testing kernel: rbf(0.1)
+MSE:
+11468.892285261554
+RMSE:
+107.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10686.850738356357
+RMSE:
+103.38
+Testing kernel: tribas
+MSE:
+11692.706326407379
+RMSE:
+108.13
+Testing kernel: hardlim
+MSE:
+10858.58762730591
+RMSE:
+104.20
+Testing kernel: rbf(0.1)
+MSE:
+11449.801536370955
+RMSE:
+107.00
+
+Layer: 18
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11967.67135340842
+RMSE:
+109.40
+Testing kernel: tribas
+MSE:
+12151.94459751575
+RMSE:
+110.24
+Testing kernel: hardlim
+MSE:
+11878.52917944354
+RMSE:
+108.99
+Testing kernel: rbf(0.1)
+MSE:
+11619.31054850193
+RMSE:
+107.79
+
+Layer: 19
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11581.887568546479
+RMSE:
+107.62
+Testing kernel: tribas
+MSE:
+11778.452353882794
+RMSE:
+108.53
+Testing kernel: hardlim
+MSE:
+11933.372913418136
+RMSE:
+109.24
+Testing kernel: rbf(0.1)
+MSE:
+11608.987118498724
+RMSE:
+107.75
+
+Layer: 20
+Testing kernel: default
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11196.081015250362
+RMSE:
+105.81
+Testing kernel: tribas
+MSE:
+12450.765363826295
+RMSE:
+111.58
+Testing kernel: hardlim
+MSE:
+11357.863046211109
+RMSE:
+106.57
+Testing kernel: rbf(0.1)
+MSE:
+11396.204050488448
+RMSE:
+106.75
+Optimal model:
+ELMRegressor(hidden_layer=SimpleRandomHiddenLayer(activation_args=None,
+                                                  activation_func='tanh',
+                                                  n_hidden=20, random_state=0),
+             regressor=None)
+bestHiddenLayerCount:
+1
+MSE: 11196.08
+RMSE: 105.81
+"GPS Speed Training"
+"Current memory usage"
+used| 1342304
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1413
+symw| 79949
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 1343856
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1416
+symw| 80038
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 1343856
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1416
+symw| 80038
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[-6.42752502e-02 -7.22119178e-02  1.32870405e-02  5.40988291e-03
+   7.97291942e-02  3.64754426e-02 -1.47490780e-01 -4.27460522e-01
+   8.11124394e-02  2.57889004e-02 -1.29447611e-01  2.14532637e-01
+  -4.42795920e-02  3.79870584e-02 -4.01683411e-01 -4.29270153e-01
+  -4.24760242e-01 -4.22862234e-01]
+ [ 1.91104628e-02  8.77903919e-02  2.05741164e-03  4.42375768e-02
+   4.63262581e-01 -6.67420043e-04 -3.79974107e-01  1.11990915e-01
+   4.60732596e-01 -5.28918783e-03 -4.08076267e-01  3.78103129e-02
+  -4.12352683e-01  1.40129864e-01  1.76143739e-01  5.40333708e-02
+   4.16974294e-02  1.13212712e-01]
+ [-9.75101841e-02 -9.78712559e-02  3.11273996e-02 -4.22878262e-02
+  -1.27037083e-02 -6.59205441e-01 -1.03678994e-01 -3.34504479e-02
+   1.41559564e-03 -6.48085691e-01 -1.06909521e-01 -2.88637194e-01
+   7.74068628e-02 -8.01240992e-02 -3.50719471e-02 -2.99825330e-02
+  -4.45388661e-02 -1.70821886e-02]
+ [ 6.89019564e-01  3.84314405e-01 -5.58710987e-01  9.49086219e-02
+  -3.15009501e-02 -6.78808490e-02 -5.40026636e-02 -4.93989779e-02
+  -3.60541880e-02 -4.09051009e-02 -4.53848694e-02 -7.50461803e-02
+   2.67438740e-02 -1.59722081e-01 -4.21010416e-02 -5.60523622e-02
+  -5.04333338e-02 -3.29102908e-02]
+ [-9.49721538e-02  3.25403205e-01  3.25763195e-01 -1.63095228e-01
+   5.79531602e-02  9.90173948e-02 -3.33750670e-02 -4.69355452e-02
+   4.41296111e-02  1.76704299e-01 -5.58317592e-03 -4.38581138e-01
+  -1.18080036e-01 -6.91613119e-01 -8.89443996e-03 -9.11043907e-02
+  -9.82160432e-02 -6.15998481e-03]
+ [-4.19115797e-02  3.33270736e-01  3.43852319e-01  8.25076757e-01
+  -9.75451388e-02 -4.93698297e-02 -8.24243885e-02  7.02578297e-03
+  -9.30561184e-02 -6.57660475e-02 -8.06819952e-02  1.79358106e-01
+   1.19170295e-01 -3.92942371e-02 -1.01039986e-04 -7.73954531e-03
+   1.39504082e-02  4.15781094e-02]
+ [-1.16235394e-01 -6.26603336e-01 -3.88091631e-01  4.69036607e-01
+   8.24422857e-02  6.98417500e-02 -1.28766700e-02  8.97915471e-03
+   7.79486524e-02  1.23589752e-01  6.53564256e-03 -2.01644236e-01
+  -3.30018295e-02 -3.79412586e-01  2.92485229e-02 -3.16635916e-02
+  -1.78482191e-02  4.53092038e-02]
+ [ 2.18227662e-02 -1.41698933e-01  1.67229651e-02 -2.15392689e-01
+  -1.51513740e-01  3.72885462e-02 -5.28335161e-01  5.22963619e-02
+  -1.57271105e-01  8.83071331e-02 -4.03558873e-01  2.93248191e-01
+   4.48550304e-01 -2.85505047e-01 -8.20390774e-02  1.12918157e-01
+   1.96748480e-01  6.52970340e-02]
+ [ 8.16517421e-02 -5.15067529e-02  4.36684902e-02 -8.94687117e-02
+   1.37082832e-01 -1.82820601e-01  2.18655078e-01  4.46059556e-02
+   1.31251883e-01 -1.75843997e-01  2.55557719e-01  6.99696526e-01
+  -2.01920481e-01 -4.74047795e-01  6.58698668e-02  2.74809216e-02
+  -6.68079692e-03  7.13347097e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009817359210697495
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009860376545156875
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010266821545945604
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009973568277368611
+RMSE:
+0.10
+
+Layer: 2
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010049895538667723
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010045256284363832
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.012666225994392122
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.009228661830307357
+RMSE:
+0.10
+
+Layer: 3
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010763072399006446
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010172165743415543
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010863086991893653
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008994209303193165
+RMSE:
+0.09
+
+Layer: 4
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00932462421820275
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011603666589459764
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.010371249336055701
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008678681728060657
+RMSE:
+0.09
+
+Layer: 5
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00904938631116486
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.00930768877486746
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009735441508695425
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.0074154939928867125
+RMSE:
+0.09
+
+Layer: 6
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012106795825943439
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.01064882872011434
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.013894339829224838
+RMSE:
+0.12
+Testing kernel: rbf(0.1)
+MSE:
+0.007423608251386184
+RMSE:
+0.09
+
+Layer: 7
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012044086301969681
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.010096310238997989
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.01172332204606314
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007926906619353089
+RMSE:
+0.09
+
+Layer: 8
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009142031692665364
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.01042439963602626
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009466967681367141
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007871327647557925
+RMSE:
+0.09
+
+Layer: 9
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010889145383013244
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009304229044016715
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.011379502784500081
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007747710932562004
+RMSE:
+0.09
+
+Layer: 10
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008307045546652306
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010138280845640602
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008350644859552506
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008625134911434554
+RMSE:
+0.09
+
+Layer: 11
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009707237435893879
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011219777073578966
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009417598275501652
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010535105899587227
+RMSE:
+0.10
+
+Layer: 12
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.012667199838848881
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.010486737411346718
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010154644461070205
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010345462561096716
+RMSE:
+0.10
+
+Layer: 13
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009950552417123285
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.013672446065641754
+RMSE:
+0.12
+Testing kernel: hardlim
+MSE:
+0.008357632303642433
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.009450622254400931
+RMSE:
+0.10
+
+Layer: 14
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008907969871612386
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.011751723830379963
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008556888245105261
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008207982761942316
+RMSE:
+0.09
+
+Layer: 15
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.010772057170337239
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010346139314028188
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.011040466165956142
+RMSE:
+0.11
+Testing kernel: rbf(0.1)
+MSE:
+0.007812360570545149
+RMSE:
+0.09
+
+Layer: 16
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.00922445964454071
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.012246568724937375
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009050265175334521
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007701802644945091
+RMSE:
+0.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009365750065035391
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011458988709983605
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009365555034363498
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008096524211574325
+RMSE:
+0.09
+
+Layer: 18
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.008368397507294602
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.012431677172843178
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008210233182423214
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00843011619964434
+RMSE:
+0.09
+
+Layer: 19
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009788134186939577
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.011477909057616047
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009735384686786357
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008840591786386024
+RMSE:
+0.09
+
+Layer: 20
+Testing kernel: default
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tanh
+MSE:
+0.009783694904728517
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.0114675290199904
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009384716678555201
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010417693848452562
+RMSE:
+0.10
+Optimal model:
+ELMRegressor(hidden_layer=RBFRandomHiddenLayer(activation_args=None,
+                                               activation_func='gaussian',
+                                               centers=None, gamma=0.1,
+                                               n_hidden=10, radii=None,
+                                               random_state=0,
+                                               use_exemplars=False),
+             regressor=None)
+bestHiddenLayerCount:
+5
+MSE: 0.01
+RMSE: 0.09
+"LiPo Voltage Training"
+"Current memory usage"
+used| 1343664
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 1343984
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 1343984
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1418
+symw| 80205
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Testing GPS Speed using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+20469 4241776
+"First GPS speed prediction"
+"Current memory usage"
+used| 6848416
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80994
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 6848736
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80994
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 6848736
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1437
+symw| 80994
+"Deploying LiPo Voltage prediction model"
+Using ELM LiPo Model
+Testing LiPo Voltage using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+19253 4241344
+"First LiPo Voltage Prediction"
+"Current memory usage"
+used| 12354160
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1441
+symw| 81245
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 12354480
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1441
+symw| 81245
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 12354480
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1441
+symw| 81245
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and t..
+"Generating timestep sample 2"
+Using ELM GPS Model
+Testing GPS Speed using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+126697 4241776
+"Synthesize GPS speed"
+"Current memory usage"
+used| 25548368
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1456
+symw| 81949
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex', 'syntheticSampleTimeDelta'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 25548688
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1456
+symw| 81949
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 25548688
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1456
+symw| 81949
+Using ELM LiPo Model
+Testing LiPo Voltage using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+313203 4241472
+"Synthesize voltage"
+"Current memory usage"
+used| 4649359536
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1458
+symw| 82055
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex', 'syntheticSampleTimeDelta'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 4649359856
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1458
+symw| 82055
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 4649359856
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1458
+symw| 82055
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+"Generating timestep sample 3"
+Using ELM GPS Model
+Testing GPS Speed using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+308821 4241776
+"Synthesize GPS speed"
+"Current memory usage"
+used| 4655464464
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1458
+symw| 82055
+"***************Running Python Garbage Collector***************"
+"***************Finished Python Garbage Collection***************"
+"***************Objects in python globals***************"
+dict_keys(['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__annotations__', '__builtins__', 'qclosure', 'itertools', 'np', 'pd', 'math', 'PCA', 'gp', 'Sequential', 'Dense', 'LSTM', 'StandardScaler', 'dump', 'load', 'gc', 'objectName', 'numSamplesToUse', 'synthesizedSampleIndex', 'syntheticSampleTimeDelta'])
+"***************Objects in python globals***************"
+"Current memory usage"
+used| 4655464784
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1458
+symw| 82055
+"Running q Garbage Collector"
+"Memory usage after q garbage collection"
+used| 4655464784
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 146
+mphy| 17179869184
+syms| 1458
+symw| 82055
+Using ELM LiPo Model
+Testing LiPo Voltage using csv input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+

@@ -21,7 +21,8 @@ existingThrottleHistory:(neg count newGPSPredictionTable)#existingThrottleHistor
 update throttleInputHistory:(existingThrottleHistory,'rcCommand3) from `newGPSPredictionTable;
 / join new predictions to existing predictions at end of table
 gpsSpeedPredictionTable:gpsSpeedPredictionTable,newGPSPredictionTable
-FAS.gc[]
+"Synthesize GPS speed"
+\l delGPSDeployPythonObjects.q
 
 
 / extract current throttle sequences per timestep sample
@@ -42,7 +43,8 @@ existingThrottleHistory:(neg count newLiPoPredictionTable)#existingThrottleHisto
 update throttleInputHistory:(existingThrottleHistory,'rcCommand3) from `newLiPoPredictionTable;
 / join new predictions to existing predictions at end of table
 LiPoPredictionTable:LiPoPredictionTable,newLiPoPredictionTable
-FAS.gc[]
+"Synthesize voltage"
+\l delLiPoDeployPythonObjects.q
 
 
 / increment synthesized sample index
