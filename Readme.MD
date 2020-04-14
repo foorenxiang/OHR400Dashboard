@@ -94,6 +94,11 @@ Requires 32 or 64 bit kdb.
 `rlwrap q FASLogPlayback.q`
 
 #### Areas for further development:
+- Effectively free up reserved, non-essential memory usage after ML model training/deployment
+- Rewrite explicit Python variable deletion to work on negative checking. Delete if object is not:
+    - Python system variable
+    - variable inserted by q script
+    - module imported
 - Update log upload portal to tag logs with weather conditions during flight
 - When running log playback, automatically flush RDB to HDB, purge RDB for incoming telemetry playback
 - Create additional bash scripts to launch customised q processes based on operating system and kdb version
