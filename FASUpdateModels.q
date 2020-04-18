@@ -4,12 +4,17 @@ trainingData:h"trainingData"
 useTrainTestSplit:0b
 
 //////split dataset into training and test data//////
-trainTestSplitTrainingData:.ml.traintestsplit[trainingData;(count trainingData)?(0b;1b);testPercentage:0]
-testingSamples:(til count dataset) except (trainingSamples:where dataset:trainTestSplitTrainingData[`ytrain]=1b)
-trainTestSplitAssignmentTable:`testingSamples`trainingSamples!(testingSamples;trainingSamples);
+trainTestSplitTrainingData:.ml.traintestsplit[trainingData;
+	(count trainingData)?(0b;1b);testPercentage:0]
+testingSamples:(til count dataset) except
+	(trainingSamples:where dataset:trainTestSplitTrainingData[`ytrain]=1b)
+trainTestSplitAssignmentTable:`testingSamples`trainingSamples!
+	(testingSamples;trainingSamples);
 / give python access to training data panda dataframe
-if[useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainTestSplitTrainingData[`xtrain]]];show "Using train test split!"]
-if[not useTrainTestSplit;.p.set[`trainingDataPDF; .ml.tab2df[trainingData]];show "Not using train test split!"]
+if[useTrainTestSplit;.p.set[`trainingDataPDF;
+	.ml.tab2df[trainTestSplitTrainingData[`xtrain]]];show "Using train test split!"]
+if[not useTrainTestSplit;.p.set[`trainingDataPDF;
+	.ml.tab2df[trainingData]];show "Not using train test split!"]
 
 //////TRAIN GPS PREDICTION MODEL//////
 "Training GPS speed prediction model"
@@ -99,7 +104,9 @@ show throttleSteps
 "Synthesizing GPS speeds and LiPo voltage for different throttle values and timesteps"
 numTimeSteps:10
 .p.set[`syntheticSampleTimeDelta; syntheticSampleTimeDelta: 0.2] / in seconds
-getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count each (gpsSpeedPredictionTable;LiPoPredictionTable)}
+getSynthesizedDataCount:{flip `Sample`gpsSpeedPredictionTableRowCount
+	`LiPoPredictionTableRowCount!enlist each (synthesizedSampleIndex-1),count 
+	each (gpsSpeedPredictionTable;LiPoPredictionTable)}
 synthesizedDataCount: getSynthesizedDataCount[]
 
 / create throttleInputHistory feature in current prediction tables for usage in feature synthesis
@@ -119,11 +126,12 @@ delete from `LiPoPredictionTable where i<((throttleSteps+1)*neg numSamplesToUse)
 / clean up synthesizedSampleIndex column (remove duplicated values in each row)
 update synthesizedSampleIndex:first each synthesizedSampleIndex from `LiPoPredictionTable;
 delete GPSspeedkph from `LiPoPredictionTable;
-update synthesizedSampleIndex:first each synthesizedSampleIndex from `gpsSpeedPredictionTable;
+update synthesizedSampleIndex:first each synthesizedSampleIndex
+	from `gpsSpeedPredictionTable;
 delete vbatLatestV from `gpsSpeedPredictionTable;
 
 / key each table in preparation for inner join
-keyTableFeatures: `synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus 
+keyTableFeatures:`synthesizedSampleIndex`throttleInputSequence`timeus`rcCommand3`timeDeltaus 
 keyTableFeatures xkey `gpsSpeedPredictionTable;
 keyTableFeatures xkey `LiPoPredictionTable;
 fullPredictionTable:LiPoPredictionTable ij gpsSpeedPredictionTable;
@@ -141,24 +149,33 @@ lookbackSteps:numTimeSteps
 
 / REQUIRES TABLE TO BE ORDERED WITH LATEST SAMPLE LAST
 / find throttle history length of each synthesized sample
-throttleHistoryLength: count each (raze each select throttleInputHistory from fullPredictionTable)
+throttleHistoryLength: count each (raze each select throttleInputHistory
+	from fullPredictionTable)
 throttleHistoryLengthOfLeaf:last throttleHistoryLength
 / determine samples which are leafs of the tree (end of cascade sequence)
 leafIndices:asc where throttleHistoryLength=throttleHistoryLengthOfLeaf
 optimalSequencesPercentage:0.2 / Top percentile to keep/regard as "optimal throttle sequences"
 / create LSTM training dataset from leaf samples
-bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV, previousThrottleSequence:({lookbackSteps#x} each throttleInputHistory),throttleInputHistory from fullPredictionTable where i within (first leafIndices; last leafIndices)
+bestPredictionsTable:select currentThrottle:rcCommand3, GPSspeedkph,vbatLatestV,
+	previousThrottleSequence:({lookbackSteps#x} each throttleInputHistory),
+	throttleInputHistory from fullPredictionTable where i within 
+	(first leafIndices; last leafIndices)
 / rearrange bestPredictionsTable in-place by gps speed in descending order
 `GPSspeedkph xdesc `bestPredictionsTable;
 / remove non-optimal throttle sequences
-bestPredictionsTable:(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
+bestPredictionsTable:
+	(`int$optimalSequencesPercentage*count bestPredictionsTable)#bestPredictionsTable
 
 /////Encode throttle sequences into format usable by LSTM models/////
 / encode end of sequence to each throttle sequencesample with lookbackSteps#0
 fillValue:1000
 / vertical join each 
 / can consider using " ,': " join each parallel
-encodedOptimalThrottles: select throttleInputHistory:(throttleInputHistory,'(count bestPredictionsTable)#enlist ((lookbackSteps+1)#fillValue)) from bestPredictionsTable
+encodedOptimalThrottles:
+	select throttleInputHistory:
+	(throttleInputHistory,'(count bestPredictionsTable)#
+	enlist ((lookbackSteps+1)#fillValue))
+	from bestPredictionsTable
 / flatten all samples into single time series
 encodedOptimalThrottles: raze raze encodedOptimalThrottles[`throttleInputHistory]
 
@@ -173,38 +190,48 @@ encodedOptimalThrottles%:1000
 / Calculating sliding window using step by step method (method a)
 / https://stackoverflow.com/questions/44071613/understanding-moving-window-calcs-in-kdb
 / cut non-valid samples from start
-optimalThrottleSlidingWindowX: (lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;encodedOptimalThrottles] / training time sequence feature
+optimalThrottleSlidingWindowX: (lookbackSteps)_{1_x,y}\[(lookbackSteps)#0;
+	encodedOptimalThrottles] / training time sequence feature
 / take last throttle value from each throttle sequence
-optimalThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+optimalThrottleSlidingWindowy:last each (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;
+	encodedOptimalThrottles] / training label
 / create LSTM trainingData table
 / LSTMTrainingData:flip `throttleSeries`expectedThrottle!((lookbackSteps)_encodedOptimalThrottles;optimalThrottleSlidingWindowy) / declaring using dict !
-synthesizedThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_encodedOptimalThrottles; expectedThrottle:-1_optimalThrottleSlidingWindowy) / declaring using table-definition syntax
+synthesizedThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_
+	encodedOptimalThrottles; expectedThrottle:-1_optimalThrottleSlidingWindowy) / declaring using table-definition syntax
 \
 
 / Encoding format A: calculate using direct timeshift transformation (method b, faster)
 /
 / cut first row due to wrong data appearing
-synthesizedThrottleLSTMTrainingData:1_([]throttleSeries:1_encodedOptimalThrottles; expectedThrottle:-1_encodedOptimalThrottles) / declaring using table-definition syntax
+synthesizedThrottleLSTMTrainingData:1_([]throttleSeries:1_encodedOptimalThrottles;
+	expectedThrottle:-1_encodedOptimalThrottles) / declaring using table-definition syntax
 / save copy of synthesizedThrottleLSTMTrainingData as csv
-if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show "synthesizedThrottleLSTMTrainingData.csv saved to disk"]
+if[saveCSVs;save `:synthesizedThrottleLSTMTrainingData.csv;show
+	"synthesizedThrottleLSTMTrainingData.csv saved to disk"]
 \
 
 / Encoding format B: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
 /
-optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
-synthesizedThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'optimalThrottleSlidingWindow;expectedThrottle:-1#'optimalThrottleSlidingWindow)
+optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;
+	encodedOptimalThrottles] / training label
+synthesizedThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'optimalThrottleSlidingWindow;
+	expectedThrottle:-1#'optimalThrottleSlidingWindow)
 /remove rows with invalid prediction throttle sequences due to timeshift effect
 / delete from synthesizedThrottleLSTMTrainingDataMatrix where expectedThrottle=0 / bug with query
 \
 
 / Encoding format C: each timestep is a feature
-optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;encodedOptimalThrottles] / training label
+optimalThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;
+	encodedOptimalThrottles] / training label
 columns:{x} each flip optimalThrottleSlidingWindow
-synthesizedThrottleLSTMTrainingDataMatrix: flip ((lookbackSteps+1)#{`$x}each .Q.a,.Q.A)!columns
+synthesizedThrottleLSTMTrainingDataMatrix: 
+	flip ((lookbackSteps+1)#{`$x} each .Q.a,.Q.A)!columns
 
 /remove rows with invalid prediction throttle sequences due to timeshift effect
 / perform functional query equivalent for "delete from `synthesizedThrottleLSTMTrainingDataMatrix where (last cols synthesizedThrottleLSTMTrainingDataMatrix)=0" as qsql does not support column names as variables
-![`synthesizedThrottleLSTMTrainingDataMatrix;enlist (=;last cols synthesizedThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
+![`synthesizedThrottleLSTMTrainingDataMatrix;enlist (=;
+	last cols synthesizedThrottleLSTMTrainingDataMatrix;0);0b;`symbol$()];
 
 ///For diagnostics with LSTM model/////
 "Saving synthesizedThrottleLSTMTrainingDataMatrix to disk"
@@ -231,13 +258,16 @@ realThrottleLSTMTrainingData:([]throttleSeries:(lookbackSteps+1)_realThrottles; 
 
 / Encoding format A: calculate using direct timeshift transformation (method b, faster)
 /
-realThrottleLSTMTrainingData:1_([]throttleSeries:1_realThrottles; expectedThrottle:-1_realThrottles) / declaring using table-definition syntax
-if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;show "realThrottleLSTMTrainingData.csv saved to disk"]
+realThrottleLSTMTrainingData:1_([]throttleSeries:1_realThrottles;
+	expectedThrottle:-1_realThrottles) / declaring using table-definition syntax
+if[saveCSVs;save `:realThrottleLSTMTrainingData.csv;
+	show "realThrottleLSTMTrainingData.csv saved to disk"]
 \
 
 / Encoding format B: throttle series feature contains all throttle series within lookback window. expectedThrottle contains the next expected throttle
 realThrottleSlidingWindow: (lookbackSteps)_{1_x,y}\[(lookbackSteps+1)#0;realThrottles] / training label
-realThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'realThrottleSlidingWindow;expectedThrottle:-1#'realThrottleSlidingWindow)
+realThrottleLSTMTrainingDataMatrix:([]throttleSeries:-1_'realThrottleSlidingWindow;
+	expectedThrottle:-1#'realThrottleSlidingWindow)
 /remove rows with invalid prediction throttle sequences due to timeshift effect
 / parse "delete from realThrottleLSTMTrainingDataMatrix where (last cols realThrottleLSTMTrainingDataMatrix)=0" / bug with query
 / ![`realThrottleLSTMTrainingDataMatrix;enlist (=;(last;(k){$[.Q.qp x:.Q.v x;.Q.pf,!+x;98h=@x;!+x;11h=@!x;!x;!+0!x]};`realThrottleLSTMTrainingDataMatrix));0);0b;`symbol$()]/ bug with query
@@ -264,7 +294,9 @@ trainUsingSynthesizedData: 1b
 trainUsingRealData: not trainUsingSynthesizedData
 LSTMModel: `regressionWindow / options: `regressionWindow `regressionTimeStep `batch `Disabled
 / Real Data Input, LSTM Regression using Window / Using encoding format C
-if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window) using real flight data!"; system "l updateRegressionWindowLSTM.p"]
+if[trainUsingRealData and LSTMModel = `regressionWindow;.p.set[`trainingDataPDF;
+	.ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Window)
+	 using real flight data!"; system "l updateRegressionWindowLSTM.p"]
 / Real Data Input, LSTM Regression with Time Step / Using encoding format C
 if[trainUsingRealData and LSTMModel = `regressionTimeStep;.p.set[`trainingDataPDF; .ml.tab2df[realThrottleLSTMTrainingDataMatrix]];show "Training LSTM (Regression Time Step) using real flight data!"; system "l updateRegressionTimeStepLSTM.p"]
 / Real Data Input, LSTM with Memory Between Batches / Using encoding format C

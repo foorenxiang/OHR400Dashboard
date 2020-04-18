@@ -19,7 +19,10 @@ fullLog: get hsym `$flatDir,"fullLog"
 mavlinkInputFormat:.j.j each 0! fullLog
 
 / require double colon to assign in place global variables
-sendDatapoint: {if[count mavlinkInputFormat>0; {neg[h] (`processTelemetryStreamBuffer; x)} mavlinkInputFormat 0; mavlinkInputFormat::1_mavlinkInputFormat; show "Samples streamed: ",string (count fullLog) - count mavlinkInputFormat]}
+sendDatapoint: {if[count mavlinkInputFormat>0;
+	{neg[h] (`processTelemetryStreamBuffer; x)} mavlinkInputFormat 0;
+	mavlinkInputFormat::1_mavlinkInputFormat;
+	show "Samples streamed: ",string (count fullLog) - count mavlinkInputFormat]}
 .z.ts:{sendDatapoint[]}
 
 / send new sample every 0.2s

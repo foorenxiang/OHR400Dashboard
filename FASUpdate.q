@@ -38,15 +38,21 @@ pidLogsFiles: raze listFromTableColumn[pidLogsTable;1]
 / build input from gps log files
 numGPSFiles:count gpsLogsFiles
 / read first gps log file
-GPSDataInput:enlistGPSCSV[first gpsLogsNumFeatures; first gpsLogsFiles]; gpsLogsNumFeatures: 1_gpsLogsNumFeatures; gpsLogsFiles: 1_gpsLogsFiles
+GPSDataInput:enlistGPSCSV[first gpsLogsNumFeatures; first gpsLogsFiles];
+gpsLogsNumFeatures: 1_gpsLogsNumFeatures;
+gpsLogsFiles: 1_gpsLogsFiles
 / if multiple pid log files are present, read the rest
-if[numGPSFiles>1;{`GPSDataInput set GPSDataInput,enlistGPSCSV[(gpsLogsNumFeatures@x);(gpsLogsFiles@x)]} each til count gpsLogsNumFeatures]
+if[numGPSFiles>1;{`GPSDataInput set GPSDataInput,enlistGPSCSV[(gpsLogsNumFeatures@x);
+	(gpsLogsFiles@x)]} each til count gpsLogsNumFeatures]
 
 / build input from pid log files
 numPIDFiles:count pidLogsFiles
 / read first pid log file
-PIDDataInput: enlistPIDCSV[first pidLogsNumFeatures; first pidLogsFiles];pidLogsNumFeatures: 1_pidLogsNumFeatures; pidLogsFiles: 1_pidLogsFiles
-if[numPIDFiles>1;{`PIDDataInput set PIDDataInput,enlistPIDCSV[(pidLogsNumFeatures@x);(pidLogsFiles@x)]} each til count pidLogsNumFeatures]
+PIDDataInput: enlistPIDCSV[first pidLogsNumFeatures; first pidLogsFiles];
+pidLogsNumFeatures: 1_pidLogsNumFeatures;
+pidLogsFiles: 1_pidLogsFiles
+if[numPIDFiles>1;{`PIDDataInput set PIDDataInput,enlistPIDCSV[(pidLogsNumFeatures@x);
+	(pidLogsFiles@x)]} each til count pidLogsNumFeatures]
 
 system"cd ",dashboardDirectory
 
@@ -89,7 +95,8 @@ update acceleration_G:GPSspeedms%9.81%(deltas "f"$timens*10 xexp -9) from `fullL
 / if fullLog already exists, append to it
 if[`fullLog in key `.; fullLog: fullLog,fullLogNew; show "Adding new records to fullLog!"]
 / otherwise create fullLog
-if[not `fullLog in key `.; fullLog: fullLogNew; show "Creating fullLog table and adding new records!"]
+if[not `fullLog in key `.; fullLog: fullLogNew; 
+	show "Creating fullLog table and adding new records!"]
 
 /save updated trainingData table
 (hsym `$flatDir,"fullLog") set fullLog; / use hsym t cast directory string to file symbol
@@ -98,7 +105,9 @@ if[saveCSVs;save `:fullLog.csv;show "fullLog.csv saved to disk"]
 / 1 xbar raze each select timens from fullLog
 
 / feature selection for trainingData
-trainingData: select timens,GPSspeedms,rcCommand0,rcCommand1,rcCommand2,rcCommand3,vbatLatestV,gyroADC0,gyroADC1,gyroADC2,accSmooth0,accSmooth1,accSmooth2,motor0,motor1,motor2,motor3 from fullLog where GPSspeedms>(minSpeed%3.6)
+trainingData: select timens,GPSspeedms,rcCommand0,rcCommand1,rcCommand2,rcCommand3,
+	vbatLatestV,gyroADC0,gyroADC1,gyroADC2,accSmooth0,accSmooth1,accSmooth2,motor0,motor1,
+	motor2,motor3 from fullLog where GPSspeedms>(minSpeed%3.6)
 
 / in trainingData table, convert timestamps from ns to us
 update timens:`int$timens%1000 from `trainingData;
@@ -136,7 +145,9 @@ update timeus:`float$timeus from `trainingData;
 if[saveCSVs;save `:trainingData.csv;show "trainingData.csv saved to disk"]
 
 / clean up unused variables using functional sql
-varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable`GPSDataInput`PIDDataInput`numGPSFiles`numPIDFiles`fullLogNew`varsToDelete
+varsToDelete: `gpsLogsFiles`gpsLogsNumFeatures`gpsLogsTable`isGPS`isPID`logsList
+	`logsListTable`numFeaturesList`pidLogsFiles`pidLogsNumFeatures`pidLogsTable
+	`GPSDataInput`PIDDataInput`numGPSFiles`numPIDFiles`fullLogNew`varsToDelete
 ![`.;();0b;varsToDelete];
 
 / return back to working directory!

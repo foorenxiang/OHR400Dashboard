@@ -1,6 +1,9 @@
 / this script prepareds a data table from fullLog for use with TIBCO Spotfire Analyst
 minSpeed:170
-visualisationTable: select timens,lat:GPScoord0,long:GPScoord1,GPSspeedms,rcCommand0,rcCommand1,rcCommand2,rcCommand3,vbatLatestV,gyroADC0,gyroADC1,gyroADC2,accSmooth0,accSmooth1,accSmooth2,motor0,motor1,motor2,motor3 from fullLog where GPSspeedms>(minSpeed%3.6)
+visualisationTable: select timens,lat:GPScoord0,long:GPScoord1,GPSspeedms,
+	rcCommand0,rcCommand1,rcCommand2,rcCommand3,vbatLatestV,gyroADC0,gyroADC1,gyroADC2,
+	accSmooth0,accSmooth1,accSmooth2,motor0,motor1,motor2,motor3 from fullLog
+	where GPSspeedms>(minSpeed%3.6)
 / in visualisationTable table, convert timestamps from ns to us
 update timens:`int$timens%1000 from `visualisationTable;
 /rename timens to timeus
