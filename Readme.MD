@@ -102,7 +102,7 @@ Requires 32 or 64 bit kdb.
 - Update log upload portal to tag logs with weather conditions during flight
 - When running log playback, automatically flush RDB to HDB, purge RDB for incoming telemetry playback
 - Create additional bash scripts to launch customised q processes based on operating system and kdb version
-- Implement cross validation testing for GPS speed and LiPo voltage prediction models 
+- Implement cross validation testing during training for GPS speed and LiPo voltage prediction models 
 - Implement transfer learning for LSTM to reduce subsequent training time and improve general accuracy from training with old and new telemetry data where applicable  
 - Further refine Rolling Launch Control ML training methodology
 - Improve ML model deployment pipelinei
