@@ -93,7 +93,7 @@ Requires 32 or 64 bit kdb.
 - To run:\
 `rlwrap q FASLogPlayback.q`
 
-#### Areas for further development:
+#### Upcoming Improvements:
 - Effectively free up reserved, non-essential memory usage after ML model training/deployment
 - Rewrite explicit Python variable deletion to work on negative checking. Delete if object is not:
     - Python system variable
@@ -102,6 +102,8 @@ Requires 32 or 64 bit kdb.
 - Update log upload portal to tag logs with weather conditions during flight
 - When running log playback, automatically flush RDB to HDB, purge RDB for incoming telemetry playback
 - Create additional bash scripts to launch customised q processes based on operating system and kdb version
+- Creation of flight engineering dashboard with Kx Dashboards Direct
+- Integration of kdb+ AutoML plugin
 - Implement cross validation testing during training for GPS speed and LiPo voltage prediction models 
 - Implement transfer learning for LSTM to reduce subsequent training time and improve general accuracy from training with old and new telemetry data where applicable  
 - Further refine Rolling Launch Control ML training methodology
