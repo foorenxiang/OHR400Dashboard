@@ -1,0 +1,9 @@
+glob2>=0.7
+joblib>=0.13.2
+Keras>=2.3.1
+matplotlib>=3.1.1
+numpy>=1.17.2
+pandas>=0.25.1
+scikit-learn>=0.21.3
+scipy>=1.4.1
+tensorflow==1.14.0
