@@ -69,7 +69,7 @@ savedLiPoModelGPR = dump(model, './models/gprLiPoModel.model')
 model = 0 
 
 #test model
-model = load('gprLiPoModel.joblib')
+model = load('./models/gprLiPoModel.model')
 # print(testX.columns)
 y_pred= model.predict(testX)
 
