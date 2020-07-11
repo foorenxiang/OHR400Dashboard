@@ -1,0 +1,1881 @@
+Last login: Sat Jul 11 15:34:36 on ttys002
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ ps ^C
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ docker ps
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                                                                                                                                NAMES
+4c0cafa3c585        ubuntu:latest                  "bash"                   3 hours ago         Up 3 hours                                                                                                                                               serene_diffie
+86ef07a777da        foorenxiang/ohr400backendcpu   "~/entrypoint.sh bash"   2 days ago          Up 27 hours         3001/tcp, 0.0.0.0:3000->3000/tcp, 0.0.0.0:5001->5001/tcp, 5000/tcp, 0.0.0.0:6001-6002->6001-6002/tcp, 8888/tcp, 0.0.0.0:81->80/tcp   ohr400backendCPUInstance
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ docker exec 86e
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Run a command in a running container
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ docker exec 86e bash
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ docker exec 86e bash
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ docker exec 86e sh
+(base) Ren-Xiangs-Macbook-Pro-2019:~ foorx$ docker exec -ti 86e bash
+foorx@86ef07a777da:~/Sites/OHR400Dashboard$ rlwrap q FASMLTrainingClientInit.q 
+KDB+ 3.6 2019.08.20 Copyright (C) 1993-2019 Kx Systems
+l64/ 12()core 24057MB foorx 86ef07a777da 172.17.0.2 EXPIRE 2020.10.02 foorenxiang@gmail.com KOD #5001568
+
+"Using embedPy release version 1.3.2"
+"Using ML toolkit from commit 51b1995"
+Loading init.q
+Loading util/init.q
+Loading util/util.q
+Loading util/metrics.q
+Loading util/preproc.q
+Loading fresh/init.q
+Loading fresh/extract.q
+Loading util/mproc.q
+Loading fresh/select.q
+Loading xval/init.q
+Loading xval/xval.q
+Loading util/mproc.q
+Loading util/pickle.q
+"Machine Learning toolkit loaded"
+"Q ML Training Client Process running on port 6001 [websocket mode]"
+Using TensorFlow backend.
+"Enabling immediate mode for Garbage Collection"
+"Rolling Launch Control Model Trainer Up and Ready"
+"Not using train test split!"
+"Training GPS speed prediction model"
+Training using KDB+ input!
+Using PCA!
+principalComponents:
+[[ 5.27553694e-02 -1.20308989e-02 -1.00388481e-03 -6.49056537e-02
+  -3.78870709e-02  1.30318813e-01  4.17927770e-01 -2.57898103e-01
+  -6.61420894e-02 -2.78750065e-02  1.12331551e-01 -1.99629051e-01
+   3.76117189e-02 -2.50787305e-02  3.94488944e-01  4.19371652e-01
+   4.14718178e-01  4.12448922e-01]
+ [ 3.65593242e-03  4.14678247e-03  4.42154417e-02  4.67189673e-01
+  -2.29939709e-03 -3.86057784e-01  9.69767804e-02 -5.27593261e-02
+   4.64908722e-01 -7.58497046e-03 -4.13401606e-01  4.80809918e-02
+  -4.11874364e-01  1.46446048e-01  1.61666250e-01  3.95107110e-02
+   2.73869342e-02  9.78259947e-02]
+ [-4.39263086e-02  4.09163966e-03 -3.63903461e-02 -1.97235126e-02
+  -6.63063416e-01 -1.05130485e-01 -4.06855409e-02  4.71514642e-03
+  -6.02650000e-03 -6.49992884e-01 -1.07661588e-01 -2.95809042e-01
+   8.08330921e-02 -9.71501417e-02 -4.15169492e-02 -3.76732238e-02
+  -5.20363174e-02 -2.26602221e-02]
+ [-6.95889443e-01  6.96107043e-01 -1.02920972e-01  5.77600948e-03
+   1.33370910e-02  4.95770432e-02  2.12039751e-02 -2.67075946e-02
+   1.08930959e-02 -1.21889250e-02  4.12957510e-02  3.63415358e-02
+  -1.49335239e-02  1.08432417e-01  1.73764749e-02  2.71777982e-02
+   1.83286262e-02  9.88560302e-03]
+ [ 2.86259675e-02 -6.39462203e-02  2.88021767e-01 -1.05492136e-01
+  -1.18145860e-01 -1.72455096e-02 -1.06940307e-03 -3.08095354e-01
+  -9.08454872e-02 -1.98502206e-01 -3.76609304e-02  5.08942144e-01
+   1.85435851e-01  6.63782431e-01 -4.00184838e-02  4.80340320e-02
+   5.91798766e-02 -3.64075266e-02]
+ [-6.91949645e-02  1.39340591e-01  8.77575199e-01 -3.43175506e-02
+   2.05362465e-02 -1.15317512e-01 -8.63117758e-03 -8.77968111e-02
+  -3.67503611e-02  5.57553403e-02 -9.09640977e-02 -2.83782118e-02
+   8.29308423e-02 -3.97040636e-01 -1.49301090e-04 -4.74245087e-02
+  -2.01043111e-02  4.76085218e-02]
+ [ 4.86574703e-02  9.17492430e-02 -3.41692990e-01 -1.25291488e-01
+   4.75418060e-02 -4.75790643e-01 -1.11348427e-02 -3.61044576e-01
+  -1.33371438e-01  1.07363659e-01 -3.61350516e-01  2.09319517e-01
+   3.94256132e-01 -3.33872069e-01 -1.12654903e-01  4.54095771e-02
+   1.10744980e-01 -4.30399009e-03]
+ [ 1.50744864e-01  1.77660490e-01  4.15209464e-02 -1.20248967e-01
+  -3.08076770e-02 -1.94107094e-01  1.31683475e-01  8.13504246e-01
+  -1.19087648e-01 -5.76161896e-02 -1.60165600e-01  2.52771422e-01
+   1.32024546e-01  4.95403449e-02  3.65222789e-02  1.49990280e-01
+   1.96207218e-01  1.50038983e-01]
+ [ 2.37632547e-01  2.11370593e-01 -9.52643688e-02  1.30076146e-01
+  -1.77586396e-01  2.43969132e-01  2.18254967e-02 -9.55915839e-02
+   1.22919762e-01 -1.75670726e-01  2.61564155e-01  6.38515229e-01
+  -2.36041061e-01 -4.31982581e-01  6.26035129e-02  1.18210996e-03
+  -4.35023763e-02  4.42923134e-02]]
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12306.327079968873
+RMSE:
+110.93
+Testing kernel: tribas
+MSE:
+12478.991666124
+RMSE:
+111.71
+Testing kernel: hardlim
+MSE:
+12413.251048288012
+RMSE:
+111.41
+Testing kernel: rbf(0.1)
+MSE:
+12410.735609093224
+RMSE:
+111.40
+
+Layer: 2
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12957.025740264164
+RMSE:
+113.83
+Testing kernel: tribas
+MSE:
+12046.130808454018
+RMSE:
+109.75
+Testing kernel: hardlim
+MSE:
+13169.499848444922
+RMSE:
+114.76
+Testing kernel: rbf(0.1)
+MSE:
+11988.324763557564
+RMSE:
+109.49
+
+Layer: 3
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12565.517400807083
+RMSE:
+112.10
+Testing kernel: tribas
+MSE:
+12398.289841372814
+RMSE:
+111.35
+Testing kernel: hardlim
+MSE:
+12707.007842275128
+RMSE:
+112.73
+Testing kernel: rbf(0.1)
+MSE:
+11638.348259173035
+RMSE:
+107.88
+
+Layer: 4
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12876.719062562846
+RMSE:
+113.48
+Testing kernel: tribas
+MSE:
+11325.034027249543
+RMSE:
+106.42
+Testing kernel: hardlim
+MSE:
+12341.926320464012
+RMSE:
+111.09
+Testing kernel: rbf(0.1)
+MSE:
+11302.555062161608
+RMSE:
+106.31
+
+Layer: 5
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11975.228446390274
+RMSE:
+109.43
+Testing kernel: tribas
+MSE:
+12169.150804889683
+RMSE:
+110.31
+Testing kernel: hardlim
+MSE:
+12018.146442449102
+RMSE:
+109.63
+Testing kernel: rbf(0.1)
+MSE:
+11231.195318060256
+RMSE:
+105.98
+
+Layer: 6
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12349.343727057289
+RMSE:
+111.13
+Testing kernel: tribas
+MSE:
+12626.628567981585
+RMSE:
+112.37
+Testing kernel: hardlim
+MSE:
+12201.367035883499
+RMSE:
+110.46
+Testing kernel: rbf(0.1)
+MSE:
+11156.40404295762
+RMSE:
+105.62
+
+Layer: 7
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10857.534578869234
+RMSE:
+104.20
+Testing kernel: tribas
+MSE:
+12761.895584916632
+RMSE:
+112.97
+Testing kernel: hardlim
+MSE:
+11262.843737513718
+RMSE:
+106.13
+Testing kernel: rbf(0.1)
+MSE:
+11151.987400496942
+RMSE:
+105.60
+
+Layer: 8
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12074.9785625844
+RMSE:
+109.89
+Testing kernel: tribas
+MSE:
+12106.071363586672
+RMSE:
+110.03
+Testing kernel: hardlim
+MSE:
+11929.764198656263
+RMSE:
+109.22
+Testing kernel: rbf(0.1)
+MSE:
+10990.547201282567
+RMSE:
+104.84
+
+Layer: 9
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11839.250670698724
+RMSE:
+108.81
+Testing kernel: tribas
+MSE:
+12673.90892201007
+RMSE:
+112.58
+Testing kernel: hardlim
+MSE:
+11793.278364887743
+RMSE:
+108.60
+Testing kernel: rbf(0.1)
+MSE:
+11024.567283278573
+RMSE:
+105.00
+
+Layer: 10
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+12117.471329886805
+RMSE:
+110.08
+Testing kernel: tribas
+MSE:
+12358.232910491479
+RMSE:
+111.17
+Testing kernel: hardlim
+MSE:
+12337.369500834575
+RMSE:
+111.07
+Testing kernel: rbf(0.1)
+MSE:
+11014.23404302599
+RMSE:
+104.95
+
+Layer: 11
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11535.815434876034
+RMSE:
+107.40
+Testing kernel: tribas
+MSE:
+12628.410061920453
+RMSE:
+112.38
+Testing kernel: hardlim
+MSE:
+12304.97338758692
+RMSE:
+110.93
+Testing kernel: rbf(0.1)
+MSE:
+10979.809243729114
+RMSE:
+104.78
+
+Layer: 12
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11209.69453025852
+RMSE:
+105.88
+Testing kernel: tribas
+MSE:
+12632.347637711726
+RMSE:
+112.39
+Testing kernel: hardlim
+MSE:
+11558.524099475026
+RMSE:
+107.51
+Testing kernel: rbf(0.1)
+MSE:
+11290.280015248825
+RMSE:
+106.26
+
+Layer: 13
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11729.969623630599
+RMSE:
+108.30
+Testing kernel: tribas
+MSE:
+12532.780986660946
+RMSE:
+111.95
+Testing kernel: hardlim
+MSE:
+12024.413196747968
+RMSE:
+109.66
+Testing kernel: rbf(0.1)
+MSE:
+11305.966773335049
+RMSE:
+106.33
+
+Layer: 14
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11726.407742474092
+RMSE:
+108.29
+Testing kernel: tribas
+MSE:
+12294.729523436881
+RMSE:
+110.88
+Testing kernel: hardlim
+MSE:
+11687.378761559445
+RMSE:
+108.11
+Testing kernel: rbf(0.1)
+MSE:
+11343.104240436809
+RMSE:
+106.50
+
+Layer: 15
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11692.121233393153
+RMSE:
+108.13
+Testing kernel: tribas
+MSE:
+12484.841677579065
+RMSE:
+111.74
+Testing kernel: hardlim
+MSE:
+11621.486198693996
+RMSE:
+107.80
+Testing kernel: rbf(0.1)
+MSE:
+11484.677124155802
+RMSE:
+107.17
+
+Layer: 16
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11861.987088422457
+RMSE:
+108.91
+Testing kernel: tribas
+MSE:
+11726.634188762948
+RMSE:
+108.29
+Testing kernel: hardlim
+MSE:
+12142.813476187102
+RMSE:
+110.19
+Testing kernel: rbf(0.1)
+MSE:
+11468.892285261614
+RMSE:
+107.09
+
+Layer: 17
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+10686.850738356345
+RMSE:
+103.38
+Testing kernel: tribas
+MSE:
+11692.706326407382
+RMSE:
+108.13
+Testing kernel: hardlim
+MSE:
+10858.587627305911
+RMSE:
+104.20
+Testing kernel: rbf(0.1)
+MSE:
+11449.80153637091
+RMSE:
+107.00
+
+Layer: 18
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11967.671353408416
+RMSE:
+109.40
+Testing kernel: tribas
+MSE:
+12151.944597515756
+RMSE:
+110.24
+Testing kernel: hardlim
+MSE:
+11878.529179443529
+RMSE:
+108.99
+Testing kernel: rbf(0.1)
+MSE:
+11619.310548502208
+RMSE:
+107.79
+
+Layer: 19
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11581.887568546475
+RMSE:
+107.62
+Testing kernel: tribas
+MSE:
+11778.452353882794
+RMSE:
+108.53
+Testing kernel: hardlim
+MSE:
+11933.372913418132
+RMSE:
+109.24
+Testing kernel: rbf(0.1)
+MSE:
+11608.987118499
+RMSE:
+107.75
+
+Layer: 20
+Testing kernel: default
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tanh
+MSE:
+11196.08101525035
+RMSE:
+105.81
+Testing kernel: tribas
+MSE:
+12450.765363826302
+RMSE:
+111.58
+Testing kernel: hardlim
+MSE:
+11357.863046211101
+RMSE:
+106.57
+Testing kernel: rbf(0.1)
+MSE:
+11396.204050488546
+RMSE:
+106.75
+Optimal model:
+ELMRegressor(hidden_layer=SimpleRandomHiddenLayer(activation_args=None,
+                                                  activation_func='tanh',
+                                                  n_hidden=20, random_state=0),
+             regressor=None)
+bestHiddenLayerCount:
+1
+MSE: 11196.08
+RMSE: 105.81
+"Training LiPo Voltage prediction model"
+Training using KDB+ input!
+Using PCA!
+Number of hidden layers: 1
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 2
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 3
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 4
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 5
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 6
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 7
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 8
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 9
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 10
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 11
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 12
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 13
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 14
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 15
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 16
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 17
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 18
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 19
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+Number of hidden layers: 20
+Training kernel: default
+Training kernel: tanh
+Training kernel: tribas
+Training kernel: hardlim
+Training kernel: rbf(0.1)
+
+
+Testing all kernels...
+['default', 'tanh', 'tribas', 'hardlim', 'rbf(0.1)']
+
+Layer: 1
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.00834021242181547
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010054436227264409
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008789757304862955
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00671679752213068
+RMSE:
+0.08
+
+Layer: 2
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008719535858123162
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.011235096347215524
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.007082767923803901
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.005107889312058996
+RMSE:
+0.07
+
+Layer: 3
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.009092485567374277
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010050191934232063
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.007273675750388984
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.006624158999081318
+RMSE:
+0.08
+
+Layer: 4
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.007711780120180022
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010896793031866138
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008181713522765173
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.007363708680133627
+RMSE:
+0.09
+
+Layer: 5
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.01048479049132178
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.010015861702230126
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.010716823785557553
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.007461189891988818
+RMSE:
+0.09
+
+Layer: 6
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008142524718495815
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010295892576871841
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.006852348529127343
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.007263827809926809
+RMSE:
+0.09
+
+Layer: 7
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006559020138309914
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.010511450539379356
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008639227829379101
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008429222965457934
+RMSE:
+0.09
+
+Layer: 8
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.00970007484481843
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.01079136021150976
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.008716159504315544
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.008658482068894616
+RMSE:
+0.09
+
+Layer: 9
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008794006518654578
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.01223197383084718
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.009219113735219612
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008497427454890965
+RMSE:
+0.09
+
+Layer: 10
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.009880487990431364
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.0100842560110783
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009608917409580333
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008582573868489745
+RMSE:
+0.09
+
+Layer: 11
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.011687072027931103
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.012548112158649958
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.010914234575073409
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.008053521995034682
+RMSE:
+0.09
+
+Layer: 12
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.010246203488978386
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.009279380565019542
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.009956907457686124
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.010058855249513698
+RMSE:
+0.10
+
+Layer: 13
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008081504968540905
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.011496532870014793
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.007906806756372753
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.009857989643128895
+RMSE:
+0.10
+
+Layer: 14
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.009528594484157764
+RMSE:
+0.10
+Testing kernel: tribas
+MSE:
+0.012718477348411328
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.01030194316966196
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009476281606977615
+RMSE:
+0.10
+
+Layer: 15
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006786380903775721
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.01169533015154394
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.007047702964007268
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.00978083859673729
+RMSE:
+0.10
+
+Layer: 16
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006739061530622344
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.0112181090909448
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008096185285640633
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.00983988138531639
+RMSE:
+0.10
+
+Layer: 17
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.011293934775806421
+RMSE:
+0.11
+Testing kernel: tribas
+MSE:
+0.01230715201126784
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.00939041242915858
+RMSE:
+0.10
+Testing kernel: rbf(0.1)
+MSE:
+0.009757220593203865
+RMSE:
+0.10
+
+Layer: 18
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.006580076873631931
+RMSE:
+0.08
+Testing kernel: tribas
+MSE:
+0.013444228855435456
+RMSE:
+0.12
+Testing kernel: hardlim
+MSE:
+0.007752898680324929
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.010366436811605866
+RMSE:
+0.10
+
+Layer: 19
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.008362648707786777
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.010435881564459548
+RMSE:
+0.10
+Testing kernel: hardlim
+MSE:
+0.0070062684534870035
+RMSE:
+0.08
+Testing kernel: rbf(0.1)
+MSE:
+0.010257734132387723
+RMSE:
+0.10
+
+Layer: 20
+Testing kernel: default
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tanh
+MSE:
+0.007935523515747996
+RMSE:
+0.09
+Testing kernel: tribas
+MSE:
+0.012229487602526934
+RMSE:
+0.11
+Testing kernel: hardlim
+MSE:
+0.008587694210201165
+RMSE:
+0.09
+Testing kernel: rbf(0.1)
+MSE:
+0.01055909523088755
+RMSE:
+0.10
+Optimal model:
+ELMRegressor(hidden_layer=RBFRandomHiddenLayer(activation_args=None,
+                                               activation_func='gaussian',
+                                               centers=None, gamma=0.1,
+                                               n_hidden=4, radii=None,
+                                               random_state=0,
+                                               use_exemplars=False),
+             regressor=None)
+bestHiddenLayerCount:
+2
+MSE: 0.01
+RMSE: 0.07
+"Current memory usage"
+used| 1321632
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1393
+symw| 78536
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 1321632
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1393
+symw| 78536
+"Deploying GPS speed prediction model"
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+30259 4228288
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 6827344
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1412
+symw| 79273
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 6827344
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1412
+symw| 79273
+"Deploying LiPo Voltage prediction model"
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 44787 instead
+  http_address["port"], self.http_server.port
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+31639 4228064
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 12331712
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1415
+symw| 79435
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 12331712
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1415
+symw| 79435
+"Parameters for data synthesis:"
+"lowThrottle"
+1000
+"highThrottle"
+2000
+"throttleSteps"
+10
+"Synthesizing GPS speeds and LiPo voltage for different throttle values and t..
+"Generating timestep sample 2"
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 38829 instead
+  http_address["port"], self.http_server.port
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+223549 4228288
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 25526304
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1430
+symw| 80138
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 25526304
+heap| 67108864
+peak| 67108864
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1430
+symw| 80138
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 45445 instead
+  http_address["port"], self.http_server.port
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+458671 4228192
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 4649337408
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 4649337408
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+"Generating timestep sample 3"
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 36103 instead
+  http_address["port"], self.http_server.port
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+557876 4228288
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 4655442400
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 4655442400
+heap| 4697620480
+peak| 4697620480
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 44449 instead
+  http_address["port"], self.http_server.port
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+789395 4228192
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 9261650368
+heap| 9328132096
+peak| 9328132096
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 9261650368
+heap| 9328132096
+peak| 9328132096
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+"Generating timestep sample 4"
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 42889 instead
+  http_address["port"], self.http_server.port
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+774414 4228288
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 9274309056
+heap| 9328132096
+peak| 9328132096
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 9274309056
+heap| 9328132096
+peak| 9328132096
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 45427 instead
+  http_address["port"], self.http_server.port
+Using ELM LiPo Model
+Predicting LiPo Voltage using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+LiPoPredictionPDF set
+prediction complete!
+992695 4228192
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 13893699936
+heap| 13958643712
+peak| 13958643712
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 13893699936
+heap| 13958643712
+peak| 13958643712
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+Sample gpsSpeedPredictionTableRowCount LiPoPredictionTableRowCount
+------------------------------------------------------------------
+0      17567                           17567                      
+1      35134                           35134                      
+2      52701                           52701                      
+3      70268                           70268                      
+"Generating timestep sample 5"
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 46193 instead
+  http_address["port"], self.http_server.port
+Using ELM GPS Model
+Predicting GPS Speed using KDB+ input!
+throttleInputRange
+[2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000]
+Using PCA!
+gpsPredictionPDF set
+prediction complete!
+1038697 4228288
+sys:1: FutureWarning: The 'get_values' method is deprecated and will be removed in a future version. Use '.to_numpy()' or '.array' instead.
+"Current memory usage"
+used| 13905909952
+heap| 13958643712
+peak| 13958643712
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+"Running garbage collection"
+"Memory usage after garbage collection"
+used| 13905909952
+heap| 13958643712
+peak| 13958643712
+wmax| 0
+mmap| 143
+mphy| 25225674752
+syms| 1432
+symw| 80244
+/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 37351 instead
+  http_address["port"], self.http_server.port
+distributed.utils - ERROR - Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time
+Traceback (most recent call last):
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 234, in connect
+    _raise(error)
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 215, in _raise
+    raise IOError(msg)
+OSError: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/utils.py", line 656, in log_errors
+    yield
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/client.py", line 1347, in _close
+    await self.cluster.close()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/deploy/spec.py", line 381, in _close
+    await self._correct_state()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/deploy/spec.py", line 308, in _correct_state_internal
+    await self.scheduler_comm.retire_workers(workers=list(to_close))
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/core.py", line 788, in send_recv_from_rpc
+    comm = await self.live_comm()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/core.py", line 750, in live_comm
+    **self.connection_args,
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 245, in connect
+    _raise(error)
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 215, in _raise
+    raise IOError(msg)
+OSError: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time
+tornado.application - ERROR - Exception in callback functools.partial(<bound method IOLoop._discard_future_result of <tornado.platform.asyncio.AsyncIOLoop object at 0x7f85eebaa210>>, <Task finished coro=<SpecCluster._correct_state_internal() done, defined at /home/foorx/anaconda3/lib/python3.7/site-packages/distributed/deploy/spec.py:300> exception=OSError("Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time")>)
+Traceback (most recent call last):
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 234, in connect
+    _raise(error)
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 215, in _raise
+    raise IOError(msg)
+OSError: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/tornado/ioloop.py", line 743, in _run_callback
+    ret = callback()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/tornado/ioloop.py", line 767, in _discard_future_result
+    future.result()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/client.py", line 1047, in _start
+    await self._close()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/client.py", line 1347, in _close
+    await self.cluster.close()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/deploy/spec.py", line 381, in _close
+    await self._correct_state()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/deploy/spec.py", line 308, in _correct_state_internal
+    await self.scheduler_comm.retire_workers(workers=list(to_close))
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/core.py", line 788, in send_recv_from_rpc
+    comm = await self.live_comm()
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/core.py", line 750, in live_comm
+    **self.connection_args,
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 245, in connect
+    _raise(error)
+  File "/home/foorx/anaconda3/lib/python3.7/site-packages/distributed/comm/core.py", line 215, in _raise
+    raise IOError(msg)
+OSError: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time
+'e: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: Timed out trying to connect to 'tcp://127.0.0.1:42971' after 10 s: connect() didn't finish in time
+  [12] /home/foorx/anaconda3/q/p.q:13: .p.e:{$["def"~3#x;$[x[3]in"<*>";ei 3;eo];"class"~5#x;$[x[5]in"*>";ei 5;eo];eo]x}
+                                             ^
+q.p))
