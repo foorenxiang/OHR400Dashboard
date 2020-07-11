@@ -12,3 +12,4 @@ elm/
 stackedgeneralizer/
 __pycache__/
 cookbook/
+dask-worker-space/
