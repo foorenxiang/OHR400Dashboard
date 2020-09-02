@@ -2,34 +2,36 @@ import sys
 import numpy as np
 import pandas as pd
 import sklearn.gaussian_process as gp
-from joblib import dump, load  #model persistance library
+from joblib import dump, load  # model persistance library
 import mysql.connector
 
 pd.set_option('display.max_rows', None)
-#fallback csv training data if not using kdb data (for testing purposes)
+# fallback csv training data if not using kdb data (for testing purposes)
 csvTrainingData = 'trainingDataAbove100kph.csv'
 
-#mysql update setup variables
-#cannot use __file__ when running in KDB+
+# mysql update setup variables
+# cannot use __file__ when running in KDB+
 fileName = 'updateGPRLiPoModel.p'
 trainingSetName = 'trainingDataAbove100kph.csv'
 comments = 'Using RationalQuadratic GPR kernel'
 
+
 def mse(pred, actual):
-	return ((pred-actual)**2).mean()
+    return ((pred-actual)**2).mean()
 
 
 def strFloat(floatVal):
-	return "{0:.2f}".format(round(floatVal,2))
+    return "{0:.2f}".format(round(floatVal, 2))
+
 
 if 'trainingDataPDF' not in globals():
-	trainingDataPDF = pd.read_csv(csvTrainingData)
-	print("Training using csv input!")
+    trainingDataPDF = pd.read_csv(csvTrainingData)
+    print("Training using csv input!")
 
-#using else or try catch causes bugs with embedpy
+# using else or try catch causes bugs with embedpy
 if 'trainingDataPDF' in globals():
-	trainingSetName = "KDB+ Input"
-	print("Training using KDB+ input!")
+    trainingSetName = "KDB+ Input"
+    print("Training using KDB+ input!")
 
 trainPercentage = 0.7
 trainingDataTrain = trainingDataPDF[:int(trainPercentage*len(trainingDataPDF))]
@@ -39,44 +41,46 @@ trainingDataTest = trainingDataPDF[int(trainPercentage*len(trainingDataPDF)):]
 # testX <-- test observations [# points, # features]
 # testy <-- test labels [# points]
 
-trainX = trainingDataTrain.drop(['vbatLatestV'], axis=1, inplace = False)
+trainX = trainingDataTrain.drop(['vbatLatestV'], axis=1, inplace=False)
 trainy = trainingDataTrain["vbatLatestV"]
 # Index(['timeDeltaus', 'currentSampleHz', 'timeus', 'rcCommand0', 'rcCommand1',
-       # 'rcCommand2', 'rcCommand3', 'vbatLatestV', 'gyroADC0', 'gyroADC1',
-       # 'gyroADC2', 'accSmooth0', 'accSmooth1', 'accSmooth2', 'motor0',
-       # 'motor1', 'motor2', 'motor3'],
-      # dtype='object')
+# 'rcCommand2', 'rcCommand3', 'vbatLatestV', 'gyroADC0', 'gyroADC1',
+# 'gyroADC2', 'accSmooth0', 'accSmooth1', 'accSmooth2', 'motor0',
+# 'motor1', 'motor2', 'motor3'],
+# dtype='object')
 
-testX = trainingDataTest.drop(['vbatLatestV'], axis=1, inplace = False)
+testX = trainingDataTest.drop(['vbatLatestV'], axis=1, inplace=False)
 testy = trainingDataTest["vbatLatestV"]
 
-#using constant gpr kernel
+# using constant gpr kernel
 # kernel = gp.kernels.ConstantKernel() * gp.kernels.RBF()
 kernel = gp.kernels.RationalQuadratic()
 
 print("GPR Kernel used:")
 print(kernel)
 
-model = gp.GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=10, alpha=0.001, normalize_y=True)
+model = gp.GaussianProcessRegressor(
+    kernel=kernel, n_restarts_optimizer=10, alpha=0.001, normalize_y=True)
 
 model.fit(trainX, trainy)
-modelParams = model.kernel_.get_params() #call this to retrieve tuned hyperparameters from model
+# call this to retrieve tuned hyperparameters from model
+modelParams = model.kernel_.get_params()
 print("Model params:")
 print(modelParams)
 
 savedLiPoModelGPR = dump(model, './models/gprLiPoModel.model')
 
-model = 0 
+model = 0
 
-#test model
+# test model
 model = load('./models/gprLiPoModel.model')
 # print(testX.columns)
-y_pred= model.predict(testX)
+y_pred = model.predict(testX)
 
-#calculate mean square error
-MSE = mse(y_pred,testy)
+# calculate mean square error
+MSE = mse(y_pred, testy)
 
-#display mean square error
+# display mean square error
 # print("Actual vs Predictions:")
 # testy = testy.to_numpy()
 # for i in range(len(y_pred)):
