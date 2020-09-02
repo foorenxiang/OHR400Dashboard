@@ -27,12 +27,14 @@ class ListenerThread(threading.Thread):
         while not self.stopped():
             print('.')
             try:
-                message = self.q.receive(data_only = False, raw = False) # retrieve entire message
+                # retrieve entire message
+                message = self.q.receive(data_only=False, raw=False)
 
                 if message.type != MessageType.ASYNC:
                     print('Unexpected message, expected message of type: ASYNC')
 
-                print('type: %s, message type: %s, data size: %s, is_compressed: %s ' % (type(message), message.type, message.size, message.is_compressed))
+                print('type: %s, message type: %s, data size: %s, is_compressed: %s ' % (
+                    type(message), message.type, message.size, message.is_compressed))
                 print(message.data)
 
                 if isinstance(message.data, QDictionary):
@@ -46,19 +48,22 @@ class ListenerThread(threading.Thread):
 
 if __name__ == '__main__':
     # create connection object
-    q = qconnection.QConnection(host = 'renxiang.cloud', port = 5001, username = 'foorx', password = 'foorxaccess')
+    q = qconnection.QConnection(
+        host='renxiang.cloud', port=5001, username='foorx', password='foorxaccess')
     # initialize connection
     q.open()
 
     print(q)
-    print('IPC version: %s. Is connected: %s' % (q.protocol_version, q.is_connected()))
+    print('IPC version: %s. Is connected: %s' %
+          (q.protocol_version, q.is_connected()))
 
     try:
         # definition of asynchronous multiply function
         # queryid - unique identifier of function call - used to identify
         # the result
         # a, b - parameters to the query
-        q.sendSync('    :{[queryid;a;b] res:a*b; (neg .z.w)(`queryid`result!(queryid;res)) }');
+        q.sendSync(
+            '    :{[queryid;a;b] res:a*b; (neg .z.w)(`queryid`result!(queryid;res)) }')
 
         t = ListenerThread(q)
         t.start()
@@ -67,8 +72,8 @@ if __name__ == '__main__':
             a = random.randint(1, 100)
             b = random.randint(1, 100)
             print('Asynchronous call with queryid=%s with arguments: %s, %s' % (x, a, b))
-            q.sendAsync('asynchMult', x, a, b);
+            q.sendAsync('asynchMult', x, a, b)
 
         time.sleep(1)
     finally:
-        q.close()   
+        q.close()

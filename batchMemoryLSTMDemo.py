@@ -11,17 +11,22 @@ from keras.layers import LSTM
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 # convert an array of values into a dataset matrix
+
+
 def create_dataset(dataset, look_back=1):
-	dataX, dataY = [], []
-	for i in range(len(dataset)-look_back-1):
-		a = dataset[i:(i+look_back), 0]
-		dataX.append(a)
-		dataY.append(dataset[i + look_back, 0])
-	return numpy.array(dataX), numpy.array(dataY)
+    dataX, dataY = [], []
+    for i in range(len(dataset)-look_back-1):
+        a = dataset[i:(i+look_back), 0]
+        dataX.append(a)
+        dataY.append(dataset[i + look_back, 0])
+    return numpy.array(dataX), numpy.array(dataY)
+
+
 # fix random seed for reproducibility
 numpy.random.seed(7)
 # load the dataset
-dataframe = read_csv('synthesizedThrottleLSTMTrainingData.csv', usecols=[1], engine='python')
+dataframe = read_csv('synthesizedThrottleLSTMTrainingData.csv', usecols=[
+                     1], engine='python')
 dataset = dataframe.values
 dataset = dataset.astype('float32')
 # normalize the dataset
@@ -30,7 +35,7 @@ dataset = scaler.fit_transform(dataset)
 # split into train and test sets
 train_size = int(len(dataset) * 0.67)
 test_size = len(dataset) - train_size
-train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
+train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
 # reshape into X=t and Y=t+1
 look_back = 10
 trainX, trainY = create_dataset(train, look_back)
@@ -45,8 +50,9 @@ model.add(LSTM(4, batch_input_shape=(batch_size, look_back, 1), stateful=True))
 model.add(Dense(1))
 model.compile(loss='mean_squared_error', optimizer='adam')
 for i in range(100):
-	model.fit(trainX, trainY, epochs=1, batch_size=batch_size, verbose=2, shuffle=False)
-	model.reset_states()
+    model.fit(trainX, trainY, epochs=1,
+              batch_size=batch_size, verbose=2, shuffle=False)
+    model.reset_states()
 # make predictions
 trainPredict = model.predict(trainX, batch_size=batch_size)
 model.reset_states()
@@ -57,9 +63,9 @@ trainY = scaler.inverse_transform([trainY])
 testPredict = scaler.inverse_transform(testPredict)
 testY = scaler.inverse_transform([testY])
 # calculate root mean squared error
-trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:,0]))
+trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:, 0]))
 print('Train Score: %.2f RMSE' % (trainScore))
-testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:,0]))
+testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
 print('Test Score: %.2f RMSE' % (testScore))
 # shift train predictions for plotting
 trainPredictPlot = numpy.empty_like(dataset)
@@ -68,7 +74,8 @@ trainPredictPlot[look_back:len(trainPredict)+look_back, :] = trainPredict
 # shift test predictions for plotting
 testPredictPlot = numpy.empty_like(dataset)
 testPredictPlot[:, :] = numpy.nan
-testPredictPlot[len(trainPredict)+(look_back*2)+1:len(dataset)-1, :] = testPredict
+testPredictPlot[len(trainPredict)+(look_back*2) +
+                1:len(dataset)-1, :] = testPredict
 # plot baseline and predictions
 plotTitle = "Batch Memory LSTM"
 plt.ylabel('Throttle Value Prediction')
